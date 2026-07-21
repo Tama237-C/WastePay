@@ -1,0 +1,339 @@
+WASTEPAY - PRICING ENGINE RULES
+
+
+1. PURPOSE
+
+The Pricing Engine exists to securely and dynamically calculate collector payouts while supporting regional pricing strategies, corporate-sponsored campaigns, promotional bonuses, and future circular economy incentive programs.
+
+
+
+--------------------------------------------------
+
+
+2. PRICING OWNERSHIP AND SECURITY
+
+Only the WastePay Super Administrator may:
+
+- Create pricing rules.
+- Edit pricing rules.
+- Activate pricing campaigns.
+- Archive pricing campaigns.
+- Override pricing configurations.
+
+Depot Managers and Depot Agents have:
+
+- Read-only access.
+
+Business Rule:
+
+No depot personnel may manually modify collector payout amounts.
+
+
+
+--------------------------------------------------
+
+
+3. PRICING EQUATION
+
+The final collector payout is calculated using the following formula:
+
+
+Final Payout =
+
+((Base Material Rate × Regional Multiplier)
+
++ Active Campaign Bonus
+
++ Quality Bonus
+
++ Brand Bonus)
+
+× Quantity (KG)
+
+
+
+--------------------------------------------------
+
+
+4. BASE MATERIAL RATES
+
+Each plastic category maintains an independent base rate.
+
+Supported categories include:
+
+- PET Clear
+- PET Colored
+- HDPE
+- PP
+
+Business Rule:
+
+Each material category may have independent pricing values.
+
+
+
+--------------------------------------------------
+
+
+5. REGIONAL MULTIPLIERS
+
+Regional pricing may be configured by:
+
+- City
+- Depot
+- Collection Zone
+
+Examples:
+
+- Douala = 1.0
+- Yaoundé = 1.1
+- Remote Zones = configurable
+
+Regional multipliers are configurable by the WastePay Super Administrator.
+
+
+
+--------------------------------------------------
+
+
+6. ACTIVE CAMPAIGN BONUSES
+
+Campaign bonuses support:
+
+- Environmental campaigns.
+- Community cleanup campaigns.
+- Seasonal promotions.
+- Plastic collection initiatives.
+
+Examples:
+
+- +25 CFA per KG.
+- +50 CFA per KG.
+- Percentage-based bonuses.
+
+Campaigns are time-bound and configurable.
+
+
+
+--------------------------------------------------
+
+
+7. QUALITY BONUSES
+
+Future quality incentives may be applied for:
+
+- Exceptionally clean plastics.
+- Properly sorted plastics.
+- High-value materials.
+
+Business Rule:
+
+Quality bonuses are optional and configurable.
+
+
+
+--------------------------------------------------
+
+
+8. BRAND BONUS SYSTEM
+
+Corporate partners may sponsor:
+
+- Specific brands.
+- Specific products.
+- Specific plastic categories.
+
+Examples:
+
+- Tangui PET Campaign.
+- Beverage Industry Cleanup Initiative.
+
+Brand bonuses may be funded by:
+
+- CSR programs.
+- Environmental initiatives.
+- Corporate partnerships.
+
+
+
+--------------------------------------------------
+
+
+9. CORPORATE SPONSORSHIP CAMPAIGNS
+
+Campaigns may define:
+
+- Campaign Name.
+- Sponsor Name.
+- Eligible Products.
+- Start Date.
+- End Date.
+- Total Budget.
+- Remaining Budget.
+- Bonus Values.
+
+Campaigns automatically expire when:
+
+- The campaign period ends.
+OR
+- The allocated budget is exhausted.
+
+
+
+--------------------------------------------------
+
+
+10. PRICING RULE STATUS LIFECYCLE
+
+
+DRAFT
+
+↓
+
+SCHEDULED
+
+↓
+
+ACTIVE
+
+↓
+
+EXPIRED
+
+↓
+
+ARCHIVED
+
+
+
+--------------------------------------------------
+
+
+11. HISTORICAL PRICE IMMUTABILITY
+
+Once a transaction becomes SUCCESSFUL:
+
+- Pricing values are permanently copied into the transaction ledger.
+
+Stored values include:
+
+- Base Material Rate.
+- Regional Multiplier.
+- Campaign Bonus.
+- Brand Bonus.
+- Quality Bonus.
+- Final Payout Amount.
+
+Business Rule:
+
+Historical transactions are never recalculated.
+
+
+
+--------------------------------------------------
+
+
+12. SAFE PRICE UPDATES
+
+Price changes affect:
+
+- Future transactions only.
+
+Price changes never affect:
+
+- Historical records.
+- Existing payouts.
+- Financial audits.
+
+
+
+--------------------------------------------------
+
+
+13. MINIMUM AND MAXIMUM PRICING LIMITS
+
+Each material category may define:
+
+- Minimum allowable price.
+- Maximum allowable price.
+
+Business Rule:
+
+Administrative safeguards prevent accidental pricing errors.
+
+
+
+--------------------------------------------------
+
+
+14. LIVE RATE BOARD
+
+The Depot Agent PWA displays:
+
+- Today's active rates.
+- Regional multipliers.
+- Campaign bonuses.
+- Corporate-sponsored bonuses.
+- Promotional incentives.
+
+Collectors must be able to view:
+
+- Active payout rates before weighing plastics.
+
+
+
+--------------------------------------------------
+
+
+15. PRICE CALCULATION TRANSPARENCY
+
+Collectors should understand how their payouts are calculated.
+
+Examples:
+
+PET Clear:
+
+- Base Rate: 100 CFA
+- Regional Multiplier: 1.0
+- Campaign Bonus: +25 CFA
+- Quantity: 10 KG
+
+Final Payout:
+
+1,250 CFA
+
+
+
+--------------------------------------------------
+
+
+16. BUSINESS RULES
+
+- Only Super Administrators manage pricing.
+- Pricing rules are immutable after transaction completion.
+- Historical prices are permanently preserved.
+- Campaigns are configurable and time-bound.
+- Corporate-sponsored bonuses are supported.
+- Regional pricing is supported.
+- Live rate transparency is mandatory.
+- Manual price manipulation is prohibited.
+
+
+
+--------------------------------------------------
+
+
+17. FUTURE CAPABILITIES
+
+The Pricing Engine is designed to support:
+
+- Government recycling incentives.
+- Corporate sustainability programs.
+- Plastic-specific bonuses.
+- National cleanup campaigns.
+- Dynamic market pricing.
+- Circular economy reward programs.
+- Africa-wide pricing models.
+
+
+END OF DOCUMENT

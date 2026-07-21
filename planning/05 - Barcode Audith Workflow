@@ -1,0 +1,324 @@
+WASTEPAY - BARCODE AUDIT WORKFLOW
+
+
+1. PURPOSE
+
+The Barcode Audit Workflow exists to build WastePay's Plastic Intelligence Database by identifying, classifying, and tracking plastic products recovered across Cameroon and, eventually, across Africa.
+
+The system enables WastePay to:
+
+- Identify plastic products by barcode.
+- Track brand and manufacturer plastic footprints.
+- Generate environmental impact analytics.
+- Support public transparency and corporate accountability.
+- Maintain a clean and verified master product catalog.
+
+
+--------------------------------------------------
+
+
+2. PRODUCT INFORMATION DATA MODEL
+
+For every verified product in the WastePay Master Barcode Catalog, the following information must be stored:
+
+- Barcode Number
+- Product Name
+- Brand Family Name
+- Parent Manufacturer Corporation
+- Product Volume / Size
+- Plastic Material Category
+- Product Category
+- Country of Manufacture
+
+Examples:
+
+- Tangui Mineral Water
+- Tangui
+- SABC
+- 1.5 Liters
+- PET
+- Water
+- Cameroon
+
+
+--------------------------------------------------
+
+
+3. PRODUCT HIERARCHY MODEL
+
+Every product follows the following hierarchy:
+
+Manufacturer
+
+↓
+
+Brand Family
+
+↓
+
+Product Name
+
+↓
+
+Product Size
+
+↓
+
+Plastic Material Category
+
+↓
+
+Barcode Number
+
+
+This hierarchy allows WastePay to accurately calculate corporate plastic footprints and brand-level environmental statistics.
+
+
+--------------------------------------------------
+
+
+4. MASTER BARCODE CATALOG
+
+The WastePay Master Barcode Catalog serves as the single source of truth for all plastic products processed by the platform.
+
+Business Rules:
+
+- Depot Agents cannot edit the master catalog.
+- Depot Managers cannot edit the master catalog.
+- Only the WastePay Super Administrator may permanently verify or archive products.
+- Existing products are reused across all future transactions.
+
+
+--------------------------------------------------
+
+
+5. UNKNOWN BARCODE PROCESSING PIPELINE
+
+Step 1 - Ground Zero Flagging
+
+If a barcode is not recognised by the system:
+
+- The Depot Agent manually enters a temporary product name.
+- The Depot Agent assigns the plastic material type.
+- The transaction continues normally.
+- The collector is paid normally.
+- The barcode status becomes UNVERIFIED.
+
+
+Step 2 - Depot Verification
+
+The Depot Manager reviews:
+
+- Product information
+- Transaction photographs
+- Plastic material classification
+
+The barcode status becomes:
+
+PROVISIONALLY APPROVED
+
+
+Step 3 - Master Catalog Verification
+
+The WastePay Super Administrator reviews the submission and permanently approves or rejects the product.
+
+The barcode status becomes:
+
+VERIFIED ACTIVE
+
+
+--------------------------------------------------
+
+
+6. PRODUCT STATUS LIFECYCLE
+
+Every product progresses through the following lifecycle:
+
+
+NEW BARCODE DETECTED
+
+↓
+
+UNVERIFIED
+
+↓
+
+PROVISIONALLY APPROVED
+
+↓
+
+VERIFIED ACTIVE
+
+↓
+
+ARCHIVED
+
+
+Business Rule:
+
+Historical product records are never deleted from the database.
+
+Archived products remain available for historical analytics and reporting purposes.
+
+
+--------------------------------------------------
+
+
+7. DUPLICATE SCAN MANAGEMENT
+
+If an existing barcode is scanned:
+
+- The system automatically reuses the existing product record.
+- No duplicate product records are created.
+- A new transaction record is created instead.
+
+Business Rule:
+
+One barcode must correspond to only one product record in the Master Barcode Catalog.
+
+
+--------------------------------------------------
+
+
+8. PRODUCT CATEGORY CLASSIFICATION
+
+Products are classified into categories such as:
+
+- Water
+- Soft Drinks
+- Juice
+- Cooking Oil
+- Detergent
+- Shampoo
+- Cosmetics
+- Pharmaceuticals
+- Household Cleaning Products
+- Food Packaging
+
+Business Rule:
+
+Product categories are used for environmental analytics and public reporting.
+
+
+--------------------------------------------------
+
+
+9. BARCODE DEDUPLICATION RULES
+
+The system must prevent:
+
+- Duplicate product records.
+- Duplicate barcode assignments.
+- Duplicate manufacturer relationships.
+
+Business Rule:
+
+Barcode records are globally unique across the WastePay ecosystem.
+
+
+--------------------------------------------------
+
+
+10. CORPORATE ACCOUNTABILITY ENGINE
+
+The Barcode Audit System contributes to WastePay's Corporate Accountability Engine by tracking:
+
+- Plastic brands.
+- Manufacturers.
+- Product categories.
+- Plastic material types.
+- Geographic recovery statistics.
+
+Examples:
+
+- Top Polluting Manufacturers
+- Top Plastic Brands
+- Most Collected Products
+- Most Common Plastic Categories
+
+
+--------------------------------------------------
+
+
+11. PUBLIC IMPACT DASHBOARD METRICS
+
+Publicly visible statistics include:
+
+- Total Kilograms Recovered
+- Total Plastic Items Recovered
+- Active Waste Collectors
+- Total Mobile Money Paid Out
+- Total Verified Plastic Products
+- Active Recycling Depots
+- Top Plastic Brands
+- Top Polluting Manufacturers
+- Plastic Recovery by Region
+- Total Local Income Generated
+
+
+--------------------------------------------------
+
+
+12. ENVIRONMENTAL ANALYTICS ENGINE
+
+The Barcode Audit Workflow powers:
+
+- Brand Analytics
+- Manufacturer Analytics
+- Product Analytics
+- Plastic Material Analytics
+- Regional Environmental Analytics
+- Plastic Recovery Trends
+- Community Recovery Statistics
+- Depot Performance Statistics
+
+
+--------------------------------------------------
+
+
+13. PRIVATE DATA ACCESS RULES
+
+The following information is NOT publicly accessible:
+
+- Collector identities
+- Depot Agent identities
+- Mobile Money transaction details
+- Financial ledger balances
+- Internal depot operations
+- Administrative reports
+
+Access is restricted based on user permissions.
+
+
+--------------------------------------------------
+
+
+14. BUSINESS RULES
+
+- Unknown barcodes do not block collector payouts.
+- Only verified products may enter the permanent catalog.
+- Every barcode must be globally unique.
+- Every transaction must be linked to a product record.
+- Product records are never permanently deleted.
+- Depot staff cannot edit the Master Barcode Catalog.
+- Barcode scans contribute to environmental analytics automatically.
+
+
+--------------------------------------------------
+
+
+15. FUTURE ANALYTICS CAPABILITIES
+
+WastePay's Barcode Audit Workflow is designed to support future capabilities including:
+
+- Corporate sustainability reporting.
+- Municipal environmental reporting.
+- Producer responsibility initiatives.
+- Plastic pollution heat maps.
+- National plastic footprint statistics.
+- Circular economy research initiatives.
+- Public environmental transparency programs.
+- Africa-wide plastic intelligence datasets.
+
+
+END OF DOCUMENT

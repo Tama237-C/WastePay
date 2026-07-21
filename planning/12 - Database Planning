@@ -1,0 +1,358 @@
+WASTEPAY - DATABASE PLANNING
+
+
+1. PURPOSE
+
+The WastePay database architecture exists to provide a scalable, secure, and relational data model supporting plastic recovery operations, financial transactions, logistics management, environmental intelligence, and public transparency initiatives across Africa.
+
+
+
+--------------------------------------------------
+
+
+2. DATABASE DESIGN PHILOSOPHY
+
+The database is designed around business entities rather than user interface components.
+
+Core design principles include:
+
+- Relational integrity.
+- Financial immutability.
+- Geographic intelligence.
+- Environmental analytics.
+- Scalability.
+- Auditability.
+- Role-based access control.
+
+
+
+--------------------------------------------------
+
+
+3. AUTHENTICATION MODULE
+
+profiles
+
+Stores:
+
+- User identity information.
+- Roles.
+- Contact information.
+- Operational zones.
+
+
+
+--------------------------------------------------
+
+
+4. DEPOT OPERATIONS MODULE
+
+depots
+
+Stores:
+
+- Depot information.
+- Float balances.
+- Service zones.
+- Assigned managers.
+
+
+
+vehicles
+
+Stores:
+
+- Vehicle information.
+- Capacity.
+- Assigned depots.
+
+
+
+driver_shifts
+
+Stores:
+
+- Driver operational status.
+
+
+
+--------------------------------------------------
+
+
+5. PLASTIC INTELLIGENCE MODULE
+
+manufacturers
+
+Stores:
+
+- Manufacturer information.
+
+
+
+brands
+
+Stores:
+
+- Brand information.
+
+
+
+barcodes
+
+Stores:
+
+- Product barcode intelligence.
+
+
+
+product_categories
+
+Stores:
+
+- Product classifications.
+
+
+
+--------------------------------------------------
+
+
+6. FINANCIAL MODULE
+
+transactions
+
+Stores:
+
+- Financial transaction records.
+
+
+
+transaction_items
+
+Stores:
+
+- Itemized plastic entries.
+
+
+
+payout_receipts
+
+Stores:
+
+- Mobile Money payout receipts.
+
+
+
+adjustment_transactions
+
+Stores:
+
+- Administrative adjustments.
+
+
+
+float_wallet_logs
+
+Stores:
+
+- Corporate wallet movements.
+
+
+
+--------------------------------------------------
+
+
+7. PRICING ENGINE MODULE
+
+pricing_rules
+
+Stores:
+
+- Base pricing rules.
+
+
+
+pricing_campaigns
+
+Stores:
+
+- Corporate-sponsored campaigns.
+
+
+
+regional_pricing_multipliers
+
+Stores:
+
+- Geographic pricing modifiers.
+
+
+
+--------------------------------------------------
+
+
+8. COLLECTION AND LOGISTICS MODULE
+
+collection_requests
+
+Stores:
+
+- Residential collection requests.
+
+
+
+pickup_routes
+
+Stores:
+
+- Route assignments.
+
+
+
+depot_zones
+
+Stores:
+
+- Geographic service zones.
+
+
+
+--------------------------------------------------
+
+
+9. INVENTORY MANAGEMENT MODULE
+
+inventory_records
+
+Stores:
+
+- Material quantities.
+
+
+
+inventory_movements
+
+Stores:
+
+- Inventory lifecycle transitions.
+
+
+
+--------------------------------------------------
+
+
+10. ANALYTICS MODULE
+
+environmental_metrics
+
+Stores:
+
+- Environmental statistics.
+
+
+
+corporate_analytics
+
+Stores:
+
+- Corporate footprint metrics.
+
+
+
+public_dashboard_metrics
+
+Stores:
+
+- Public website statistics.
+
+
+
+--------------------------------------------------
+
+
+11. SYSTEM MODULE
+
+notifications
+
+Stores:
+
+- SMS and system notifications.
+
+
+
+audit_logs
+
+Stores:
+
+- Administrative actions.
+
+
+
+system_health_logs
+
+Stores:
+
+- API and infrastructure health records.
+
+
+
+--------------------------------------------------
+
+
+12. GEOSPATIAL DATA
+
+WastePay uses:
+
+- PostgreSQL.
+- PostGIS.
+- Geographic coordinates.
+- Spatial queries.
+- Depot service zones.
+- Collection request mapping.
+
+
+
+--------------------------------------------------
+
+
+13. FINANCIAL IMMUTABILITY RULES
+
+Financial records:
+
+- Cannot be deleted.
+- Cannot be overwritten.
+- Must remain permanently auditable.
+
+
+
+--------------------------------------------------
+
+
+14. BUSINESS RULES
+
+- All data relationships are normalized.
+- Historical transactions are immutable.
+- Geographic data is natively supported.
+- Audit logging is mandatory.
+- Environmental intelligence data is permanently preserved.
+- Pricing rules are versioned.
+- Corporate accountability metrics are continuously updated.
+
+
+
+--------------------------------------------------
+
+
+15. FUTURE CAPABILITIES
+
+The WastePay database architecture supports:
+
+- Multi-country operations.
+- National environmental reporting.
+- Government partnerships.
+- Corporate sustainability programs.
+- AI-powered analytics.
+- Africa-wide plastic intelligence initiatives.
+- Circular economy infrastructure.
+
+
+END OF DOCUMENT

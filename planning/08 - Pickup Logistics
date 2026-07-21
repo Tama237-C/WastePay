@@ -1,0 +1,373 @@
+WASTEPAY - PICKUP LOGISTICS
+
+
+1. PURPOSE
+
+The Pickup Logistics System exists to manage residential and institutional plastic collection operations through intelligent dispatching, vehicle management, route optimization, and depot reconciliation procedures.
+
+
+
+--------------------------------------------------
+
+
+2. VEHICLE FLEET MANAGEMENT
+
+Every operational vehicle must maintain the following records:
+
+- Vehicle License Plate
+- Vehicle Capacity (KG or Tons)
+- Assigned Depot
+- Assigned Driver
+- Current Operational Status
+
+Business Rule:
+
+Every collection vehicle must be assigned to a single active depot.
+
+
+
+--------------------------------------------------
+
+
+3. DRIVER SHIFT STATUS LIFECYCLE
+
+
+OFFLINE
+
+↓
+
+AVAILABLE
+
+↓
+
+ON_ROUTE
+
+↓
+
+AT_PICKUP
+
+↓
+
+RETURNING_TO_DEPOT
+
+↓
+
+SHIFT_COMPLETED
+
+
+Business Rule:
+
+Only AVAILABLE drivers may receive new pickup assignments.
+
+
+
+--------------------------------------------------
+
+
+4. VEHICLE CAPACITY SAFEGUARDS
+
+The system continuously tracks:
+
+- Estimated route weight.
+- Remaining vehicle capacity.
+- Daily collection totals.
+
+Business Rule:
+
+If vehicle capacity exceeds 85%, additional pickups may not be assigned without manager approval.
+
+
+
+--------------------------------------------------
+
+
+5. DEPOT RESPONSIBILITY ZONES
+
+WastePay utilizes PostGIS spatial mapping to define:
+
+- Collection zones.
+- Depot service areas.
+- Geographic boundaries.
+
+Business Rules:
+
+- Pickup requests are routed exclusively to the nearest eligible depot.
+- Depot Managers cannot accept out-of-zone requests.
+- Requests outside service areas are automatically rejected.
+
+
+
+--------------------------------------------------
+
+
+6. ROUTE OPTIMIZATION ENGINE
+
+The system is designed to optimize:
+
+- Shortest route distance.
+- Pickup sequencing.
+- Vehicle capacity.
+- Collection weight estimates.
+- Depot proximity.
+
+Future capabilities include:
+
+- Traffic-aware routing.
+- Intelligent dispatch recommendations.
+- Dynamic route recalculation.
+
+
+
+--------------------------------------------------
+
+
+7. DRIVER LOCATION TRACKING
+
+While actively on shift:
+
+- Driver GPS coordinates are transmitted every three minutes.
+- Depot Managers may view active driver locations.
+
+Business Rule:
+
+Location tracking is only enabled during active working hours.
+
+
+
+--------------------------------------------------
+
+
+8. NAVIGATION INTEGRATION
+
+Drivers may launch navigation directly from the PWA.
+
+Supported navigation applications include:
+
+- Google Maps
+- Waze
+
+Navigation links are dynamically generated using customer GPS coordinates.
+
+
+
+--------------------------------------------------
+
+
+9. PICKUP REQUEST STATUS PIPELINE
+
+
+REQUEST_RECEIVED
+
+↓
+
+PENDING_MANAGER_REVIEW
+
+↓
+
+APPROVED
+
+↓
+
+DRIVER_ASSIGNED
+
+↓
+
+DRIVER_EN_ROUTE
+
+↓
+
+ARRIVED_AT_LOCATION
+
+↓
+
+COLLECTION_IN_PROGRESS
+
+↓
+
+COLLECTED_PENDING_DEPOT
+
+↓
+
+RETURNED_TO_DEPOT
+
+↓
+
+DEPOT_VERIFIED
+
+↓
+
+COMPLETED
+
+Possible alternative statuses:
+
+- REJECTED
+- UNREACHABLE
+- RESCHEDULED
+
+
+
+--------------------------------------------------
+
+
+10. DRIVER COLLECTION CHECKLIST
+
+Drivers are required to complete the following steps:
+
+Step 1:
+
+ARRIVED AT LOCATION
+
+- GPS verification.
+- Timestamp recorded.
+
+Step 2:
+
+SCALE VERIFICATION
+
+- Plastic waste weighed.
+- Weight entered into the system.
+
+Step 3:
+
+PHOTO EVIDENCE
+
+- Live collection photograph captured.
+
+Step 4:
+
+SUBMIT COLLECTION
+
+- Collection status updated automatically.
+
+
+
+--------------------------------------------------
+
+
+11. GPS VERIFICATION RULES
+
+Business Rules:
+
+- Driver GPS location must be within fifty meters of the customer's coordinates.
+- Failed GPS verification triggers a manual review flag.
+
+
+
+--------------------------------------------------
+
+
+12. PHOTO EVIDENCE SYSTEM
+
+Collection photographs are mandatory.
+
+Photographs are:
+
+- Timestamped.
+- GPS linked.
+- Stored securely within Supabase Storage.
+
+Business Rule:
+
+Collections cannot be completed without photographic evidence.
+
+
+
+--------------------------------------------------
+
+
+13. DEPOT DROP-OFF WORKFLOW
+
+Upon returning to the depot:
+
+- Plastic materials are unloaded.
+- Total truck haul is weighed.
+- Intake information is recorded.
+
+The depot system automatically compares:
+
+- Individual collection weights.
+- Aggregate depot intake weight.
+
+
+
+--------------------------------------------------
+
+
+14. DEPOT RECONCILIATION SYSTEM
+
+The reconciliation engine compares:
+
+- Driver reported weights.
+- Depot intake weights.
+
+Business Rule:
+
+Weight variance greater than five percent automatically triggers an audit alert.
+
+
+
+--------------------------------------------------
+
+
+15. OPERATIONAL AUDIT FLAGS
+
+Administrative alerts are generated for:
+
+- GPS inconsistencies.
+- Missing collection photographs.
+- Excessive weight variance.
+- Vehicle capacity violations.
+- Failed depot reconciliations.
+- Unreachable collection attempts.
+
+
+
+--------------------------------------------------
+
+
+16. FLEET ANALYTICS
+
+The system tracks:
+
+- Total kilograms collected.
+- Average collection times.
+- Vehicle utilization rates.
+- Driver performance statistics.
+- Depot collection performance.
+- Collection success rates.
+
+
+
+--------------------------------------------------
+
+
+17. BUSINESS RULES
+
+- Vehicles must belong to an active depot.
+- Drivers must be actively on shift.
+- GPS verification is mandatory.
+- Collection photographs are mandatory.
+- Depot reconciliation is mandatory.
+- Vehicle capacity safeguards are enforced.
+- Pickup requests are geographically restricted.
+- Weight discrepancies greater than five percent trigger audits.
+
+
+
+--------------------------------------------------
+
+
+18. FUTURE CAPABILITIES
+
+The Pickup Logistics System is designed to support:
+
+- Multi-city fleet operations.
+- Dynamic route optimization.
+- Traffic-aware navigation.
+- Municipal waste partnerships.
+- Corporate-sponsored collection campaigns.
+- Intelligent dispatch recommendations.
+- National-scale collection logistics.
+
+
+END OF DOCUMENT

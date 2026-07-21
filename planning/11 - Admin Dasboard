@@ -1,0 +1,364 @@
+WASTEPAY - ADMIN DASHBOARD
+
+
+1. PURPOSE
+
+The WastePay Admin Dashboard serves as the executive operational command center responsible for monitoring all financial, environmental, logistical, and administrative activities across the WastePay ecosystem.
+
+
+
+--------------------------------------------------
+
+
+2. DESIGN LANGUAGE
+
+The Admin Dashboard is a premium desktop-first experience designed for executive operations.
+
+Design principles include:
+
+- Slate-950 dark mode aesthetics.
+- High contrast typography.
+- Glassmorphism monitoring cards.
+- Responsive analytics grids.
+- Premium chart visualizations.
+- Operational alert indicators.
+- Red and amber alert states.
+- Rich data hierarchy.
+
+
+
+--------------------------------------------------
+
+
+3. UNIVERSAL NAVIGATION SIDEBAR
+
+The dashboard contains the following primary sections:
+
+- Global Impact Overview
+- Financial Control
+- Corporate Accountability
+- Depot Management
+- Logistics Dispatch
+
+Future sections may include:
+
+- System Health Monitoring
+- Administrative Audit Logs
+- Partnership Management
+
+
+
+--------------------------------------------------
+
+
+4. GLOBAL IMPACT OVERVIEW
+
+Displays:
+
+- Total Metric Tons Recovered
+- Total Collector Payout Capital
+- Total Registered Collectors
+- Total Plastic Items Audited
+- Total Verified Products
+- Total Active Depots
+
+Includes:
+
+- Real-time operational activity feed.
+- Environmental impact metrics.
+- National collection statistics.
+
+
+
+--------------------------------------------------
+
+
+5. FINANCIAL CONTROL AND FLOAT MANAGEMENT
+
+Displays:
+
+- MTN Corporate Wallet Float
+- Orange Corporate Wallet Float
+- Daily payout totals
+- Regional payout statistics
+- Pricing rule configurations
+
+Includes:
+
+- Pricing Rule Matrix
+- Float balance alerts
+- Financial reporting tools
+- Fraud alert monitoring
+
+Business Rules:
+
+- Float threshold alerts are mandatory.
+- Financial records are immutable.
+
+
+
+--------------------------------------------------
+
+
+6. FRAUD ALERT LOG
+
+Displays alerts for:
+
+- Suspicious transactions
+- Excessive payout values
+- Failed payment attempts
+- Depot reconciliation failures
+- Payment limit violations
+- GPS inconsistencies
+
+Administrative actions include:
+
+- Review
+- Flag
+- Escalate
+- Archive
+
+
+
+--------------------------------------------------
+
+
+7. CORPORATE ACCOUNTABILITY ENGINE
+
+Displays:
+
+- Top Polluting Manufacturers
+- Top Plastic Brands
+- Plastic Recovery Statistics
+- Regional Plastic Footprints
+- Corporate Leaderboards
+
+Visualization tools include:
+
+- Charts
+- Leaderboards
+- Trend analytics
+
+
+
+--------------------------------------------------
+
+
+8. MASTER BARCODE APPROVAL DESK
+
+Displays:
+
+- Provisionally Approved Products
+- Barcode verification requests
+- Product images
+- Manufacturer details
+
+Administrative capabilities include:
+
+- Product approval
+- Product corrections
+- Catalog locking
+- Product archiving
+
+Business Rule:
+
+Only the WastePay Super Administrator may approve products into the Master Barcode Catalog.
+
+
+
+--------------------------------------------------
+
+
+9. DEPOT MANAGEMENT
+
+Displays:
+
+- Active Depot Managers
+- Raw Plastic Inventory
+- Daily Float Usage
+- Depot Performance Statistics
+
+Includes:
+
+- Depot configuration tools
+- Staff assignments
+- Inventory monitoring
+
+
+
+--------------------------------------------------
+
+
+10. NEW DEPOT CREATION SYSTEM
+
+Required information includes:
+
+- Depot Name
+- GPS Coordinates
+- Geographic Service Zone
+- Assigned Staff
+- Operational Status
+
+Business Rule:
+
+Only Super Administrators may create new depots.
+
+
+
+--------------------------------------------------
+
+
+11. LOGISTICS DISPATCH CENTER
+
+Displays:
+
+- Active Pickup Routes
+- Driver Locations
+- Collection Requests
+- Service Zones
+- Vehicle Status
+
+Supports:
+
+- Manual dispatch overrides
+- Route assignments
+- Geographic monitoring
+
+
+
+--------------------------------------------------
+
+
+12. ACTIVE ROUTE MAP
+
+The map displays:
+
+- Driver locations
+- Depot zones
+- Vehicle positions
+- Pickup requests
+- Geographic collection heat maps
+
+Powered by:
+
+- PostGIS spatial data.
+
+
+
+--------------------------------------------------
+
+
+13. SYSTEM HEALTH MONITORING
+
+Displays:
+
+- MTN Mobile Money API Status
+- Orange Money API Status
+- Supabase Database Status
+- Storage Bucket Status
+- Notification Service Status
+- GPS Service Status
+- Active User Counts
+- Offline Synchronization Queue Status
+
+
+
+--------------------------------------------------
+
+
+14. EXECUTIVE NOTIFICATION CENTER
+
+Notification categories include:
+
+CRITICAL
+
+- Payment failures
+- Float balance warnings
+- API failures
+- Fraud alerts
+
+WARNING
+
+- Vehicle capacity limits
+- Inventory discrepancies
+- Pickup failures
+
+INFORMATIONAL
+
+- New collectors registered
+- New depots created
+- Environmental milestones achieved
+
+
+
+--------------------------------------------------
+
+
+15. ENVIRONMENTAL INTELLIGENCE METRICS
+
+Displays:
+
+- Total Plastic Items Audited
+- Plastic Recovery by Region
+- Most Collected Products
+- Most Common Plastic Categories
+- Total Verified Products
+- Environmental Impact Trends
+
+
+
+--------------------------------------------------
+
+
+16. ADMINISTRATIVE AUDIT LOGS
+
+Logs all administrative activities including:
+
+- Pricing changes
+- Campaign activations
+- Depot creation
+- Barcode approvals
+- Manual overrides
+- Inventory adjustments
+- Dispatch actions
+- Staff management actions
+
+Business Rule:
+
+Administrative actions are permanently logged and immutable.
+
+
+
+--------------------------------------------------
+
+
+17. BUSINESS RULES
+
+- Only Super Administrators may access executive controls.
+- Financial records are immutable.
+- Administrative actions are permanently logged.
+- Float wallet monitoring is mandatory.
+- Environmental metrics are continuously updated.
+- Geographic service zones are enforced.
+- Corporate accountability data is maintained.
+- Manual overrides are audited.
+
+
+
+--------------------------------------------------
+
+
+18. FUTURE CAPABILITIES
+
+The Admin Dashboard architecture is designed to support:
+
+- Multi-country operations.
+- Corporate sustainability reporting.
+- Government partnerships.
+- Advanced environmental analytics.
+- AI-powered operational insights.
+- Africa-wide plastic intelligence reporting.
+- Enterprise logistics operations.
+
+
+END OF DOCUMENT

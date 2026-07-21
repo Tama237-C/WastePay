@@ -1,0 +1,198 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+import { createClient } from "@/lib/supabase/server";
+
+type DriverPickupIntent = "start" | "collected";
+
+export type UpdateDriverPickupState = {
+  status: "idle" | "error" | "success";
+  message: string;
+};
+
+function normalizeText(value: FormDataEntryValue | null): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function isDriverPickupIntent(
+  value: string,
+): value is DriverPickupIntent {
+  return value === "start" || value === "collected";
+}
+
+export async function updateDriverPickup(
+  _previousState: UpdateDriverPickupState,
+  formData: FormData,
+): Promise<UpdateDriverPickupState> {
+  const requestId = normalizeText(formData.get("requestId"));
+  const intent = normalizeText(formData.get("intent"));
+
+  if (!requestId) {
+    return {
+      status: "error",
+      message: "WastePay could not identify this pickup.",
+    };
+  }
+
+  if (!isDriverPickupIntent(intent)) {
+    return {
+      status: "error",
+      message: "Select a valid pickup action.",
+    };
+  }
+
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      status: "error",
+      message: "Your driver session has expired. Sign in again.",
+    };
+  }
+
+  const { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("role, is_active, must_change_password")
+    .eq("id", user.id)
+    .single();
+
+  if (
+    profileError ||
+    !profile ||
+    profile.role !== "driver" ||
+    !profile.is_active
+  ) {
+    return {
+      status: "error",
+      message:
+        "Your account is not authorized to update WastePay pickups.",
+    };
+  }
+
+  if (profile.must_change_password) {
+    return {
+      status: "error",
+      message:
+        "Replace your temporary password before performing pickup operations.",
+    };
+  }
+
+  const { data: request, error: requestError } = await supabase
+    .from("collection_requests")
+    .select("id, status, assigned_driver_id")
+    .eq("id", requestId)
+    .eq("assigned_driver_id", user.id)
+    .maybeSingle();
+
+  if (requestError) {
+    return {
+      status: "error",
+      message: "WastePay could not verify this assigned pickup.",
+    };
+  }
+
+  if (!request) {
+    return {
+      status: "error",
+      message:
+        "This pickup is not assigned to your WastePay driver account.",
+    };
+  }
+
+  if (intent === "start") {
+    if (request.status !== "ASSIGNED") {
+      return {
+        status: "error",
+        message:
+          "Only an assigned pickup can be marked as in transit.",
+      };
+    }
+
+    const { data: updatedRequests, error: updateError } =
+      await supabase
+        .from("collection_requests")
+        .update({
+          status: "IN_TRANSIT",
+        })
+        .eq("id", requestId)
+        .eq("assigned_driver_id", user.id)
+        .eq("status", "ASSIGNED")
+        .select("id");
+
+    if (updateError) {
+      return {
+        status: "error",
+        message: "WastePay could not start this pickup.",
+      };
+    }
+
+    if (!updatedRequests || updatedRequests.length !== 1) {
+      return {
+        status: "error",
+        message:
+          "This pickup changed before it could be started. Refresh and try again.",
+      };
+    }
+
+    revalidatePath("/app/driver");
+    revalidatePath("/admin/logistics");
+    revalidatePath("/admin/collection-requests");
+
+    return {
+      status: "success",
+      message:
+        "Pickup started. WastePay now shows this route as in transit.",
+    };
+  }
+
+  if (request.status !== "IN_TRANSIT") {
+    return {
+      status: "error",
+      message:
+        "Start the pickup before marking the plastic as collected.",
+    };
+  }
+
+  const { data: updatedRequests, error: updateError } =
+    await supabase
+      .from("collection_requests")
+      .update({
+        status: "COLLECTED_PENDING_DEPOT",
+      })
+      .eq("id", requestId)
+      .eq("assigned_driver_id", user.id)
+      .eq("status", "IN_TRANSIT")
+      .select("id");
+
+  if (updateError) {
+    return {
+      status: "error",
+      message:
+        "WastePay could not confirm that this plastic was collected.",
+    };
+  }
+
+  if (!updatedRequests || updatedRequests.length !== 1) {
+    return {
+      status: "error",
+      message:
+        "This pickup changed before collection could be confirmed. Refresh and try again.",
+    };
+  }
+
+  revalidatePath("/app/driver");
+  revalidatePath("/admin/logistics");
+  revalidatePath("/admin/collection-requests");
+
+  return {
+    status: "success",
+    message:
+      "Plastic collection confirmed. Deliver the material to the assigned depot.",
+  };
+}

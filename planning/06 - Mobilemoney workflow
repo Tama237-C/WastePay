@@ -1,0 +1,350 @@
+WASTEPAY - MOBILE MONEY WORKFLOW
+
+
+1. PURPOSE
+
+The Mobile Money Workflow exists to provide secure, transparent, and automated financial payouts to plastic collectors while maintaining enterprise-grade financial controls and auditability across the WastePay ecosystem.
+
+
+
+--------------------------------------------------
+
+
+2. TELECOM INTEGRATIONS
+
+Supported Providers:
+
+- MTN Mobile Money
+- Orange Money
+
+Business Rule:
+
+All payouts must be processed through officially supported telecom payment APIs.
+
+
+
+--------------------------------------------------
+
+
+3. ACCOUNT VALIDATION SYSTEM
+
+Before payout execution:
+
+- Collector phone number is validated.
+- Telecom account lookup is performed.
+- Registered SIM card owner's name is retrieved.
+- Depot Agent confirms collector identity.
+
+Business Rule:
+
+Transactions are blocked if account validation fails.
+
+
+
+--------------------------------------------------
+
+
+4. PAYMENT STATUS LIFECYCLE
+
+
+PAYMENT CREATED
+
+↓
+
+PENDING_APPROVAL
+
+↓
+
+APPROVED
+
+↓
+
+PROCESSING
+
+↓
+
+SUCCESSFUL
+
+↓
+
+FAILED
+
+↓
+
+STUCK_PENDING
+
+↓
+
+APPROVED_OFFLINE
+
+↓
+
+REFUNDED (Future)
+
+↓
+
+ADJUSTED
+
+
+--------------------------------------------------
+
+
+5. DEPOT MANAGER APPROVAL
+
+Depot Managers must approve:
+
+- Collector information.
+- Plastic transaction details.
+- Weight records.
+- Verification photographs.
+
+Business Rule:
+
+No payout may occur without manager approval.
+
+
+
+--------------------------------------------------
+
+
+6. PAYMENT PROCESSING WORKFLOW
+
+After approval:
+
+- Transaction is locked.
+- Database row is locked.
+- Payment payload is generated.
+- Telecom API request is sent.
+- Telecom response is recorded.
+
+Business Rule:
+
+Transactions cannot be processed twice.
+
+
+
+--------------------------------------------------
+
+
+7. PAYMENT FAILURE HANDLING
+
+Possible failure scenarios:
+
+- Network timeout.
+- Telecom rejection.
+- Invalid account.
+- Collector wallet limitations.
+- API communication failures.
+
+Failed transactions are permanently logged.
+
+
+
+--------------------------------------------------
+
+
+8. STUCK PENDING PROTOCOL
+
+If the telecom provider does not return a confirmed response:
+
+- Transaction becomes STUCK_PENDING.
+- No automatic payout retry occurs.
+- Transaction remains locked.
+
+Business Rule:
+
+The system must never risk duplicate payouts.
+
+
+
+--------------------------------------------------
+
+
+9. PAYMENT RETRY PROTOCOL
+
+A secure reconciliation process runs every fifteen minutes.
+
+The system:
+
+- Checks telecom transaction status.
+- Verifies payment execution.
+- Unlocks transactions only when confirmed safe.
+
+Business Rule:
+
+Only verified failed transactions may be retried.
+
+
+
+--------------------------------------------------
+
+
+10. OFFLINE PAYMENT PROTOCOL
+
+If payment services are unavailable:
+
+- Transaction status becomes APPROVED_OFFLINE.
+- Collector receives a secure payout voucher.
+- Payment is processed once network services are restored.
+
+
+
+--------------------------------------------------
+
+
+11. CORPORATE WALLET PROTECTION RULES
+
+Payments are blocked if:
+
+- Float balance is insufficient.
+- Collector limits are exceeded.
+- Depot limits are exceeded.
+- Telecom validation fails.
+- Manager approval is missing.
+
+
+
+--------------------------------------------------
+
+
+12. TRANSACTION LIMITS
+
+Transaction Limits:
+
+- Maximum Single Transaction: 50,000 CFA.
+
+Daily Collector Limit:
+
+- Maximum: 150,500 CFA.
+
+Daily Depot Limit:
+
+- Maximum: 500,000 CFA.
+
+Business Rule:
+
+Only the WastePay Super Administrator may override financial limits.
+
+
+
+--------------------------------------------------
+
+
+13. FLOAT THRESHOLD ALERTS
+
+If corporate float balances drop below:
+
+- 200,000 CFA
+
+The system immediately notifies the WastePay Super Administrator.
+
+
+
+--------------------------------------------------
+
+
+14. MOBILE MONEY RECEIPTS
+
+Successful payouts generate:
+
+- SMS receipt.
+- Digital transaction receipt.
+- Telecom reference number.
+
+Receipts include:
+
+- Transaction ID.
+- Amount paid.
+- Total kilograms.
+- Payment provider.
+- Payment timestamp.
+
+
+
+--------------------------------------------------
+
+
+15. MOBILE MONEY TRANSACTION RECORDS
+
+The system permanently stores:
+
+- Transaction ID.
+- Collector ID.
+- Collector phone number.
+- Telecom provider.
+- Provider reference number.
+- Amount paid.
+- Depot ID.
+- Payment status.
+- Approval timestamps.
+- Telecom response records.
+
+
+
+--------------------------------------------------
+
+
+16. FINANCIAL AUDIT TRAIL
+
+Financial records are immutable.
+
+The following actions are prohibited:
+
+- Delete.
+- Edit.
+- Overwrite.
+
+Corrections require:
+
+ADJUSTMENT TRANSACTIONS ONLY.
+
+
+
+--------------------------------------------------
+
+
+17. END OF DAY RECONCILIATION
+
+Every evening the system automatically compares:
+
+- Total kilograms collected.
+- Total payments disbursed.
+- Depot transaction totals.
+- Mobile Money payout totals.
+
+Any variance is flagged for administrative review.
+
+
+
+--------------------------------------------------
+
+
+18. COLLECTOR PAYMENT HISTORY
+
+Collectors may view:
+
+- Total earnings.
+- Daily earnings.
+- Weekly earnings.
+- Monthly earnings.
+- Payment history.
+- Digital receipts.
+- Total kilograms collected.
+
+
+
+--------------------------------------------------
+
+
+19. BUSINESS RULES
+
+- Every payout requires account validation.
+- Every payout requires manager approval.
+- Transactions are immutable.
+- Duplicate payouts are prohibited.
+- Payments are blocked when limits are exceeded.
+- Payment retries are strictly controlled.
+- Financial records are permanently stored.
+
+
+END OF DOCUMENT

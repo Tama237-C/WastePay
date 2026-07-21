@@ -1,0 +1,342 @@
+WASTEPAY - PUBLIC WEBSITE PAGES
+
+
+1. PURPOSE
+
+The WastePay Public Website exists to:
+
+- Build public trust.
+- Convert visitors into users.
+- Promote environmental sustainability initiatives.
+- Display real-time impact metrics.
+- Enable residential and institutional collection requests.
+- Showcase WastePay's plastic intelligence and circular economy initiatives.
+
+
+
+--------------------------------------------------
+
+
+2. CORE VISUAL DESIGN LANGUAGE
+
+Design Tone:
+
+- Premium corporate sustainability platform.
+
+Design Principles:
+
+- Deep obsidian backgrounds.
+- Ultra-dark slate glass containers.
+- Emerald environmental accent colors.
+- Elegant typography.
+- Responsive layouts.
+- Glassmorphism design elements.
+- Rich asymmetric spacing.
+- Premium micro-interactions.
+- Mobile-first experiences.
+
+Visual Characteristics:
+
+- Smooth scrolling.
+- Scroll snapping.
+- Blur-filter navigation.
+- Subtle hover animations.
+- Premium dashboard aesthetics.
+
+
+
+--------------------------------------------------
+
+
+3. WEBSITE STRUCTURE
+
+The public website contains four primary pages:
+
+- Home
+- About
+- Impact
+- Contact & Collection Request
+
+
+
+--------------------------------------------------
+
+
+4. HOME PAGE
+
+Purpose:
+
+- Primary conversion page.
+
+Sections:
+
+Hero Section:
+
+- REDEFINING AFRICAN PLASTIC RECOVERY
+
+Primary Actions:
+
+- Go to App
+- Request Home Collection
+
+Interactive Experience:
+
+- Future React Three Fiber 3D showcase container.
+
+How WastePay Works Timeline:
+
+- Collector Check-In
+- Plastic Verification
+- Mobile Money Payout
+- Recycling and Environmental Impact
+
+Additional Sections:
+
+- Plastic Intelligence Overview.
+- Community Impact Highlights.
+- Featured Environmental Statistics.
+
+
+
+--------------------------------------------------
+
+
+5. ABOUT PAGE
+
+Purpose:
+
+- Build credibility and explain WastePay's mission.
+
+Sections:
+
+- Company Story.
+- Plastic Pollution Problem Statement.
+- WastePay Mission.
+- Circular Economy Vision.
+- Team Grid.
+- Sustainability Commitment.
+- Future Expansion Vision.
+
+
+
+--------------------------------------------------
+
+
+6. IMPACT PAGE
+
+Purpose:
+
+- Display real-time environmental and financial impact metrics.
+
+Top-Level Metrics:
+
+- Total Kilograms Recovered.
+- Total Mobile Money Paid Out.
+- Active Collectors Empowered.
+- Total Verified Products.
+- Total Active Depots.
+- Total Plastic Items Recovered.
+
+Corporate Accountability Metrics:
+
+- Top Polluting Manufacturers.
+- Top Plastic Brands.
+- Most Common Plastic Categories.
+- Regional Plastic Recovery Statistics.
+
+Environmental Intelligence Metrics:
+
+- Plastic Recovery Trends.
+- Community Impact Statistics.
+- Plastic Recovery Heat Maps.
+- Circular Economy Statistics.
+
+
+
+--------------------------------------------------
+
+
+7. CONTACT PAGE
+
+Purpose:
+
+- Enable communication and collection requests.
+
+Supports:
+
+- Corporate Partnerships.
+- Municipal Partnerships.
+- NGO Partnerships.
+- General Inquiries.
+
+Includes:
+
+- Contact Form.
+- Business Information.
+- Partnership Requests.
+
+
+
+--------------------------------------------------
+
+
+8. HOME COLLECTION REQUEST FORM
+
+Required Information:
+
+- Full Name.
+- WhatsApp Phone Number.
+- Neighborhood.
+- Estimated Collection Quantity.
+- Preferred Pickup Window.
+- GPS Coordinates.
+
+Optional Information:
+
+- Waste Photograph.
+
+System Requirements:
+
+- Browser GPS permission request.
+- Minimum collection threshold validation.
+- Service area validation.
+
+
+
+--------------------------------------------------
+
+
+9. COLLECTION REQUEST SAFEGUARDS
+
+Residents must be informed of:
+
+- Minimum collection requirements.
+- Supported collection zones.
+- Operating hours.
+- Privacy policies.
+- GPS requirements.
+
+
+
+--------------------------------------------------
+
+
+10. PUBLIC ENVIRONMENTAL INTELLIGENCE PORTAL
+
+The website will publicly display:
+
+- Environmental statistics.
+- Corporate accountability metrics.
+- Plastic recovery analytics.
+- Community cleanup impact.
+- Recycling infrastructure metrics.
+
+The portal is powered directly by WastePay's Barcode Audit System.
+
+
+
+--------------------------------------------------
+
+
+11. PARTNERS AND SUPPORTERS SECTION
+
+Future partners may include:
+
+- Municipal Governments.
+- Recycling Processors.
+- NGOs.
+- Universities.
+- Corporate Sponsors.
+- Environmental Organizations.
+
+The public website must support future partnership showcases.
+
+
+
+--------------------------------------------------
+
+
+12. UNIVERSAL NAVIGATION SYSTEM
+
+The navigation header includes:
+
+- WastePay Logo.
+- Home.
+- About.
+- Impact.
+- Contact.
+- Go to App button.
+
+Design Requirements:
+
+- Fixed position.
+- Glass blur backdrop.
+- Responsive mobile navigation.
+
+
+
+--------------------------------------------------
+
+
+13. MASTER FOOTER
+
+The footer includes:
+
+- Terms of Service.
+- Privacy Policy.
+- Cookie Policy.
+- Legal Notices.
+- Copyright Information.
+- Social Media Links (Future).
+
+
+
+--------------------------------------------------
+
+
+14. LIVE PUBLIC DATA SYSTEM
+
+Public metrics are automatically updated from WastePay's operational databases.
+
+Examples include:
+
+- Total KG recovered.
+- Total collector payouts.
+- Total barcode scans.
+- Total verified products.
+- Total depots.
+- Total environmental impact metrics.
+
+
+
+--------------------------------------------------
+
+
+15. BUSINESS RULES
+
+- Public metrics must exclude private user information.
+- GPS collection requires user consent.
+- Collection requests are geographically restricted.
+- Real-time statistics are publicly accessible.
+- Corporate accountability data is publicly visible.
+- Individual financial information remains private.
+
+
+
+--------------------------------------------------
+
+
+16. FUTURE CAPABILITIES
+
+The public website is designed to support:
+
+- Multi-country operations.
+- Government partnerships.
+- Corporate sustainability programs.
+- Interactive environmental dashboards.
+- Live plastic intelligence reports.
+- Circular economy initiatives.
+- Public transparency programs.
+
+
+END OF DOCUMENT

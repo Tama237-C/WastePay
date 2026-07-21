@@ -1,0 +1,296 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+import { createAdminClient } from "@/lib/supabase/admin";
+
+const allowedRequesterTypes = [
+  "RESIDENT",
+  "SCHOOL",
+  "OFFICE",
+  "HOTEL",
+] as const;
+
+type RequesterType = (typeof allowedRequesterTypes)[number];
+
+export type CreateCollectionRequestState = {
+  status: "idle" | "error" | "success";
+  message: string;
+  referenceNumber: string | null;
+};
+
+function normalizeText(value: FormDataEntryValue | null): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function isRequesterType(value: string): value is RequesterType {
+  return allowedRequesterTypes.some(
+    (requesterType) => requesterType === value,
+  );
+}
+
+function normalizeCameroonPhoneNumber(value: string): string | null {
+  const cleanedValue = value.replace(/[\s()-]/g, "");
+
+  if (/^\+2376\d{8}$/.test(cleanedValue)) {
+    return cleanedValue;
+  }
+
+  if (/^6\d{8}$/.test(cleanedValue)) {
+    return `+237${cleanedValue}`;
+  }
+
+  return null;
+}
+
+function parsePositiveInteger(value: string): number | null {
+  if (!/^\d+$/.test(value)) {
+    return null;
+  }
+
+  const parsedValue = Number(value);
+
+  if (
+    !Number.isSafeInteger(parsedValue) ||
+    parsedValue < 1 ||
+    parsedValue > 500
+  ) {
+    return null;
+  }
+
+  return parsedValue;
+}
+
+function parseOptionalWeight(value: string): number | null {
+  if (!value) {
+    return null;
+  }
+
+  const parsedValue = Number(value);
+
+  if (
+    !Number.isFinite(parsedValue) ||
+    parsedValue <= 0 ||
+    parsedValue > 50000
+  ) {
+    return null;
+  }
+
+  return parsedValue;
+}
+
+function parseLatitude(value: string): number | null {
+  const parsedValue = Number(value);
+
+  if (
+    !Number.isFinite(parsedValue) ||
+    parsedValue < -90 ||
+    parsedValue > 90
+  ) {
+    return null;
+  }
+
+  return parsedValue;
+}
+
+function parseLongitude(value: string): number | null {
+  const parsedValue = Number(value);
+
+  if (
+    !Number.isFinite(parsedValue) ||
+    parsedValue < -180 ||
+    parsedValue > 180
+  ) {
+    return null;
+  }
+
+  return parsedValue;
+}
+
+function createPublicReferenceNumber(requestId: string): string {
+  return `WP-PICKUP-${requestId.slice(0, 8).toUpperCase()}`;
+}
+
+export async function createCollectionRequest(
+  _previousState: CreateCollectionRequestState,
+  formData: FormData,
+): Promise<CreateCollectionRequestState> {
+  const requesterTypeInput = normalizeText(formData.get("requesterType"));
+  const requesterName = normalizeText(formData.get("requesterName"));
+  const phoneNumberInput = normalizeText(formData.get("phoneNumber"));
+  const neighbourhood = normalizeText(formData.get("neighbourhood"));
+  const estimatedBagCountInput = normalizeText(
+    formData.get("estimatedBagCount"),
+  );
+  const estimatedWeightInput = normalizeText(
+    formData.get("estimatedWeightKg"),
+  );
+  const latitudeInput = normalizeText(formData.get("latitude"));
+  const longitudeInput = normalizeText(formData.get("longitude"));
+  const websiteHoneypot = normalizeText(formData.get("website"));
+  const formStartedAtInput = normalizeText(formData.get("formStartedAt"));
+
+  if (websiteHoneypot) {
+    return {
+      status: "error",
+      message: "The request could not be submitted.",
+      referenceNumber: null,
+    };
+  }
+
+  const formStartedAt = Number(formStartedAtInput);
+  const submissionAgeMilliseconds = Date.now() - formStartedAt;
+
+  if (
+    !Number.isFinite(formStartedAt) ||
+    submissionAgeMilliseconds < 3000 ||
+    submissionAgeMilliseconds > 24 * 60 * 60 * 1000
+  ) {
+    return {
+      status: "error",
+      message:
+        "The form session expired or was submitted too quickly. Refresh the page and try again.",
+      referenceNumber: null,
+    };
+  }
+
+  if (!isRequesterType(requesterTypeInput)) {
+    return {
+      status: "error",
+      message: "Select a valid collection request type.",
+      referenceNumber: null,
+    };
+  }
+
+  if (requesterName.length < 3 || requesterName.length > 120) {
+    return {
+      status: "error",
+      message: "Enter your complete name or organization name.",
+      referenceNumber: null,
+    };
+  }
+
+  const phoneNumber = normalizeCameroonPhoneNumber(phoneNumberInput);
+
+  if (!phoneNumber) {
+    return {
+      status: "error",
+      message:
+        "Enter an active Cameroon WhatsApp number, such as +2376XXXXXXXX.",
+      referenceNumber: null,
+    };
+  }
+
+  if (neighbourhood.length < 2 || neighbourhood.length > 150) {
+    return {
+      status: "error",
+      message: "Enter the neighbourhood where the waste is located.",
+      referenceNumber: null,
+    };
+  }
+
+  const estimatedBagCount = parsePositiveInteger(
+    estimatedBagCountInput,
+  );
+
+  if (estimatedBagCount === null) {
+    return {
+      status: "error",
+      message: "Estimated bag count must be between 1 and 500.",
+      referenceNumber: null,
+    };
+  }
+
+  const estimatedWeightKg = parseOptionalWeight(estimatedWeightInput);
+
+  if (estimatedWeightInput && estimatedWeightKg === null) {
+    return {
+      status: "error",
+      message:
+        "Estimated weight must be a positive number not exceeding 50,000 kilograms.",
+      referenceNumber: null,
+    };
+  }
+
+  const latitude = parseLatitude(latitudeInput);
+  const longitude = parseLongitude(longitudeInput);
+
+  if (latitude === null || longitude === null) {
+    return {
+      status: "error",
+      message:
+        "Capture your pickup location before submitting the request.",
+      referenceNumber: null,
+    };
+  }
+
+  const adminClient = createAdminClient();
+
+  const tenMinutesAgo = new Date(
+    Date.now() - 10 * 60 * 1000,
+  ).toISOString();
+
+  const { count: recentRequestCount, error: recentRequestError } =
+    await adminClient
+      .from("collection_requests")
+      .select("id", {
+        count: "exact",
+        head: true,
+      })
+      .eq("phone_number", phoneNumber)
+      .gte("requested_at", tenMinutesAgo);
+
+  if (recentRequestError) {
+    return {
+      status: "error",
+      message:
+        "WastePay could not verify this request. Please try again shortly.",
+      referenceNumber: null,
+    };
+  }
+
+  if ((recentRequestCount ?? 0) >= 3) {
+    return {
+      status: "error",
+      message:
+        "Too many requests were submitted from this phone number. Wait ten minutes before trying again.",
+      referenceNumber: null,
+    };
+  }
+
+  const pickupLocation = `POINT(${longitude} ${latitude})`;
+
+  const { data: createdRequest, error: insertError } = await adminClient
+    .from("collection_requests")
+    .insert({
+      requester_type: requesterTypeInput,
+      requester_name: requesterName,
+      phone_number: phoneNumber,
+      neighbourhood,
+      estimated_bag_count: estimatedBagCount,
+      estimated_weight_kg: estimatedWeightKg,
+      pickup_location: pickupLocation,
+      status: "PENDING_REVIEW",
+    })
+    .select("id")
+    .single();
+
+  if (insertError || !createdRequest) {
+    return {
+      status: "error",
+      message:
+        "WastePay could not save your collection request. Review the information and try again.",
+      referenceNumber: null,
+    };
+  }
+
+  revalidatePath("/admin/collection-requests");
+  revalidatePath("/admin/overview");
+
+  return {
+    status: "success",
+    message:
+      "Your collection request has been received and is awaiting review by the WastePay operations team.",
+    referenceNumber: createPublicReferenceNumber(createdRequest.id),
+  };
+}

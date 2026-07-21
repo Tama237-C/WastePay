@@ -1,0 +1,362 @@
+WASTEPAY - CORE PWA SCREENS
+
+
+1. PURPOSE
+
+The WastePay Progressive Web Application exists to provide mobile-first operational interfaces for depot staff, collection drivers, and future operational roles while maintaining offline capabilities, accessibility standards, and enterprise-grade field usability.
+
+
+
+--------------------------------------------------
+
+
+2. UNIVERSAL PWA ARCHITECTURE
+
+All users access:
+
+app.wastepay.org
+
+
+The system automatically detects user roles and loads the appropriate operational experience.
+
+Supported experiences include:
+
+- Depot Agent Dashboard
+- Depot Manager Dashboard
+- Pickup Driver Dashboard
+
+Future support includes:
+
+- Collector Dashboard
+- WastePay Super Administrator Dashboard
+
+
+
+--------------------------------------------------
+
+
+3. MOBILE-FIRST DESIGN PRINCIPLES
+
+The PWA is optimized for:
+
+- Outdoor usage.
+- Bright daylight visibility.
+- One-handed operation.
+- Field operations.
+- Low bandwidth environments.
+
+Design requirements include:
+
+- High contrast interfaces.
+- Large typography.
+- Large touch targets.
+- Premium mobile interactions.
+- Responsive layouts.
+
+
+
+--------------------------------------------------
+
+
+4. ACCESSIBILITY STANDARDS
+
+Minimum requirements:
+
+- 48px touch targets.
+- High contrast UI.
+- Large button components.
+- Large form controls.
+- Glove-friendly interactions.
+
+Business Rule:
+
+All operational actions must be easily accessible on mobile devices.
+
+
+
+--------------------------------------------------
+
+
+5. UNIVERSAL PWA HEADER
+
+The header includes:
+
+- WastePay logo.
+- User information.
+- Current shift status.
+- Network status.
+- GPS status.
+- Notification indicator.
+
+Network indicators include:
+
+- ONLINE
+- OFFLINE STORAGE ACTIVE
+
+
+
+--------------------------------------------------
+
+
+6. OFFLINE-FIRST CAPABILITIES
+
+The PWA supports:
+
+- Collector check-in.
+- Barcode scanning.
+- Weight entry.
+- Photo capture.
+- Pickup completion.
+- GPS collection.
+
+Business Rule:
+
+Operational data must be safely stored locally when connectivity is unavailable.
+
+
+
+--------------------------------------------------
+
+
+7. OFFLINE SYNCHRONIZATION WORKFLOW
+
+Data synchronization process:
+
+LOCAL STORAGE
+
+↓
+
+SECURE SYNCHRONIZATION
+
+↓
+
+SUPABASE DATABASE
+
+↓
+
+SYNC COMPLETE
+
+
+
+--------------------------------------------------
+
+
+8. DEPOT AGENT DASHBOARD
+
+
+Screen 1:
+
+COLLECTOR CHECK-IN
+
+Functions:
+
+- Phone number lookup.
+- QR code scanning.
+- New collector registration.
+
+
+
+Screen 2:
+
+MATERIALS SCAN AND LOG
+
+Functions:
+
+- Barcode scanning.
+- Product lookup.
+- Unknown product handling.
+
+
+
+Screen 3:
+
+WEIGH AND DOCUMENT
+
+Functions:
+
+- Weight entry.
+- Verification photo capture.
+- Submission for manager approval.
+
+
+
+--------------------------------------------------
+
+
+9. DEPOT MANAGER DASHBOARD
+
+
+Screen 1:
+
+PENDING TRANSACTIONS QUEUE
+
+Displays:
+
+- Agent name.
+- Collector information.
+- Weight.
+- Cash value.
+- Verification images.
+
+
+
+Screen 2:
+
+TRANSACTION DECISION MODAL
+
+Actions:
+
+- Approve and disburse funds.
+- Reject transaction.
+- Flag for audit.
+
+
+
+Screen 3:
+
+DAILY DEPOT OVERVIEW
+
+Displays:
+
+- Float balance.
+- Depot inventory.
+- Staff status.
+- Daily operational statistics.
+
+
+
+--------------------------------------------------
+
+
+10. PICKUP DRIVER DASHBOARD
+
+
+Screen 1:
+
+ASSIGNED ROUTE MANIFEST
+
+Displays:
+
+- Customer information.
+- Estimated quantities.
+- Route sequencing.
+
+
+
+Screen 2:
+
+ACTIVE PICKUP VIEW
+
+Functions:
+
+- GPS navigation.
+- Customer calling.
+- Route tracking.
+
+
+
+Screen 3:
+
+CHECKLIST AND COMPLETION FORM
+
+Functions:
+
+- Weight entry.
+- Photo capture.
+- Pickup completion.
+
+
+
+--------------------------------------------------
+
+
+11. UNIVERSAL NETWORK STATUS SYSTEM
+
+Network indicators:
+
+- ONLINE
+- OFFLINE STORAGE ACTIVE
+
+The system continuously informs users whether:
+
+- Data is syncing successfully.
+- Data is stored locally.
+- Connectivity issues exist.
+
+
+
+--------------------------------------------------
+
+
+12. UNIVERSAL GPS STATUS SYSTEM
+
+The PWA indicates:
+
+- GPS Active.
+- GPS Disabled.
+- GPS Permission Required.
+- GPS Signal Lost.
+
+
+
+--------------------------------------------------
+
+
+13. NOTIFICATION SYSTEM
+
+Operational notifications include:
+
+- Manager approvals.
+- Route assignments.
+- Payment status updates.
+- Pickup assignments.
+- Synchronization status.
+- System alerts.
+
+
+
+--------------------------------------------------
+
+
+14. PERFORMANCE REQUIREMENTS
+
+The PWA must be:
+
+- Mobile optimized.
+- Lightweight.
+- Offline capable.
+- Fast loading.
+- Low bandwidth friendly.
+
+
+
+--------------------------------------------------
+
+
+15. BUSINESS RULES
+
+- All operational workflows are mobile-first.
+- Offline storage is mandatory.
+- GPS awareness is mandatory.
+- Network status visibility is mandatory.
+- Role-based interfaces are mandatory.
+- Large touch targets are mandatory.
+
+
+
+--------------------------------------------------
+
+
+16. FUTURE CAPABILITIES
+
+The PWA architecture supports:
+
+- Collector dashboards.
+- Administrative operational views.
+- Multi-country deployments.
+- Advanced logistics operations.
+- AI-powered operational insights.
+- Expanded recycling workflows.
+
+
+END OF DOCUMENT

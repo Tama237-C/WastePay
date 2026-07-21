@@ -1,0 +1,174 @@
+WASTEPAY - USER ROLES
+
+
+1. RESIDENTS
+
+Description:
+Residents are individuals or households requesting plastic waste collection services.
+
+Permissions:
+
+- Submit home collection requests without creating an account.
+- Optionally create an account to save personal information.
+- View pickup request status.
+- Receive SMS notifications.
+- View pickup history if registered.
+
+Restrictions:
+
+- No access to financial or operational systems.
+
+
+
+--------------------------------------------------
+
+
+2. PLASTIC COLLECTORS
+
+Description:
+Plastic collectors are individuals who collect plastic waste and deliver it to WastePay depots.
+
+Permissions:
+
+- Maintain a verified collector account.
+- Receive Mobile Money payments.
+- View payment history.
+- View collection statistics.
+- Download digital payout receipts.
+
+Business Rules:
+
+- One verified Mobile Money number per account.
+- Mobile Money number is required for payouts.
+
+
+
+--------------------------------------------------
+
+
+3. DEPOT AGENTS
+
+Description:
+Depot agents are responsible for processing plastic waste transactions.
+
+Permissions:
+
+- Scan plastic packaging barcodes.
+- Capture verification photographs.
+- Input plastic weights.
+- Create payout requests.
+- View personal transaction history.
+
+Restrictions:
+
+- Cannot approve payouts.
+- Cannot modify pricing rules.
+- Cannot view other agents' transactions.
+- Cannot access financial analytics.
+
+
+
+--------------------------------------------------
+
+
+4. DEPOT MANAGERS
+
+Description:
+Depot managers supervise local depot operations.
+
+Permissions:
+
+- Approve or reject payout requests.
+- Manage depot staff.
+- View depot analytics.
+- Monitor daily operations.
+- View local transaction reports.
+
+Restrictions:
+
+- Cannot modify pricing rules.
+- Cannot access global administrative settings.
+
+
+
+--------------------------------------------------
+
+
+5. PICKUP DRIVERS
+
+Description:
+Pickup drivers are responsible for home collection operations.
+
+Permissions:
+
+- Receive pickup assignments.
+- Update pickup statuses.
+- Capture collection photographs.
+- Access Google Maps navigation links.
+- Complete assigned pickup tasks.
+
+Restrictions:
+
+- No access to financial information.
+- No access to pricing systems.
+
+
+
+--------------------------------------------------
+
+
+6. RECYCLING PROCESSORS
+
+Description:
+Recycling processors purchase and transport processed plastic inventory.
+
+Permissions:
+
+- View available plastic inventory.
+- View plastic categories and quantities.
+- Receive inventory notifications.
+
+Restrictions:
+
+- No access to payment information.
+- No access to collector data.
+- No access to administrative systems.
+
+
+
+--------------------------------------------------
+
+
+7. WASTEPAY SUPER ADMINISTRATOR
+
+Description:
+The Super Administrator maintains full control over the WastePay ecosystem.
+
+Permissions:
+
+- Manage all users.
+- Configure pricing rules.
+- Monitor Mobile Money corporate wallets.
+- View nationwide analytics.
+- Register new depots.
+- Manage system settings.
+- Manage administrator accounts.
+- Access environmental impact dashboards.
+- Access all financial and operational reports.
+
+Restrictions:
+
+- None.
+
+
+
+--------------------------------------------------
+
+
+SECURITY MODEL
+
+Every user role is granted access only to the information and tools required for their operational responsibilities.
+
+WastePay follows the principle of least privilege:
+
+Users receive the minimum permissions necessary to perform their tasks securely and efficiently.

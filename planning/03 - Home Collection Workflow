@@ -1,0 +1,337 @@
+WASTEPAY - HOME COLLECTION WORKFLOW
+
+
+PURPOSE
+
+The Home Collection service enables residents, schools, offices, and hotels to request scheduled plastic waste pickups while improving community cleanliness and supporting WastePay's circular economy ecosystem.
+
+
+
+--------------------------------------------------
+
+
+ELIGIBLE USERS
+
+The Home Collection service is available to:
+
+- Residents
+- Schools
+- Offices
+- Hotels
+
+
+
+--------------------------------------------------
+
+
+MINIMUM COLLECTION THRESHOLD
+
+Business Rule:
+
+All pickup requests must satisfy the minimum collection quantity threshold configured by WastePay.
+
+Default Threshold:
+
+- 15 KG
+
+Notes:
+
+- Thresholds may vary by service area or customer category.
+- Threshold values are configurable by the WastePay Super Administrator.
+
+
+
+--------------------------------------------------
+
+
+SERVICE AREA RULE
+
+Business Rule:
+
+WastePay only services approved geographical collection zones.
+
+Requirements:
+
+- GPS coordinates are captured during submission.
+- Requests outside approved service areas are automatically rejected.
+
+
+
+--------------------------------------------------
+
+
+INFORMATION CAPTURED
+
+Required Information:
+
+- Full Name
+- Phone Number
+- Neighborhood
+- Estimated Quantity
+- Preferred Pickup Time Window
+- GPS Coordinates
+
+Optional Information:
+
+- Photograph of waste pile
+
+
+
+--------------------------------------------------
+
+
+REQUEST SUBMISSION WORKFLOW
+
+
+Customer submits pickup request.
+
+↓
+
+GPS coordinates captured.
+
+↓
+
+System verifies service area.
+
+↓
+
+System verifies minimum quantity threshold.
+
+↓
+
+Pickup request created.
+
+↓
+
+Resident receives SMS confirmation.
+
+↓
+
+Request status becomes:
+
+PENDING REVIEW.
+
+
+
+--------------------------------------------------
+
+
+DEPOT MANAGER REVIEW
+
+
+Depot Manager receives request.
+
+↓
+
+Reviews:
+
+- Location
+- Estimated quantity
+- Service area eligibility
+
+↓
+
+Approve or Reject request.
+
+↓
+
+Assign available pickup driver.
+
+↓
+
+Request status becomes:
+
+DRIVER ASSIGNED.
+
+
+
+--------------------------------------------------
+
+
+DRIVER WORKFLOW
+
+
+Driver receives:
+
+- Customer name
+- Phone number
+- GPS location
+- Pickup information
+- Google Maps navigation link
+
+↓
+
+Driver travels to pickup location.
+
+↓
+
+Driver inspects plastic waste.
+
+
+
+--------------------------------------------------
+
+
+PICKUP ACCEPTANCE WORKFLOW
+
+
+Driver verifies:
+
+- Plastic condition
+- Quantity
+- Waste contamination level
+
+↓
+
+Accepted?
+
+↓
+
+YES
+
+Proceed with collection.
+
+
+NO
+
+Reject pickup and provide reason.
+
+
+
+--------------------------------------------------
+
+
+REJECTION RULES
+
+
+Possible rejection reasons:
+
+- Heavy food contamination
+- Mixed household waste
+- Quantity below threshold
+- Unsafe collection conditions
+- Incorrect submission information
+
+
+
+--------------------------------------------------
+
+
+SUCCESSFUL COLLECTION WORKFLOW
+
+
+Driver:
+
+- Bags collected plastics.
+- Weighs plastics using portable digital scale.
+- Inputs actual weight.
+- Captures verification photograph.
+- Completes collection.
+
+↓
+
+Request status becomes:
+
+COMPLETED.
+
+
+
+--------------------------------------------------
+
+
+FAILED COLLECTION WORKFLOW
+
+
+Possible reasons:
+
+- Resident unavailable.
+- Incorrect location.
+- Unsafe collection environment.
+
+↓
+
+Driver captures verification photograph.
+
+↓
+
+Driver selects:
+
+UNREACHABLE.
+
+↓
+
+Resident receives SMS notification with rescheduling instructions.
+
+
+
+--------------------------------------------------
+
+
+SMS NOTIFICATION CHAIN
+
+
+Residents receive automated SMS notifications for:
+
+1. Pickup request received.
+
+2. Driver assigned.
+
+3. Driver is on the way.
+
+4. Pickup completed.
+
+5. Pickup unavailable or unreachable.
+
+6. Rescheduling confirmation.
+
+
+
+--------------------------------------------------
+
+
+RESCHEDULING RULES
+
+
+Residents may:
+
+- Cancel pickups.
+- Reschedule pickups.
+
+Restrictions:
+
+- Requests must be modified at least two hours before the scheduled pickup window.
+
+
+
+--------------------------------------------------
+
+
+FINANCIAL MODEL
+
+
+Home Collection is a free community service.
+
+Residents do not receive immediate cash payouts for collected plastics.
+
+Future features may include:
+
+- Reward points.
+- Community recycling incentives.
+- Sustainability badges.
+- Corporate-sponsored collection programs.
+
+
+
+--------------------------------------------------
+
+
+BUSINESS OBJECTIVE
+
+
+The Home Collection service exists to:
+
+- Improve community cleanliness.
+- Increase plastic recovery rates.
+- Expand WastePay's recycling infrastructure.
+- Promote environmental sustainability.
+- Support future circular economy initiatives.

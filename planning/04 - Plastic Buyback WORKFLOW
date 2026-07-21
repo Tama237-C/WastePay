@@ -1,0 +1,370 @@
+WASTEPAY - PLASTIC BUYBACK WORKFLOW
+
+1. PURPOSE
+
+The Plastic Buyback Workflow enables WastePay depots to securely purchase plastic waste from collectors while generating accurate environmental data, maintaining fraud prevention controls, automating Mobile Money payouts, and updating depot inventory in real time.
+
+
+
+--------------------------------------------------
+
+2. COLLECTOR CHECK-IN & IDENTIFICATION
+
+- Collectors can identify themselves using their phone number or by scanning their WastePay Collector QR Code.
+
+- First-time collectors can be registered immediately at the depot.
+
+Required information:
+
+- Full Name
+- Mobile Money Phone Number
+- Mobile Money Provider (MTN or Orange)
+- Collector Account Creation
+
+Business Rule:
+
+- Every plastic buyback transaction must be associated with a registered collector account.
+
+
+
+--------------------------------------------------
+
+3. PLASTIC ACCEPTANCE RULES
+
+Accepted plastic categories include:
+
+- PET
+- HDPE
+- PP
+
+Business Rule:
+
+- Plastics must be sorted by material type before processing.
+
+Example:
+
+- 5 KG PET
+- 2 KG HDPE
+- 1 KG PP
+
+Each material type is processed as a separate line item within the same transaction.
+
+
+
+--------------------------------------------------
+
+4. BARCODE AUDIT PIPELINE
+
+Depot Agents scan sample plastic items from each batch.
+
+If barcode exists:
+
+- Product Name retrieved.
+- Brand Name retrieved.
+- Parent Corporation retrieved.
+- Product category retrieved.
+
+If barcode does not exist:
+
+- Agent manually records:
+    - Product description
+    - Brand name
+    - Plastic type
+
+Business Rule:
+
+Unknown products do NOT prevent payment.
+
+The transaction proceeds normally while creating a New Product Flag for WastePay Super Administrators to review later.
+
+
+
+--------------------------------------------------
+
+5. WEIGHT VERIFICATION SYSTEM
+
+Depot Agents must:
+
+- Weigh each plastic category separately.
+- Input the exact weight.
+- Capture a live photograph of the plastic bag sitting on the digital scale.
+
+Business Rule:
+
+Weight verification photographs are mandatory.
+
+Transactions cannot proceed without verification images.
+
+
+
+--------------------------------------------------
+
+6. PLASTIC QUALITY GRADING
+
+Depot Agents must classify the condition of the plastic.
+
+Grades:
+
+- Excellent
+- Good
+- Contaminated
+
+This information contributes to:
+
+- Inventory quality management
+- Recycling processor reports
+- Environmental analytics
+
+
+
+--------------------------------------------------
+
+7. AUTOMATIC FRAUD DETECTION SYSTEM
+
+Before manager approval, the system automatically validates:
+
+- Weight limits.
+- Duplicate submissions.
+- Missing photos.
+- Missing barcode information.
+- Suspicious transaction values.
+- Multiple transactions submitted unusually quickly.
+
+Transactions that fail validation become:
+
+FLAGGED FOR REVIEW
+
+
+
+--------------------------------------------------
+
+8. DEPOT MANAGER APPROVAL WORKFLOW
+
+Managers review:
+
+- Collector information.
+- Plastic types.
+- Weight entries.
+- Verification photographs.
+- Fraud alerts.
+
+Managers may:
+
+- Approve
+- Reject
+- Request additional review
+
+Business Rule:
+
+Only Depot Managers may approve payout requests.
+
+
+
+--------------------------------------------------
+
+9. MOBILE MONEY PAYOUT WORKFLOW
+
+After approval:
+
+- Cash amount is calculated automatically.
+- Mobile Money payout request is initiated.
+
+Supported providers:
+
+- MTN Mobile Money
+- Orange Money
+
+Business Rule:
+
+Collectors receive payment only after manager approval.
+
+
+
+--------------------------------------------------
+
+10. PAYMENT FAILURE WORKFLOW
+
+If payment services are unavailable:
+
+Transaction status becomes:
+
+APPROVED - PAYOUT PENDING
+
+The system will:
+
+- Notify collector.
+- Notify depot staff.
+- Retry payment every 15 minutes.
+
+Funds remain reserved until successful payout.
+
+
+
+--------------------------------------------------
+
+11. SMS DIGITAL RECEIPTS
+
+Successful payouts trigger automatic SMS receipts containing:
+
+- Transaction ID
+- Plastic types
+- Total kilograms
+- Cash amount
+- Payment provider
+- Payment reference number
+
+
+
+--------------------------------------------------
+
+12. TRANSACTION ID SYSTEM
+
+Every transaction receives a unique identifier.
+
+Example:
+
+WP-DEP-DLA-2026-000001
+
+The Transaction ID links:
+
+- Collector
+- Depot
+- Plastic data
+- Verification images
+- Mobile Money transactions
+- Inventory records
+- Analytics records
+
+
+
+--------------------------------------------------
+
+13. DEPOT INVENTORY WORKFLOW
+
+After successful payment:
+
+The system automatically:
+
+- Updates depot inventory.
+- Updates depot cash float.
+- Updates collector statistics.
+- Updates environmental metrics.
+
+
+
+--------------------------------------------------
+
+14. INVENTORY STATE MANAGEMENT
+
+Inventory progresses through the following states:
+
+RAW INVENTORY
+
+↓
+
+SORTED
+
+↓
+
+COMPRESSED
+
+↓
+
+READY FOR SHIPPING
+
+↓
+
+IN TRANSIT
+
+↓
+
+DELIVERED TO PROCESSOR
+
+
+
+--------------------------------------------------
+
+15. ENVIRONMENTAL ANALYTICS WORKFLOW
+
+Every successful transaction contributes to:
+
+- Total kilograms recovered.
+- Collector performance metrics.
+- Depot performance metrics.
+- Brand pollution statistics.
+- Manufacturer statistics.
+- Public impact dashboards.
+- Local income generation statistics.
+
+
+
+--------------------------------------------------
+
+16. BUSINESS RULES
+
+- Every collector must have a registered account.
+- Unknown barcodes do not block transactions.
+- Verification photographs are mandatory.
+- Manager approval is mandatory.
+- Payments are automated after approval.
+- Plastic categories must be separated before weighing.
+
+
+
+--------------------------------------------------
+
+17. TRANSACTION STATUS PIPELINE
+
+CHECKED IN
+
+↓
+
+PLASTIC VERIFIED
+
+↓
+
+WEIGHT VERIFIED
+
+↓
+
+BARCODE VERIFIED
+
+↓
+
+PENDING SYSTEM VALIDATION
+
+↓
+
+PENDING MANAGER APPROVAL
+
+↓
+
+APPROVED
+
+↓
+
+PAYOUT PROCESSING
+
+↓
+
+PAID
+
+↓
+
+ADDED TO INVENTORY
+
+↓
+
+SORTED
+
+↓
+
+COMPRESSED
+
+↓
+
+READY FOR SHIPPING
+
+↓
+
+DELIVERED TO PROCESSOR

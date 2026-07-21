@@ -1,0 +1,349 @@
+WASTEPAY - TECHNICAL ARCHITECTURE
+
+
+1. PURPOSE
+
+The WastePay Technical Architecture defines the full-stack infrastructure, security model, deployment strategy, and system design principles required to operate a scalable circular economy platform across Africa.
+
+
+
+--------------------------------------------------
+
+
+2. ARCHITECTURAL PRINCIPLES
+
+WastePay is designed using the following principles:
+
+- Serverless First
+- Mobile First
+- Offline First
+- Security First
+- Financial Immutability
+- Environmental Intelligence by Design
+- Geographic Intelligence by Design
+- Public Transparency by Design
+- Multi-Country Scalability
+- Role-Based Access Control
+
+
+
+--------------------------------------------------
+
+
+3. SYSTEM ARCHITECTURE LAYERS
+
+Presentation Layer
+
+- Public Website
+- Progressive Web Application
+- Admin Dashboard
+
+
+Application Layer
+
+- Next.js 15+
+- App Router
+- React Server Components
+- Server Actions
+
+
+Business Logic Layer
+
+- Pricing Engine
+- Payment Engine
+- Logistics Engine
+- Barcode Intelligence Engine
+- Collection Engine
+
+
+Data Layer
+
+- PostgreSQL
+- Supabase
+- PostGIS
+- Supabase Storage
+
+
+Infrastructure Layer
+
+- Vercel
+- Mobile Money APIs
+- Mapping Services
+- Notification Services
+
+
+
+--------------------------------------------------
+
+
+4. SERVERLESS INFRASTRUCTURE
+
+Deployment Platform:
+
+- Vercel
+
+Framework:
+
+- Next.js 15+
+- TypeScript
+
+Routing Strategy:
+
+Public Website:
+
+- Incremental Static Regeneration (ISR)
+
+Private Applications:
+
+- Server Side Rendering (SSR)
+
+
+
+--------------------------------------------------
+
+
+5. AUTHENTICATION ARCHITECTURE
+
+Authentication Requirements:
+
+- JWT based authentication.
+- Role-based authorization.
+- Type-safe session management.
+
+User roles are mapped directly to:
+
+- Supabase profiles table.
+
+
+
+--------------------------------------------------
+
+
+6. ROW LEVEL SECURITY POLICIES
+
+Collectors:
+
+- Read only their own transactions.
+
+Depot Agents:
+
+- Insert operational records.
+- Read operational records.
+
+Depot Managers:
+
+- Manage transactions within assigned depots.
+
+Super Administrators:
+
+- Full administrative access.
+
+Business Rule:
+
+All financial and operational access is protected by Supabase RLS policies.
+
+
+
+--------------------------------------------------
+
+
+7. MOBILE EXECUTION LAYER
+
+Barcode Scanning:
+
+- html5-qrcode
+
+Image Processing:
+
+- Browser-side image compression.
+
+Photo Upload Pipeline:
+
+- Maximum compressed size under 500 KB.
+
+Location Services:
+
+- Browser Geolocation API.
+
+Spatial Data:
+
+- PostGIS geography types using SRID 4326.
+
+
+
+--------------------------------------------------
+
+
+8. STORAGE ARCHITECTURE
+
+Supabase Storage Buckets include:
+
+- collector-verifications
+- pickup-photos
+- barcode-products
+- depot-images
+- campaign-assets
+- public-impact-assets
+
+
+
+--------------------------------------------------
+
+
+9. PAYMENT ARCHITECTURE
+
+Supported Providers:
+
+- MTN Mobile Money
+- Orange Money
+
+Payment Processing:
+
+- Next.js Server Actions
+- Secure server-side execution.
+
+Business Rule:
+
+Payment credentials are never exposed to client applications.
+
+
+
+--------------------------------------------------
+
+
+10. ASYNCHRONOUS PAYMENT WORKERS
+
+Supports:
+
+- Payment retries.
+- Telecom polling.
+- Status reconciliation.
+- Exponential backoff strategies.
+- Offline payment recovery.
+
+
+
+--------------------------------------------------
+
+
+11. GEOGRAPHIC INTELLIGENCE LAYER
+
+Powered by:
+
+- PostgreSQL
+- PostGIS
+
+Supports:
+
+- Depot service zones.
+- Collection requests.
+- Driver tracking.
+- Route optimization.
+- Geographic analytics.
+
+
+
+--------------------------------------------------
+
+
+12. ENVIRONMENT VARIABLES
+
+Public Variables:
+
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+
+Private Variables:
+
+- SUPABASE_SERVICE_ROLE_KEY
+- MTN_MOMO_API_SECRET
+- ORANGE_MONEY_VENDOR_ID
+
+Business Rule:
+
+Sensitive credentials remain server-side only.
+
+
+
+--------------------------------------------------
+
+
+13. PERFORMANCE TARGETS
+
+Public Website:
+
+- Less than two second page loads.
+
+PWA:
+
+- Fast mobile interactions.
+
+Barcode Scanning:
+
+- Less than one second response time.
+
+Photo Uploads:
+
+- Less than 500 KB.
+
+Offline Synchronization:
+
+- Automatic recovery.
+
+Payment Processing:
+
+- Asynchronous execution.
+
+
+
+--------------------------------------------------
+
+
+14. FUTURE INTEGRATIONS
+
+The architecture supports:
+
+- Google Maps.
+- Mapbox.
+- SMS gateways.
+- Email services.
+- Push notifications.
+- Government APIs.
+- Corporate sustainability APIs.
+- Multi-country telecom integrations.
+
+
+
+--------------------------------------------------
+
+
+15. BUSINESS RULES
+
+- Client applications never access financial secrets.
+- All financial operations are server-side.
+- Offline capabilities are mandatory.
+- Geographic intelligence is natively supported.
+- Environmental intelligence is a core architectural component.
+- Historical financial records are immutable.
+- Security and scalability take priority over convenience.
+
+
+
+--------------------------------------------------
+
+
+16. FUTURE SCALABILITY
+
+The WastePay architecture is designed to support:
+
+- Multi-city deployments.
+- Multi-country operations.
+- Government partnerships.
+- Corporate sustainability initiatives.
+- Environmental intelligence platforms.
+- Circular economy infrastructure.
+- Africa-wide plastic recovery operations.
+
+
+END OF DOCUMENT
