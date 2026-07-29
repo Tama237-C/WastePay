@@ -43,7 +43,9 @@ export function InstallWastePay() {
     useState(false);
 
   useEffect(() => {
-    setIsInstalled(isStandaloneMode());
+    const frame = window.requestAnimationFrame(() => {
+      setIsInstalled(isStandaloneMode());
+    });
 
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
@@ -67,6 +69,7 @@ export function InstallWastePay() {
     );
 
     return () => {
+      window.cancelAnimationFrame(frame);
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt,

@@ -3,14 +3,19 @@ import type { ReactNode } from "react";
 
 import { PublicFooter } from "@/components/marketing/public-footer";
 import { PublicNavigation } from "@/components/marketing/public-navigation";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 type MarketingLayoutProps = {
   children: ReactNode;
 };
 
-export default function MarketingLayout({
+export default async function MarketingLayout({
   children,
 }: MarketingLayoutProps) {
+  const { data: theme } = await createAdminClient().from("site_theme").select("logo_path").eq("id", true).maybeSingle();
+  const logoUrl = theme?.logo_path
+    ? createAdminClient().storage.from("website-branding").getPublicUrl(theme.logo_path).data.publicUrl
+    : null;
   return (
     <div className="wp-page-shell">
         <ServiceWorkerRegistration />
@@ -29,7 +34,7 @@ export default function MarketingLayout({
         className="wp-sky-glow fixed -right-56 top-[38rem] h-[42rem] w-[42rem]"
       />
 
-      <PublicNavigation />
+      <PublicNavigation logoUrl={logoUrl} />
 
       <div className="relative z-10 min-h-screen pt-24 sm:pt-28">
         {children}

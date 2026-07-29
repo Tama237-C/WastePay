@@ -1,35 +1,43 @@
 import Link from "next/link";
+import { createAdminClient } from "@/lib/supabase/admin";
 
-const metricCards = [
+function buildMetricCards(values: {
+  recoveredKg: number;
+  payoutCfa: number;
+  collectors: number;
+  depots: number;
+}) {
+  return [
   {
     label: "Plastic recovered",
-    value: "0.00",
+    value: (values.recoveredKg / 1000).toFixed(2),
     unit: "metric tons",
     detail: "Awaiting live depot transactions",
     accent: "emerald",
   },
   {
     label: "Capital disbursed",
-    value: "0",
+    value: values.payoutCfa.toLocaleString("en-CM"),
     unit: "CFA",
     detail: "MTN and Orange payouts",
     accent: "sky",
   },
   {
     label: "Registered collectors",
-    value: "0",
+    value: values.collectors.toLocaleString("en-CM"),
     unit: "accounts",
     detail: "Verified recovery participants",
     accent: "violet",
   },
   {
     label: "Active depots",
-    value: "0",
+    value: values.depots.toLocaleString("en-CM"),
     unit: "locations",
     detail: "Cameroon operating network",
     accent: "amber",
   },
-];
+  ];
+}
 
 const quickActions = [
   {
@@ -71,7 +79,41 @@ function getMetricAccent(accent: string): string {
   }
 }
 
-export default function AdminOverviewPage() {
+export default async function AdminOverviewPage() {
+  const adminClient = createAdminClient();
+  const [{ data: transactions }, { count: collectorCount }, { count: depotCount }, { data: events }] =
+    await Promise.all([
+      adminClient
+        .from("transactions")
+        .select("total_weight_kg, total_payout_cfa")
+        .in("status", ["APPROVED", "PAYOUT_PROCESSING", "SUCCESSFUL"]),
+      adminClient
+        .from("profiles")
+        .select("id", { count: "exact", head: true })
+        .eq("role", "collector")
+        .eq("is_active", true),
+      adminClient
+        .from("depots")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "active"),
+      adminClient
+        .from("collection_request_events")
+        .select("id, new_status, reason, created_at")
+        .order("created_at", { ascending: false })
+        .limit(8),
+    ]);
+  const metricCards = buildMetricCards({
+    recoveredKg: (transactions ?? []).reduce(
+      (total, transaction) => total + Number(transaction.total_weight_kg ?? 0),
+      0,
+    ),
+    payoutCfa: (transactions ?? []).reduce(
+      (total, transaction) => total + Number(transaction.total_payout_cfa ?? 0),
+      0,
+    ),
+    collectors: collectorCount ?? 0,
+    depots: depotCount ?? 0,
+  });
   return (
     <div>
       <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-2xl backdrop-blur-xl sm:p-9 lg:p-11">
@@ -186,23 +228,33 @@ export default function AdminOverviewPage() {
             </span>
           </div>
 
-          <div className="mt-8 flex min-h-72 items-center justify-center rounded-3xl border border-dashed border-white/10 bg-slate-950/40 px-6 py-12 text-center">
-            <div className="max-w-md">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.035] text-sm font-black tracking-[0.18em] text-slate-600">
-                LIVE
-              </div>
-
-              <h3 className="mt-6 text-xl font-black text-white">
-                No operational events yet
-              </h3>
-
-              <p className="mt-3 text-sm font-light leading-7 text-slate-500">
-                Depot transactions, barcode discoveries, Mobile Money payouts,
-                and collection activity will appear here as WastePay operations
-                begin.
-              </p>
+          {events && events.length > 0 ? (
+            <div className="mt-8 space-y-3">
+              {events.map((event) => (
+                <article key={event.id} className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-sm font-bold text-white">{event.new_status}</p>
+                    <p className="text-xs text-slate-600">
+                      {new Intl.DateTimeFormat("en-CM", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }).format(new Date(event.created_at))}
+                    </p>
+                  </div>
+                  {event.reason ? <p className="mt-2 text-sm text-slate-400">{event.reason}</p> : null}
+                </article>
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="mt-8 flex min-h-72 items-center justify-center rounded-3xl border border-dashed border-white/10 bg-slate-950/40 px-6 py-12 text-center">
+              <div className="max-w-md">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.035] text-sm font-black tracking-[0.18em] text-slate-600">
+                  LIVE
+                </div>
+                <h3 className="mt-6 text-xl font-black text-white">No operational events yet</h3>
+                <p className="mt-3 text-sm font-light leading-7 text-slate-500">
+                  Collection activity will appear here as WastePay operations begin.
+                </p>
+              </div>
+            </div>
+          )}
         </section>
 
         <section className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-2xl backdrop-blur-xl sm:p-8">

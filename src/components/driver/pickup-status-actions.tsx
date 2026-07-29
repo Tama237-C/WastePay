@@ -56,21 +56,26 @@ export function PickupStatusActions({
     updateDriverPickup,
     initialState,
   );
+  const [failureState, failureAction] = useActionState(
+    updateDriverPickup,
+    initialState,
+  );
 
   return (
-    <form action={formAction} className="mt-6">
-      <input type="hidden" name="requestId" value={requestId} />
+    <>
+      <form action={formAction} className="mt-6">
+        <input type="hidden" name="requestId" value={requestId} />
 
-      <PickupActionButton
-        intent={
-          requestStatus === "ASSIGNED"
-            ? "start"
-            : "collected"
-        }
-      />
+        <PickupActionButton
+          intent={
+            requestStatus === "ASSIGNED"
+              ? "start"
+              : "collected"
+          }
+        />
 
-      {state.status !== "idle" ? (
-        <div
+        {state.status !== "idle" ? (
+          <div
           role="status"
           className={`mt-4 rounded-2xl border p-4 ${
             state.status === "success"
@@ -87,8 +92,51 @@ export function PickupStatusActions({
           >
             {state.message}
           </p>
-        </div>
-      ) : null}
-    </form>
+          </div>
+        ) : null}
+      </form>
+
+      <form
+        action={failureAction}
+        className="mt-4 rounded-2xl border border-red-400/15 bg-red-400/[0.05] p-4"
+      >
+        <input type="hidden" name="requestId" value={requestId} />
+        <input type="hidden" name="intent" value="unreachable" />
+        <label
+          htmlFor={`failure-reason-${requestId}`}
+          className="text-xs font-black uppercase tracking-[0.18em] text-red-300/70"
+        >
+          Pickup could not be completed
+        </label>
+        <textarea
+          id={`failure-reason-${requestId}`}
+          name="failureReason"
+          required
+          minLength={5}
+          maxLength={500}
+          rows={3}
+          placeholder="Resident unavailable, incorrect location, unsafe conditions..."
+          className="mt-3 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-700 focus:border-red-400/40"
+        />
+        <button
+          type="submit"
+          className="mt-3 min-h-11 w-full rounded-2xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-red-200 hover:bg-red-400/15"
+        >
+          Mark customer unreachable
+        </button>
+        {failureState.status !== "idle" ? (
+          <p
+            role="status"
+            className={`mt-3 text-sm ${
+              failureState.status === "success"
+                ? "text-emerald-300"
+                : "text-red-300"
+            }`}
+          >
+            {failureState.message}
+          </p>
+        ) : null}
+      </form>
+    </>
   );
 }

@@ -1,6 +1,9 @@
 import { InstallWastePay } from "@/components/marketing/install-wastepay";
+import { EditablePageSections } from "@/components/marketing/editable-page-sections";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "WastePay | Cameroon’s Circular Plastic Economy",
@@ -167,7 +170,18 @@ const partnershipTypes = [
   "Recovery depots",
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { data: websiteContent } = await createAdminClient()
+    .from("website_content")
+    .select("homepage_hero_title, homepage_hero_description, homepage_footer_title, homepage_footer_text, homepage_hero_image_path, homepage_footer_image_path")
+    .eq("id", true)
+    .maybeSingle();
+  const footerImage = websiteContent?.homepage_footer_image_path
+    ? createAdminClient().storage.from("website-images").getPublicUrl(websiteContent.homepage_footer_image_path).data.publicUrl
+    : null;
+  const heroImage = websiteContent?.homepage_hero_image_path
+    ? createAdminClient().storage.from("website-images").getPublicUrl(websiteContent.homepage_hero_image_path).data.publicUrl
+    : null;
   return (
     <main>
       <section className="relative overflow-hidden pb-20 pt-10 sm:pb-28 sm:pt-16 lg:min-h-[calc(100vh-7rem)] lg:pb-24 lg:pt-20">
@@ -189,17 +203,11 @@ export default function HomePage() {
               </div>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
-                Plastic waste
-                <span className="wp-gradient-text block">
-                  becomes value.
-                </span>
+                {websiteContent?.homepage_hero_title ?? "Plastic waste becomes value."}
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay is building Cameroon&apos;s digital circular-plastic
-                infrastructure—connecting residents, collectors, drivers,
-                recovery depots, brands, data, and secure payments in one
-                transparent operating network.
+                {websiteContent?.homepage_hero_description ?? "WastePay is building Cameroon’s digital circular-plastic infrastructure—connecting residents, collectors, drivers, recovery depots, brands, data, and secure payments in one transparent operating network."}
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
@@ -237,6 +245,7 @@ export default function HomePage() {
               />
 
               <div className="wp-glass-panel-strong relative overflow-hidden rounded-[2.5rem] p-5 sm:p-7">
+                {heroImage ? <Image src={heroImage} alt="" width={800} height={400} className="mb-5 h-56 w-full rounded-3xl object-cover" /> : null}
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
                 <div className="relative">
@@ -725,6 +734,13 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <section className="mx-auto mb-20 max-w-6xl rounded-[2rem] border border-emerald-400/20 bg-emerald-400/[0.06] p-8 sm:p-12">
+        {footerImage ? <Image src={footerImage} alt="" width={1200} height={500} className="mb-8 h-64 w-full rounded-3xl object-cover" /> : null}
+        <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">WastePay impact</p>
+        <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{websiteContent?.homepage_footer_title ?? "Build a cleaner circular economy."}</h2>
+        <p className="mt-4 max-w-2xl text-base leading-8 text-slate-400">{websiteContent?.homepage_footer_text ?? "Every verified collection helps turn discarded plastic into measurable economic value."}</p>
+      </section>
+      <EditablePageSections pageKey="home" />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -46,12 +47,16 @@ function isNavigationItemActive(
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function PublicNavigation() {
+export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    const frame = window.requestAnimationFrame(() => {
+      setIsMobileMenuOpen(false);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   useEffect(() => {
@@ -77,8 +82,8 @@ export function PublicNavigation() {
             aria-label="WastePay homepage"
             className="group flex min-w-0 items-center gap-3"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-emerald-200/20 bg-emerald-400 text-sm font-black tracking-[-0.05em] text-slate-950 shadow-lg shadow-emerald-500/20 transition-transform duration-300 group-hover:-translate-y-1 sm:h-12 sm:w-12">
-              WP
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-emerald-200/20 bg-emerald-400 text-sm font-black tracking-[-0.05em] text-slate-950 shadow-lg shadow-emerald-500/20 transition-transform duration-300 group-hover:-translate-y-1 sm:h-12 sm:w-12">
+              {logoUrl ? <Image src={logoUrl} alt="" width={48} height={48} className="h-full w-full object-cover" /> : "WP"}
             </span>
 
             <span className="min-w-0">

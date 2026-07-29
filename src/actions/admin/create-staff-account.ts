@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
-const allowedStaffRoles = ["manager", "agent", "driver"] as const;
+const allowedStaffRoles = ["manager", "agent", "driver", "collector"] as const;
 
 type StaffRole = (typeof allowedStaffRoles)[number];
 
@@ -43,6 +43,7 @@ function generateTemporaryPassword(role: StaffRole): string {
     manager: "MGR",
     agent: "AGT",
     driver: "DRV",
+    collector: "COL",
   };
 
   const numericSection = randomInt(100000, 1000000);
@@ -121,6 +122,8 @@ export async function createStaffAccount(
   const phoneNumberValue = formData.get("phoneNumber");
   const roleValue = formData.get("role");
   const locationZoneValue = formData.get("locationZone");
+  const assignedDepotIdValue = formData.get("assignedDepotId");
+  const mobileMoneyProviderValue = formData.get("mobileMoneyProvider");
 
   const fullName =
     typeof fullNameValue === "string" ? fullNameValue.trim() : "";
@@ -135,6 +138,12 @@ export async function createStaffAccount(
 
   const locationZone =
     typeof locationZoneValue === "string" ? locationZoneValue.trim() : "";
+  const assignedDepotId =
+    typeof assignedDepotIdValue === "string" ? assignedDepotIdValue.trim() : "";
+  const mobileMoneyProvider =
+    typeof mobileMoneyProviderValue === "string"
+      ? mobileMoneyProviderValue.trim()
+      : "";
 
   if (fullName.length < 3) {
     return {
@@ -186,6 +195,47 @@ export async function createStaffAccount(
   }
 
   const adminClient = createAdminClient();
+
+  if (!assignedDepotId) {
+    return {
+      status: "error",
+      message: "Select the depot where this staff member will operate.",
+      temporaryPassword: null,
+      createdEmail: null,
+    };
+  }
+
+  if (
+    role === "collector" &&
+    mobileMoneyProvider !== "MTN_MOMO" &&
+    mobileMoneyProvider !== "ORANGE_MONEY"
+  ) {
+    return {
+      status: "error",
+      message: "Select the collector's Mobile Money provider.",
+      temporaryPassword: null,
+      createdEmail: null,
+    };
+  }
+
+  const { data: assignedDepot, error: assignedDepotError } = await adminClient
+    .from("depots")
+    .select("id, status")
+    .eq("id", assignedDepotId)
+    .maybeSingle();
+
+  if (
+    assignedDepotError ||
+    !assignedDepot ||
+    (assignedDepot.status !== "active" && assignedDepot.status !== "planned")
+  ) {
+    return {
+      status: "error",
+      message: "Select an active or planned WastePay depot.",
+      temporaryPassword: null,
+      createdEmail: null,
+    };
+  }
 
   const { data: existingProfiles, error: phoneLookupError } = await adminClient
     .from("profiles")
@@ -261,6 +311,9 @@ export async function createStaffAccount(
     phone_number: normalizedPhoneNumber,
     role,
     active_location_zone: locationZone,
+    assigned_depot_id: assignedDepot.id,
+    mobile_money_provider:
+      role === "collector" ? mobileMoneyProvider : null,
     is_active: true,
     must_change_password: true,
   })

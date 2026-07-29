@@ -81,6 +81,24 @@ const navigationItems: NavigationItem[] = [
     description: "Platform configuration",
     href: "/admin/settings",
   },
+  {
+    label: "Website content",
+    shortLabel: "11",
+    description: "Public text and homepage images",
+    href: "/admin/website-content",
+  },
+  {
+    label: "Theme editor",
+    shortLabel: "12",
+    description: "Global colors, type and branding",
+    href: "/admin/theme-editor",
+  },
+  {
+    label: "Page sections",
+    shortLabel: "13",
+    description: "Text and images across public pages",
+    href: "/admin/website-sections",
+  },
 ];
 
 function getPageTitle(pathname: string): string {

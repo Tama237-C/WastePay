@@ -22,6 +22,9 @@ function getDashboardPath(role: string): string | null {
     case "driver":
       return "/app/driver";
 
+    case "collector":
+      return "/app/collector";
+
     default:
       return null;
   }

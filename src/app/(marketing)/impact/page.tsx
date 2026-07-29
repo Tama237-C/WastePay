@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 
 export const metadata: Metadata = {
   title: "Our Impact | WastePay",
@@ -839,6 +840,7 @@ export default async function ImpactPage() {
           </div>
         </div>
       </section>
+      <EditablePageSections pageKey="impact" />
     </main>
   );
 }

@@ -17,6 +17,9 @@ function normalizeText(value: FormDataEntryValue | null): string {
 async function verifyCurrentAdministrator(): Promise<
   | {
       authorized: true;
+      role: "admin" | "manager";
+      assignedDepotId: string | null;
+      actorId: string;
     }
   | {
       authorized: false;
@@ -39,14 +42,14 @@ async function verifyCurrentAdministrator(): Promise<
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, is_active")
+    .select("role, is_active, assigned_depot_id")
     .eq("id", user.id)
     .single();
 
   if (
     profileError ||
     !profile ||
-    profile.role !== "admin" ||
+    (profile.role !== "admin" && profile.role !== "manager") ||
     !profile.is_active
   ) {
     return {
@@ -58,6 +61,9 @@ async function verifyCurrentAdministrator(): Promise<
 
   return {
     authorized: true,
+    role: profile.role,
+    assignedDepotId: profile.assigned_depot_id,
+    actorId: user.id,
   };
 }
 
@@ -122,6 +128,16 @@ export async function assignCollectionDriver(
   }
 
   if (
+    authorization.role === "manager" &&
+    authorization.assignedDepotId !== request.assigned_depot_id
+  ) {
+    return {
+      status: "error",
+      message: "Managers can only dispatch requests assigned to their depot.",
+    };
+  }
+
+  if (
     request.status !== "ASSIGNED" &&
     request.status !== "APPROVED"
   ) {
@@ -134,7 +150,7 @@ export async function assignCollectionDriver(
 
   const { data: driver, error: driverError } = await adminClient
     .from("profiles")
-    .select("id, full_name, role, is_active")
+    .select("id, full_name, role, is_active, assigned_depot_id")
     .eq("id", driverId)
     .maybeSingle();
 
@@ -166,6 +182,13 @@ export async function assignCollectionDriver(
     };
   }
 
+  if (driver.assigned_depot_id !== request.assigned_depot_id) {
+    return {
+      status: "error",
+      message: "The selected driver belongs to a different depot.",
+    };
+  }
+
   const { data: updatedRequests, error: updateError } = await adminClient
     .from("collection_requests")
     .update({
@@ -192,10 +215,18 @@ export async function assignCollectionDriver(
         "The request changed before the driver could be assigned. Refresh the page and try again.",
     };
   }
+  await adminClient.from("collection_request_events").insert({
+    collection_request_id: requestId,
+    previous_status: request.status,
+    new_status: "ASSIGNED",
+    actor_id: authorization.actorId,
+    reason: `Assigned to ${driver.full_name?.trim() || "selected driver"}`,
+  });
 
   revalidatePath("/admin/logistics");
   revalidatePath("/admin/collection-requests");
   revalidatePath("/admin/overview");
+  revalidatePath("/app/manager");
 
   return {
     status: "success",

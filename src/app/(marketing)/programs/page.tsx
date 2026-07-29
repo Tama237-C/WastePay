@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 
 export const metadata: Metadata = {
   title: "WastePay Programs | Plastic Recovery Solutions",
@@ -676,6 +677,7 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+      <EditablePageSections pageKey="programs" />
     </main>
   );
 }

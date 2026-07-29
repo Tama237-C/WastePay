@@ -7,6 +7,13 @@ import {
   createStaffAccount,
   type CreateStaffAccountState,
 } from "@/actions/admin/create-staff-account";
+
+type DepotOption = {
+  id: string;
+  name: string;
+  code: string;
+  status: string;
+};
 const initialCreateStaffAccountState: CreateStaffAccountState = {
   status: "idle",
   message: "",
@@ -38,7 +45,7 @@ function SubmitButton() {
   );
 }
 
-export function CreateStaffAccount() {
+export function CreateStaffAccount({ depots }: { depots: DepotOption[] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -119,8 +126,8 @@ export function CreateStaffAccount() {
                 </h2>
 
                 <p className="mt-3 max-w-xl text-sm font-light leading-6 text-slate-400">
-                  Provision secure access for a depot manager, depot agent, or
-                  pickup driver.
+                  Provision secure access for a depot manager, depot agent,
+                  pickup driver, or collector.
                 </p>
               </div>
 
@@ -291,6 +298,7 @@ export function CreateStaffAccount() {
                         <option value="manager">Depot Manager</option>
                         <option value="agent">Depot Agent</option>
                         <option value="driver">Pickup Driver</option>
+                        <option value="collector">Plastic Collector</option>
                       </select>
                     </div>
 
@@ -310,6 +318,57 @@ export function CreateStaffAccount() {
                         placeholder="Douala — Akwa"
                         className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-700 hover:border-white/20 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10"
                       />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="assignedDepotId"
+                        className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
+                      >
+                        Assigned depot
+                      </label>
+
+                      <select
+                        id="assignedDepotId"
+                        name="assignedDepotId"
+                        required
+                        defaultValue=""
+                        className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-base text-white outline-none transition-all duration-300 hover:border-white/20 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10"
+                      >
+                        <option value="" disabled>
+                          Select a depot
+                        </option>
+                        {depots
+                          .filter(
+                            (depot) =>
+                              depot.status === "active" ||
+                              depot.status === "planned",
+                          )
+                          .map((depot) => (
+                            <option key={depot.id} value={depot.id}>
+                              {depot.code} — {depot.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="mobileMoneyProvider"
+                        className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
+                      >
+                        Mobile Money provider
+                      </label>
+                      <select
+                        id="mobileMoneyProvider"
+                        name="mobileMoneyProvider"
+                        defaultValue=""
+                        className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-base text-white outline-none focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10"
+                      >
+                        <option value="">Only required for collectors</option>
+                        <option value="MTN_MOMO">MTN Mobile Money</option>
+                        <option value="ORANGE_MONEY">Orange Money</option>
+                      </select>
                     </div>
                   </div>
 

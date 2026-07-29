@@ -2,8 +2,6 @@
 
 import {
   useActionState,
-  useEffect,
-  useRef,
   useState,
 } from "react";
 import { useFormStatus } from "react-dom";
@@ -77,10 +75,16 @@ function SubmitButton({
   );
 }
 
-export function CollectionRequestForm() {
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const [formStartedAt, setFormStartedAt] = useState("");
+export function CollectionRequestForm({
+  minimumPickupWeightKg = 15,
+  maximumScheduleDays = 30,
+  maintenanceMessage,
+}: {
+  minimumPickupWeightKg?: number;
+  maximumScheduleDays?: number;
+  maintenanceMessage?: string | null;
+}) {
+  const [formStartedAt] = useState(() => String(Date.now()));
   const [locationState, setLocationState] =
     useState<LocationState>({
       status: "idle",
@@ -91,23 +95,6 @@ export function CollectionRequestForm() {
     createCollectionRequest,
     initialState,
   );
-
-  useEffect(() => {
-    setFormStartedAt(String(Date.now()));
-  }, []);
-
-  useEffect(() => {
-    if (state.status === "success") {
-      formRef.current?.reset();
-
-      setLocationState({
-        status: "idle",
-        message: "Your location has not been captured yet.",
-      });
-
-      setFormStartedAt(String(Date.now()));
-    }
-  }, [state.status]);
 
   function captureLocation() {
     if (!navigator.geolocation) {
@@ -204,11 +191,12 @@ export function CollectionRequestForm() {
           </p>
         </div>
       ) : (
-        <form
-          ref={formRef}
-          action={formAction}
-          className="space-y-8"
-        >
+        <form action={formAction} className="space-y-8">
+          {maintenanceMessage ? (
+            <div className="rounded-3xl border border-amber-400/20 bg-amber-400/[0.08] p-5 text-sm leading-7 text-amber-100">
+              {maintenanceMessage}
+            </div>
+          ) : null}
           <input
             type="hidden"
             name="formStartedAt"
@@ -321,6 +309,48 @@ export function CollectionRequestForm() {
           </fieldset>
 
           <fieldset>
+            <legend className="text-xs font-black uppercase tracking-[0.26em] text-amber-400">
+              Preferred pickup window
+            </legend>
+            <p className="mt-3 text-sm leading-6 text-slate-500">
+              Choose a window at least two hours from now and within the next{" "}
+              {maximumScheduleDays} days.
+            </p>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="preferredPickupStart"
+                  className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
+                >
+                  Window starts
+                </label>
+                <input
+                  id="preferredPickupStart"
+                  name="preferredPickupStart"
+                  type="datetime-local"
+                  required
+                  className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-base text-white outline-none focus:border-amber-400/50 focus:ring-4 focus:ring-amber-400/10"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="preferredPickupEnd"
+                  className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
+                >
+                  Window ends
+                </label>
+                <input
+                  id="preferredPickupEnd"
+                  name="preferredPickupEnd"
+                  type="datetime-local"
+                  required
+                  className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-base text-white outline-none focus:border-amber-400/50 focus:ring-4 focus:ring-amber-400/10"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
             <legend className="text-xs font-black uppercase tracking-[0.26em] text-sky-400">
               Waste estimate
             </legend>
@@ -353,21 +383,23 @@ export function CollectionRequestForm() {
                   className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
                 >
                   Estimated weight KG
-                  <span className="ml-2 text-[0.6rem] text-slate-700">
-                    Optional
-                  </span>
                 </label>
 
                 <input
                   id="estimatedWeightKg"
                   name="estimatedWeightKg"
                   type="number"
-                  min="0.001"
+                  min={minimumPickupWeightKg}
                   max="50000"
-                  step="0.001"
+                  step="0.01"
+                  required
                   placeholder="25"
                   className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition-all placeholder:text-slate-700 hover:border-white/20 focus:border-sky-400/50 focus:ring-4 focus:ring-sky-400/10"
                 />
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  Home collection currently requires at least{" "}
+                  {minimumPickupWeightKg} KG of plastic.
+                </p>
               </div>
             </div>
           </fieldset>

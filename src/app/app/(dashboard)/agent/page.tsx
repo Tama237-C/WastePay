@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 
 import { logoutStaff } from "@/actions/auth/logout";
+import { BuybackIntakeForm } from "@/components/agent/buyback-intake-form";
+import { DepotIntakeAction } from "@/components/agent/depot-intake-action";
 import { createClient } from "@/lib/supabase/server";
 
 type IncomingDeliveryStatus =
@@ -277,6 +279,10 @@ export default async function AgentDashboardPage() {
           </form>
         </header>
 
+        <div className="mt-6">
+          <BuybackIntakeForm />
+        </div>
+
         <section className="mt-6 grid gap-5 sm:grid-cols-3">
           <article className="rounded-3xl border border-amber-400/15 bg-amber-400/[0.06] p-6 shadow-2xl">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-400/70">
@@ -448,6 +454,9 @@ export default async function AgentDashboardPage() {
 
                   {delivery.status ===
                   "COLLECTED_PENDING_DEPOT" ? (
+                    <DepotIntakeAction requestId={delivery.id} />
+                  ) : (
+                    <>
                     <button
                       type="button"
                       disabled
@@ -455,7 +464,6 @@ export default async function AgentDashboardPage() {
                     >
                       Start depot intake — next
                     </button>
-                  ) : (
                     <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] p-5">
                       <p className="text-sm font-bold text-emerald-200">
                         This delivery has completed depot intake.
@@ -468,6 +476,7 @@ export default async function AgentDashboardPage() {
                         </p>
                       ) : null}
                     </div>
+                    </>
                   )}
                 </article>
               ))}

@@ -138,7 +138,7 @@ export default function TermsPage() {
             </h1>
 
             <p className="wp-body-large mt-8 max-w-4xl">
-              These terms explain the rules governing WastePay's public website,
+              These terms explain the rules governing WastePay&apos;s public website,
               operational platform, collection services, and future payment
               infrastructure.
             </p>

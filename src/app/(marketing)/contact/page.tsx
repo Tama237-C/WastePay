@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 import { CollectionRequestForm } from "@/components/marketing/collection-request-form";
+import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 import { PartnershipEnquiryForm } from "@/components/marketing/partnership-enquiry-form";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
   title: "Contact WastePay | Collection and Partnerships",
@@ -100,6 +102,14 @@ export default async function ContactPage({
   searchParams,
 }: ContactPageProps) {
   const resolvedSearchParams = await searchParams;
+  const adminClient = createAdminClient();
+  const { data: systemSettings } = await adminClient
+    .from("system_settings")
+    .select(
+      "minimum_pickup_weight_kg, maximum_schedule_days, public_collection_requests_enabled, maintenance_message",
+    )
+    .eq("id", true)
+    .maybeSingle();
 
   const showPartnershipForm =
     resolvedSearchParams.type === "partnership";
@@ -226,7 +236,22 @@ export default async function ContactPage({
                 id="home-collection"
                 className="scroll-mt-32"
               >
-                <CollectionRequestForm />
+                {systemSettings?.public_collection_requests_enabled === false ? (
+                  <div className="rounded-3xl border border-amber-400/20 bg-amber-400/[0.08] p-6 text-sm leading-7 text-amber-100">
+                    Public collection requests are temporarily paused. Please
+                    check back soon.
+                  </div>
+                ) : (
+                  <CollectionRequestForm
+                    minimumPickupWeightKg={Number(
+                      systemSettings?.minimum_pickup_weight_kg ?? 15,
+                    )}
+                    maximumScheduleDays={Number(
+                      systemSettings?.maximum_schedule_days ?? 30,
+                    )}
+                    maintenanceMessage={systemSettings?.maintenance_message}
+                  />
+                )}
               </section>
 
               <div className="mt-6 scroll-mt-32">
@@ -366,6 +391,7 @@ export default async function ContactPage({
           </div>
         </div>
       </section>
+      <EditablePageSections pageKey="contact" />
     </main>
   );
 }

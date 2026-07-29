@@ -115,6 +115,19 @@ export async function createCollectionRequest(
   _previousState: CreateCollectionRequestState,
   formData: FormData,
 ): Promise<CreateCollectionRequestState> {
+  const adminClient = createAdminClient();
+  const { data: systemSettings } = await adminClient
+    .from("system_settings")
+    .select("minimum_pickup_weight_kg, maximum_schedule_days, public_collection_requests_enabled")
+    .eq("id", true)
+    .maybeSingle();
+  const minimumPickupWeightKg = Number(systemSettings?.minimum_pickup_weight_kg ?? 15);
+  const maximumScheduleDays = Number(systemSettings?.maximum_schedule_days ?? 30);
+
+  if (systemSettings && !systemSettings.public_collection_requests_enabled) {
+    return { status: "error", message: "Public collection requests are temporarily paused.", referenceNumber: null };
+  }
+
   const requesterTypeInput = normalizeText(formData.get("requesterType"));
   const requesterName = normalizeText(formData.get("requesterName"));
   const phoneNumberInput = normalizeText(formData.get("phoneNumber"));
@@ -127,6 +140,12 @@ export async function createCollectionRequest(
   );
   const latitudeInput = normalizeText(formData.get("latitude"));
   const longitudeInput = normalizeText(formData.get("longitude"));
+  const preferredPickupStartInput = normalizeText(
+    formData.get("preferredPickupStart"),
+  );
+  const preferredPickupEndInput = normalizeText(
+    formData.get("preferredPickupEnd"),
+  );
   const websiteHoneypot = normalizeText(formData.get("website"));
   const formStartedAtInput = normalizeText(formData.get("formStartedAt"));
 
@@ -203,11 +222,11 @@ export async function createCollectionRequest(
 
   const estimatedWeightKg = parseOptionalWeight(estimatedWeightInput);
 
-  if (estimatedWeightInput && estimatedWeightKg === null) {
+  if (estimatedWeightKg === null || estimatedWeightKg < minimumPickupWeightKg) {
     return {
       status: "error",
       message:
-        "Estimated weight must be a positive number not exceeding 50,000 kilograms.",
+        `Home collection requires an estimated plastic weight of at least ${minimumPickupWeightKg} kilograms.`,
       referenceNumber: null,
     };
   }
@@ -224,7 +243,25 @@ export async function createCollectionRequest(
     };
   }
 
-  const adminClient = createAdminClient();
+  const preferredPickupStart = new Date(preferredPickupStartInput);
+  const preferredPickupEnd = new Date(preferredPickupEndInput);
+  const earliestPickupTime = Date.now() + 2 * 60 * 60 * 1000;
+  const latestPickupTime = Date.now() + maximumScheduleDays * 24 * 60 * 60 * 1000;
+
+  if (
+    Number.isNaN(preferredPickupStart.getTime()) ||
+    Number.isNaN(preferredPickupEnd.getTime()) ||
+    preferredPickupStart.getTime() < earliestPickupTime ||
+    preferredPickupEnd <= preferredPickupStart ||
+    preferredPickupEnd.getTime() > latestPickupTime
+  ) {
+    return {
+      status: "error",
+      message:
+        `Choose a valid pickup window at least two hours from now and within the next ${maximumScheduleDays} days.`,
+      referenceNumber: null,
+    };
+  }
 
   const tenMinutesAgo = new Date(
     Date.now() - 10 * 60 * 1000,
@@ -270,6 +307,8 @@ export async function createCollectionRequest(
       estimated_bag_count: estimatedBagCount,
       estimated_weight_kg: estimatedWeightKg,
       pickup_location: pickupLocation,
+      preferred_pickup_start: preferredPickupStart.toISOString(),
+      preferred_pickup_end: preferredPickupEnd.toISOString(),
       status: "PENDING_REVIEW",
     })
     .select("id")

@@ -1,5 +1,40 @@
 @import "tailwindcss";
 
+:root {
+  --wp-primary: #00d6a3;
+  --wp-secondary: #172554;
+  --wp-accent: #facc15;
+  --wp-background: #020617;
+  --wp-surface: #0f172a;
+  --wp-text: #f8fafc;
+  --wp-muted-text: #94a3b8;
+  --wp-base-size: 16px;
+  --wp-heading-scale: 1;
+  --wp-radius: 24px;
+  --wp-emerald: var(--wp-primary);
+  --wp-emerald-bright: var(--wp-primary);
+  --wp-text-primary: var(--wp-text);
+  --wp-text-secondary: var(--wp-muted-text);
+  --wp-text-muted: var(--wp-muted-text);
+  --wp-surface-strong: var(--wp-surface);
+  --wp-border: color-mix(in srgb, var(--wp-text) 12%, transparent);
+  --wp-border-strong: color-mix(in srgb, var(--wp-text) 22%, transparent);
+}
+
+body {
+  background-color: var(--wp-background);
+  color: var(--wp-text);
+  font-size: var(--wp-base-size);
+  font-family: inherit;
+}
+
+.wp-display-title,
+.wp-section-title,
+.wp-card-title {
+  transform: scale(var(--wp-heading-scale));
+  transform-origin: left center;
+}
+
 @theme {
   --color-wastepay-obsidian: #09090b;
   --color-wastepay-panel: #0f172a;

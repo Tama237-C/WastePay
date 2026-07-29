@@ -18,6 +18,13 @@ type StaffProfile = {
   created_at: string;
 };
 
+type DepotOption = {
+  id: string;
+  name: string;
+  code: string;
+  status: string;
+};
+
 const staffRoles = new Set([
   "agent",
   "manager",
@@ -59,14 +66,22 @@ function formatDate(dateValue: string): string {
 export default async function StaffManagementPage() {
   const supabase = await createClient();
 
-  const { data, error } = await supabase
-    .from("profiles")
-    .select(
-      "id, full_name, phone_number, role, active_location_zone, is_active, created_at",
-    )
-    .order("created_at", { ascending: false });
+  const [{ data, error }, { data: depotData }] =
+    await Promise.all([
+      supabase
+        .from("profiles")
+        .select(
+          "id, full_name, phone_number, role, active_location_zone, is_active, created_at",
+        )
+        .order("created_at", { ascending: false }),
+      supabase
+        .from("depots")
+        .select("id, name, code, status")
+        .order("name", { ascending: true }),
+    ]);
 
   const profiles = (data ?? []) as StaffProfile[];
+  const depots = (depotData ?? []) as DepotOption[];
 
   const staffProfiles = profiles.filter((profile) =>
     staffRoles.has(profile.role),
@@ -105,7 +120,7 @@ export default async function StaffManagementPage() {
             </p>
           </div>
 
-          <CreateStaffAccount />
+          <CreateStaffAccount depots={depots} />
         </div>
       </section>
 

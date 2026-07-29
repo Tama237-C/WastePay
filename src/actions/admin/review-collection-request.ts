@@ -176,8 +176,8 @@ export async function reviewCollectionRequest(
       .from("collection_requests")
       .update({
         assigned_depot_id: selectedDepot.id,
-        status: "ASSIGNED",
-        assigned_at: new Date().toISOString(),
+        status: "APPROVED",
+        assigned_at: null,
         rejection_reason: null,
       })
       .eq("id", requestId)
@@ -190,14 +190,22 @@ export async function reviewCollectionRequest(
           "WastePay could not approve and assign this collection request.",
       };
     }
+    await adminClient.from("collection_request_events").insert({
+      collection_request_id: requestId,
+      previous_status: "PENDING_REVIEW",
+      new_status: "APPROVED",
+      actor_id: authorization.administratorId,
+      reason: `Approved for ${selectedDepot.name}`,
+    });
 
     revalidatePath("/admin/collection-requests");
     revalidatePath("/admin/logistics");
     revalidatePath("/admin/overview");
+    revalidatePath("/app/manager");
 
     return {
       status: "success",
-      message: `The request was approved and assigned to ${selectedDepot.name}.`,
+      message: `The request was approved for ${selectedDepot.name} and is ready for manager dispatch.`,
     };
   }
 
@@ -234,6 +242,13 @@ export async function reviewCollectionRequest(
       message: "WastePay could not reject this collection request.",
     };
   }
+  await adminClient.from("collection_request_events").insert({
+    collection_request_id: requestId,
+    previous_status: "PENDING_REVIEW",
+    new_status: "REJECTED",
+    actor_id: authorization.administratorId,
+    reason: rejectionReason,
+  });
 
   revalidatePath("/admin/collection-requests");
   revalidatePath("/admin/overview");

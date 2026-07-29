@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { createClient } from "@/lib/supabase/server";
 
-type DriverPickupIntent = "start" | "collected";
+type DriverPickupIntent = "start" | "collected" | "unreachable";
 
 export type UpdateDriverPickupState = {
   status: "idle" | "error" | "success";
@@ -18,7 +18,11 @@ function normalizeText(value: FormDataEntryValue | null): string {
 function isDriverPickupIntent(
   value: string,
 ): value is DriverPickupIntent {
-  return value === "start" || value === "collected";
+  return (
+    value === "start" ||
+    value === "collected" ||
+    value === "unreachable"
+  );
 }
 
 export async function updateDriverPickup(
@@ -27,6 +31,7 @@ export async function updateDriverPickup(
 ): Promise<UpdateDriverPickupState> {
   const requestId = normalizeText(formData.get("requestId"));
   const intent = normalizeText(formData.get("intent"));
+  const failureReason = normalizeText(formData.get("failureReason"));
 
   if (!requestId) {
     return {
@@ -151,6 +156,62 @@ export async function updateDriverPickup(
     };
   }
 
+  if (intent === "unreachable") {
+    if (request.status !== "ASSIGNED" && request.status !== "IN_TRANSIT") {
+      return {
+        status: "error",
+        message: "Only an assigned or in-transit pickup can be marked unreachable.",
+      };
+    }
+    await supabase.from("collection_request_events").insert({
+      collection_request_id: requestId,
+      previous_status: "ASSIGNED",
+      new_status: "IN_TRANSIT",
+      actor_id: user.id,
+    });
+
+    if (failureReason.length < 5 || failureReason.length > 500) {
+      return {
+        status: "error",
+        message: "Enter a clear reason between 5 and 500 characters.",
+      };
+    }
+
+    const { data: updatedRequests, error: updateError } = await supabase
+      .from("collection_requests")
+      .update({
+        status: "UNREACHABLE",
+        rejection_reason: failureReason,
+      })
+      .eq("id", requestId)
+      .eq("assigned_driver_id", user.id)
+      .in("status", ["ASSIGNED", "IN_TRANSIT"])
+      .select("id");
+
+    if (updateError || !updatedRequests || updatedRequests.length !== 1) {
+      return {
+        status: "error",
+        message: "WastePay could not record the unsuccessful pickup.",
+      };
+    }
+    await supabase.from("collection_request_events").insert({
+      collection_request_id: requestId,
+      previous_status: request.status,
+      new_status: "UNREACHABLE",
+      actor_id: user.id,
+      reason: failureReason,
+    });
+
+    revalidatePath("/app/driver");
+    revalidatePath("/admin/logistics");
+    revalidatePath("/admin/collection-requests");
+
+    return {
+      status: "success",
+      message: "The pickup was marked unreachable and the reason was recorded.",
+    };
+  }
+
   if (request.status !== "IN_TRANSIT") {
     return {
       status: "error",
@@ -185,6 +246,12 @@ export async function updateDriverPickup(
         "This pickup changed before collection could be confirmed. Refresh and try again.",
     };
   }
+  await supabase.from("collection_request_events").insert({
+    collection_request_id: requestId,
+    previous_status: "IN_TRANSIT",
+    new_status: "COLLECTED_PENDING_DEPOT",
+    actor_id: user.id,
+  });
 
   revalidatePath("/app/driver");
   revalidatePath("/admin/logistics");
