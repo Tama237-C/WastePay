@@ -1,8 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WastePay
+
+WastePay is a Next.js and Supabase platform for plastic collection, depot buyback operations, barcode intelligence, and environmental impact reporting.
+
+## Configuration
+
+Copy `.env.example` to `.env.local` and set the Supabase values. Local development uses `WASTEPAY_INTEGRATION_MODE=mock`; mock mode never sends money or SMS messages. Provider credentials are only needed before switching to `live`.
+
+Database changes are versioned in `supabase/migrations`. Apply the complete migration history to a clean Supabase project before use.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -14,11 +22,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
+
+GitHub Actions runs these checks on every push and pull request.
 
 ## Learn More
 

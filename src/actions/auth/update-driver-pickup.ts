@@ -32,6 +32,8 @@ export async function updateDriverPickup(
   const requestId = normalizeText(formData.get("requestId"));
   const intent = normalizeText(formData.get("intent"));
   const failureReason = normalizeText(formData.get("failureReason"));
+  const driverReportedWeightValue = normalizeText(formData.get("driverReportedWeightKg"));
+  const collectionPhoto = formData.get("collectionPhoto");
 
   if (!requestId) {
     return {
@@ -220,11 +222,21 @@ export async function updateDriverPickup(
     };
   }
 
+  const driverReportedWeightKg = Number(driverReportedWeightValue);
+  if (!Number.isFinite(driverReportedWeightKg) || driverReportedWeightKg <= 0 || driverReportedWeightKg > 50000) return { status: "error", message: "Enter a collected weight between 0.01 and 50,000 KG." };
+  if (!(collectionPhoto instanceof File) || collectionPhoto.size === 0 || !collectionPhoto.type.startsWith("image/") || collectionPhoto.size > 5 * 1024 * 1024) return { status: "error", message: "Capture an image under 5 MB before confirming the pickup." };
+  const photoPath = `driver/${user.id}/${requestId}-${Date.now()}`;
+  const { error: photoError } = await supabase.storage.from("pickup-photos").upload(photoPath, collectionPhoto, { contentType: collectionPhoto.type, upsert: false });
+  if (photoError) return { status: "error", message: "WastePay could not upload the collection photo." };
+
   const { data: updatedRequests, error: updateError } =
     await supabase
       .from("collection_requests")
       .update({
         status: "COLLECTED_PENDING_DEPOT",
+        driver_reported_weight_kg: driverReportedWeightKg,
+        driver_collection_photo_path: photoPath,
+        driver_collected_at: new Date().toISOString(),
       })
       .eq("id", requestId)
       .eq("assigned_driver_id", user.id)

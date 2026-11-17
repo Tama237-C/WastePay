@@ -7,6 +7,7 @@ import {
   updateDriverPickup,
   type UpdateDriverPickupState,
 } from "@/actions/auth/update-driver-pickup";
+import { CompressedImageInput } from "@/components/shared/compressed-image-input";
 
 type PickupStatusActionsProps = {
   requestId: string;
@@ -66,13 +67,13 @@ export function PickupStatusActions({
       <form action={formAction} className="mt-6">
         <input type="hidden" name="requestId" value={requestId} />
 
-        <PickupActionButton
-          intent={
-            requestStatus === "ASSIGNED"
-              ? "start"
-              : "collected"
-          }
-        />
+        {requestStatus === "IN_TRANSIT" ? (
+          <div className="mt-5 space-y-4">
+            <label className="block text-xs font-black uppercase tracking-[0.16em] text-slate-400">Collected weight (KG)<input name="driverReportedWeightKg" type="number" min="0.01" max="50000" step="0.01" required className="mt-2 block min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white" /></label>
+            <label className="block text-xs font-black uppercase tracking-[0.16em] text-slate-400">Collection photo<CompressedImageInput id={`driver-photo-${requestId}`} name="collectionPhoto" required className="mt-2 block w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-300" /></label>
+          </div>
+        ) : null}
+        <PickupActionButton intent={requestStatus === "ASSIGNED" ? "start" : "collected"} />
 
         {state.status !== "idle" ? (
           <div

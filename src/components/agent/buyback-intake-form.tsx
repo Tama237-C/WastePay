@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { createBuybackTransaction, type CreateBuybackState } from "@/actions/auth/create-buyback-transaction";
+import { BarcodeScanner } from "@/components/shared/barcode-scanner";
 
 const initialState: CreateBuybackState = { status: "idle", message: "", receiptCode: null };
 
@@ -29,6 +30,7 @@ export function BuybackIntakeForm() {
         <div>
           <label htmlFor="barcodeNumber" className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Barcode (optional)</label>
           <input id="barcodeNumber" name="barcodeNumber" type="text" placeholder="Scan or enter barcode" className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-violet-400/50" />
+          <BarcodeScanner inputId="barcodeNumber" />
         </div>
         <div>
           <label htmlFor="productName" className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Product name</label>

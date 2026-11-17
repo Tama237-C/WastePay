@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { completeDepotIntake, type CompleteDepotIntakeState } from "@/actions/auth/complete-depot-intake";
+import { CompressedImageInput } from "@/components/shared/compressed-image-input";
 
 const initialState: CompleteDepotIntakeState = { status: "idle", message: "" };
 
@@ -43,15 +44,7 @@ export function DepotIntakeAction({ requestId }: { requestId: string }) {
       >
         Scale verification photo
       </label>
-      <input
-        id={`verification-photo-${requestId}`}
-        name="verificationPhoto"
-        type="file"
-        accept="image/*"
-        capture="environment"
-        required
-        className="mt-3 block w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-sm text-slate-300 file:mr-4 file:rounded-xl file:border-0 file:bg-emerald-400 file:px-4 file:py-2 file:font-bold file:text-slate-950"
-      />
+      <CompressedImageInput id={`verification-photo-${requestId}`} name="verificationPhoto" required className="mt-3 block w-full rounded-2xl border border-white/10 bg-slate-900 px-5 py-4 text-sm text-slate-300 file:mr-4 file:rounded-xl file:border-0 file:bg-emerald-400 file:px-4 file:py-2 file:font-bold file:text-slate-950" />
       <SubmitButton />
       {state.status !== "idle" ? (
         <p role="status" className={`mt-4 rounded-2xl border p-4 text-sm leading-6 ${state.status === "success" ? "border-emerald-400/20 bg-emerald-400/[0.08] text-emerald-200" : "border-red-400/20 bg-red-400/[0.08] text-red-200"}`}>
