@@ -242,13 +242,13 @@ export default async function AgentDashboardPage() {
     );
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-950 px-5 py-6 text-slate-100 sm:px-8 sm:py-8">
+    <main className="wp-operational-page relative min-h-screen overflow-hidden bg-slate-950 px-5 py-6 text-slate-100 sm:px-8 sm:py-8">
       <div className="pointer-events-none fixed -left-40 top-0 h-[34rem] w-[34rem] rounded-full bg-emerald-400/[0.08] blur-[150px]" />
 
       <div className="pointer-events-none fixed -right-40 bottom-0 h-[38rem] w-[38rem] rounded-full bg-sky-400/[0.07] blur-[170px]" />
 
-      <div className="relative mx-auto w-full max-w-7xl">
-        <header className="flex flex-col gap-6 rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <div className="wp-operational-content relative mx-auto w-full max-w-7xl">
+        <header id="profile" className="flex flex-col gap-6 rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.9)]" />
@@ -283,7 +283,7 @@ export default async function AgentDashboardPage() {
           <BuybackIntakeForm />
         </div>
 
-        <section className="mt-6 grid gap-5 sm:grid-cols-3">
+        <section id="collection" className="mt-6 grid gap-5 sm:grid-cols-3">
           <article className="rounded-3xl border border-amber-400/15 bg-amber-400/[0.06] p-6 shadow-2xl">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-400/70">
               Waiting for intake
@@ -329,7 +329,7 @@ export default async function AgentDashboardPage() {
           </article>
         </section>
 
-        <section className="mt-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl backdrop-blur-xl">
+        <section id="wallet" className="mt-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl backdrop-blur-xl">
           <div className="flex flex-col gap-4 border-b border-white/10 px-6 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.28em] text-amber-400">

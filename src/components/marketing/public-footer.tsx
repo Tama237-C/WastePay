@@ -56,8 +56,8 @@ const legalLinks = [
   href: "/accessibility",
 },
   {
-    label: "Staff access",
-    href: "/app/staff-login",
+    label: "Go to App",
+    href: "/app",
   },
 ];
 

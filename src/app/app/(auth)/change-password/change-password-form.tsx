@@ -45,7 +45,7 @@ export function ChangePasswordForm() {
   );
 
   return (
-    <form action={formAction} className="mt-9 space-y-6">
+    <form action={formAction} className="mt-9 space-y-5">
       <div>
         <label
           htmlFor="password"
@@ -86,7 +86,7 @@ export function ChangePasswordForm() {
         />
       </div>
 
-      <div className="rounded-2xl border border-sky-400/15 bg-sky-400/[0.07] p-5">
+      <div className="rounded-2xl border border-sky-400/15 bg-sky-400/[0.07] p-4">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-sky-300">
           Password requirements
         </p>

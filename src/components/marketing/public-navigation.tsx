@@ -34,6 +34,10 @@ const navigationItems = [
     label: "Contact",
     href: "/contact",
   },
+  {
+    label: "Track pickup",
+    href: "/track",
+  },
 ];
 
 function isNavigationItemActive(
@@ -125,10 +129,10 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
 
           <div className="hidden items-center gap-3 md:flex">
             <Link
-              href="/app/staff-login"
+              href="/app"
               className="wp-ghost-button min-h-11 px-4 py-3 text-[0.65rem]"
             >
-              Staff access
+              Go to App
             </Link>
 
             <Link
@@ -248,10 +252,10 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
               </Link>
 
               <Link
-                href="/app/staff-login"
+                href="/app"
                 className="wp-secondary-button"
               >
-                Staff access
+                Go to App
               </Link>
             </div>
 

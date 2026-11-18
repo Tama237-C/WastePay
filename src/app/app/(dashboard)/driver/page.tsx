@@ -209,13 +209,13 @@ export default async function DriverDashboardPage() {
   ).length;
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-950 px-5 py-6 text-slate-100 sm:px-8 sm:py-8">
+    <main className="wp-operational-page relative min-h-screen overflow-hidden bg-slate-950 px-5 py-6 text-slate-100 sm:px-8 sm:py-8">
       <div className="pointer-events-none fixed -left-40 top-0 h-[34rem] w-[34rem] rounded-full bg-sky-400/[0.08] blur-[150px]" />
 
       <div className="pointer-events-none fixed -right-40 bottom-0 h-[38rem] w-[38rem] rounded-full bg-violet-400/[0.07] blur-[170px]" />
 
-      <div className="relative mx-auto w-full max-w-6xl">
-        <header className="flex flex-col gap-5 rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <div className="wp-operational-content relative mx-auto w-full max-w-6xl">
+        <header id="profile" className="flex flex-col gap-5 rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:p-8">
           <div>
             <div className="flex items-center gap-3">
               <span className="h-2.5 w-2.5 rounded-full bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.9)]" />
@@ -245,7 +245,7 @@ export default async function DriverDashboardPage() {
           </form>
         </header>
 
-        <section className="mt-6 grid gap-5 sm:grid-cols-3">
+        <section id="collection" className="mt-6 grid gap-5 sm:grid-cols-3">
           <article className="rounded-3xl border border-sky-400/15 bg-sky-400/[0.06] p-6 shadow-2xl">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-400/70">
               Active pickups
@@ -289,7 +289,7 @@ export default async function DriverDashboardPage() {
           </article>
         </section>
 
-        <section className="mt-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl backdrop-blur-xl">
+        <section id="work" className="mt-6 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] shadow-2xl backdrop-blur-xl">
           <div className="border-b border-white/10 px-6 py-6 sm:px-8">
             <p className="text-xs font-black uppercase tracking-[0.28em] text-violet-400">
               My pickup queue

@@ -156,7 +156,7 @@ export function CollectionRequestForm({
   const locationReady = locationState.status === "success";
 
   return (
-    <section className="rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
+    <section className="wp-collection-flow rounded-[2rem] border border-white/10 bg-slate-900/60 p-6 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
       {state.status === "success" && state.referenceNumber ? (
         <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/[0.07] p-7 sm:p-9">
           <div className="flex items-center gap-3">
@@ -192,6 +192,13 @@ export function CollectionRequestForm({
         </div>
       ) : (
         <form action={formAction} className="space-y-8">
+          <div className="wp-collection-flow__steps" aria-label="Collection request steps">
+            <span><b>1</b> Details</span>
+            <i />
+            <span><b>2</b> Schedule</span>
+            <i />
+            <span><b>3</b> Location</span>
+          </div>
           {maintenanceMessage ? (
             <div className="rounded-3xl border border-amber-400/20 bg-amber-400/[0.08] p-5 text-sm leading-7 text-amber-100">
               {maintenanceMessage}

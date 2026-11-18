@@ -55,10 +55,12 @@ export function BarcodeScanner({ inputId }: { inputId: string }) {
     }
   }
 
-  return <div className="mt-2">
-    <button type="button" onClick={start} className="rounded-xl border border-violet-300/20 px-3 py-2 text-xs font-bold text-violet-200">Scan with camera</button>
-    {running ? <button type="button" onClick={stop} className="ml-2 rounded-xl border border-white/10 px-3 py-2 text-xs text-slate-300">Stop camera</button> : null}
-    <video ref={videoRef} muted playsInline className={`mt-2 w-full rounded-xl ${running ? "block" : "hidden"}`} />
-    {message ? <p role="status" className="mt-2 text-xs text-slate-400">{message}</p> : null}
+  return <div className="mt-3 rounded-2xl border border-violet-300/15 bg-violet-400/[0.05] p-3">
+    <div className="flex items-center justify-between gap-3">
+      <button type="button" onClick={start} className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-violet-100 transition hover:bg-violet-400/25"><span className="text-base">⌁</span>{running ? "Scanner active" : "Scan with camera"}</button>
+      {running ? <button type="button" onClick={stop} className="min-h-11 rounded-xl border border-white/10 px-3 text-xs font-bold text-slate-300">Stop</button> : null}
+    </div>
+    <div className={`relative mt-3 overflow-hidden rounded-xl bg-black ${running ? "block" : "hidden"}`}><video ref={videoRef} muted playsInline className="aspect-video w-full object-cover opacity-80" /><span className="pointer-events-none absolute inset-[18%_12%] rounded-xl border-2 border-violet-300/80 shadow-[0_0_30px_rgba(167,139,250,.45)]" /></div>
+    {message ? <p role="status" className="mt-2 text-xs text-slate-400">{message}</p> : <p className="mt-2 text-[0.68rem] leading-5 text-slate-500">Aim at a barcode in good light. You can always type the number instead.</p>}
   </div>;
 }

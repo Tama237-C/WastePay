@@ -110,9 +110,10 @@ export function InstallWastePay() {
   };
 
   return (
-    <section className="rounded-[2rem] border border-emerald-400/15 bg-emerald-400/[0.05] p-6 shadow-2xl sm:p-8">
+    <section className="wp-install-card rounded-[2rem] border border-emerald-400/15 bg-emerald-400/[0.05] p-6 shadow-2xl sm:p-8">
       <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-3xl">
+          <div className="wp-install-card__app-icon">W</div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-400">
             WastePay on your phone
           </p>
@@ -125,6 +126,10 @@ export function InstallWastePay() {
             Add WastePay to your phone for faster access to collection
             booking, programs, public impact, and partnership information.
           </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span>Fast access</span><span>Phone-first</span><span>Home-screen icon</span>
+          </div>
 
           <p className="mt-4 text-sm font-bold leading-7 text-amber-200/70">
             This public installation does not provide access to protected

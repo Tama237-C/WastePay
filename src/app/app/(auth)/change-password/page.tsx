@@ -53,36 +53,14 @@ export default async function ChangePasswordPage() {
     }
   }
 
-  return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-5 py-10 text-slate-100 sm:px-8">
-      <div className="pointer-events-none absolute -left-32 top-0 h-[30rem] w-[30rem] rounded-full bg-emerald-400/10 blur-[140px]" />
-
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-[32rem] w-[32rem] rounded-full bg-sky-400/10 blur-[150px]" />
-
-      <section className="relative w-full max-w-xl rounded-[2rem] border border-white/10 bg-slate-900/60 p-7 shadow-2xl backdrop-blur-xl sm:p-10">
-        <div className="flex items-center gap-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.9)]" />
-
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
-            WastePay account security
-          </p>
-        </div>
-
-        <h1 className="mt-8 text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">
-          Replace your temporary password.
-        </h1>
-
-        <p className="mt-5 text-base font-light leading-7 text-slate-400">
-          Before accessing WastePay operations, create a permanent password
-          known only to you.
-        </p>
-
-        <ChangePasswordForm />
-
-        <p className="mt-7 border-t border-white/10 pt-6 text-sm font-light leading-6 text-slate-600">
-          WastePay administrators cannot view your new permanent password.
-        </p>
-      </section>
-    </main>
-  );
+  return <main className="wp-auth-page">
+    <div className="wp-auth-page__glow wp-auth-page__glow--one" />
+    <div className="wp-auth-page__glow wp-auth-page__glow--two" />
+    <section className="wp-auth-card">
+      <div className="wp-auth-brand"><span className="wp-app-brand__mark">W</span><span>WastePay</span><em>Account security</em></div>
+      <div className="wp-auth-intro"><p className="wp-overline">One last step</p><h1>Make this account yours.</h1><p>Replace your temporary password before entering the WastePay operational network.</p></div>
+      <ChangePasswordForm />
+      <p className="wp-auth-footnote"><span>●</span> WastePay administrators cannot view your permanent password.</p>
+    </section>
+  </main>;
 }

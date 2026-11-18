@@ -323,6 +323,13 @@ export async function createCollectionRequest(
     };
   }
 
+  await adminClient.from("collection_request_events").insert({
+    collection_request_id: createdRequest.id,
+    previous_status: null,
+    new_status: "PENDING_REVIEW",
+    reason: "Collection request submitted.",
+  });
+
   revalidatePath("/admin/collection-requests");
   revalidatePath("/admin/overview");
 

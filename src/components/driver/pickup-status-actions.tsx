@@ -68,8 +68,9 @@ export function PickupStatusActions({
         <input type="hidden" name="requestId" value={requestId} />
 
         {requestStatus === "IN_TRANSIT" ? (
-          <div className="mt-5 space-y-4">
-            <label className="block text-xs font-black uppercase tracking-[0.16em] text-slate-400">Collected weight (KG)<input name="driverReportedWeightKg" type="number" min="0.01" max="50000" step="0.01" required className="mt-2 block min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white" /></label>
+          <div className="mt-5 space-y-4 rounded-3xl border border-emerald-400/15 bg-emerald-400/[0.045] p-4">
+            <div><p className="text-[0.62rem] font-black uppercase tracking-[0.2em] text-emerald-300">Collection proof</p><p className="mt-1 text-xs leading-5 text-slate-500">Record the measured weight and one clear photo before handoff.</p></div>
+            <label className="block text-xs font-black uppercase tracking-[0.16em] text-slate-400">Collected weight (KG)<input name="driverReportedWeightKg" type="number" inputMode="decimal" min="0.01" max="50000" step="0.01" required placeholder="0.00" className="mt-2 block min-h-14 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-emerald-400/50" /></label>
             <label className="block text-xs font-black uppercase tracking-[0.16em] text-slate-400">Collection photo<CompressedImageInput id={`driver-photo-${requestId}`} name="collectionPhoto" required className="mt-2 block w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-300" /></label>
           </div>
         ) : null}

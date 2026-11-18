@@ -117,9 +117,9 @@ export default async function ManagerDashboardPage() {
   const pageError = requestsError ?? driversError ?? buybackError;
 
   return (
-    <div className="space-y-7">
-      <section className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-2xl backdrop-blur-xl sm:p-9">
-        <div className="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
+    <div className="wp-operational-content space-y-7">
+      <section id="work" className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-2xl backdrop-blur-xl sm:p-9">
+        <div id="profile" className="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
               Depot manager workspace
@@ -190,7 +190,7 @@ export default async function ManagerDashboardPage() {
         </article>
       </section>
 
-      <section className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+      <section id="collection" className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-emerald-400">
@@ -275,7 +275,7 @@ export default async function ManagerDashboardPage() {
         )}
       </section>
 
-      <section className="rounded-[2rem] border border-violet-400/15 bg-violet-400/[0.04] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+      <section id="wallet" className="rounded-[2rem] border border-violet-400/15 bg-violet-400/[0.04] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
         <p className="text-xs font-black uppercase tracking-[0.25em] text-violet-300">
           Buyback review
         </p>

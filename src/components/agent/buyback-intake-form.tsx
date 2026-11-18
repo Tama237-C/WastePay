@@ -10,7 +10,7 @@ const initialState: CreateBuybackState = { status: "idle", message: "", receiptC
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" disabled={pending} className="min-h-12 rounded-2xl border border-violet-300/20 bg-violet-400 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-slate-950 disabled:opacity-50">
+    <button type="submit" disabled={pending} className="min-h-14 w-full rounded-2xl border border-violet-300/20 bg-violet-400 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-slate-950 shadow-lg shadow-violet-500/20 transition-transform hover:-translate-y-0.5 disabled:opacity-50">
       {pending ? "Creating draft" : "Create buyback draft"}
     </button>
   );
@@ -19,11 +19,12 @@ function SubmitButton() {
 export function BuybackIntakeForm() {
   const [state, formAction] = useActionState(createBuybackTransaction, initialState);
   return (
-    <section className="rounded-[2rem] border border-violet-400/15 bg-violet-400/[0.05] p-6 shadow-2xl sm:p-8">
-      <p className="text-xs font-black uppercase tracking-[0.25em] text-violet-300">Buyback intake</p>
-      <h2 className="mt-3 text-2xl font-black text-white">Create a draft transaction</h2>
-      <form action={formAction} className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
+    <section id="work" className="rounded-[2rem] border border-violet-400/15 bg-violet-400/[0.05] p-5 shadow-2xl sm:p-8">
+      <p className="text-xs font-black uppercase tracking-[0.25em] text-violet-300">New intake</p>
+      <h2 className="mt-3 text-2xl font-black tracking-tight text-white">Start with a scan</h2>
+      <p className="mt-2 text-sm leading-6 text-slate-400">Scan the item, confirm its material, then record its verified weight.</p>
+      <form action={formAction} className="mt-6 grid gap-5 sm:grid-cols-2">
+        <div className="sm:col-span-2">
           <label htmlFor="collectorPhoneNumber" className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Collector phone</label>
           <input id="collectorPhoneNumber" name="collectorPhoneNumber" type="tel" required placeholder="+2376XXXXXXXX" className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-violet-400/50" />
         </div>
@@ -54,7 +55,7 @@ export function BuybackIntakeForm() {
           <label htmlFor="weightKg" className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Weight KG</label>
           <input id="weightKg" name="weightKg" type="number" min="0.01" max="50000" step="0.01" required placeholder="10" className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-violet-400/50" />
         </div>
-        <SubmitButton />
+        <div className="sm:col-span-2"><SubmitButton /></div>
       </form>
       {state.status !== "idle" ? <p role="status" className={`mt-4 text-sm ${state.status === "success" ? "text-emerald-300" : "text-red-300"}`}>{state.message}{state.receiptCode ? ` ${state.receiptCode}` : ""}</p> : null}
     </section>
