@@ -1,4 +1,4 @@
-const CACHE_VERSION = "wastepay-public-v1";
+const CACHE_VERSION = "wastepay-public-v2";
 
 const PUBLIC_CACHE_URLS = [
   "/",
@@ -49,6 +49,17 @@ self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(request.url);
 
   if (requestUrl.origin !== self.location.origin) {
+    return;
+  }
+
+  const isNextRouterRequest =
+    request.headers.has("rsc") ||
+    request.headers.has("next-router-prefetch") ||
+    request.headers.has("next-router-state-tree") ||
+    requestUrl.searchParams.has("_rsc");
+
+  if (isNextRouterRequest) {
+    event.respondWith(fetch(request));
     return;
   }
 
