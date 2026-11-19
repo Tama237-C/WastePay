@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PwaInstallProvider } from "@/components/app/pwa-install-provider";
+import { ServiceWorkerRegistration } from "@/components/marketing/service-worker-registration";
 import { createAdminClient } from "@/lib/supabase/admin";
 import "./globals.css";
 
@@ -40,7 +42,12 @@ export default async function RootLayout({
       lang="en"
       className="h-full antialiased"
     >
-      <body style={style} className="min-h-full flex flex-col">{children}</body>
+      <body style={style} className="min-h-full flex flex-col">
+        <PwaInstallProvider>
+          <ServiceWorkerRegistration />
+          {children}
+        </PwaInstallProvider>
+      </body>
     </html>
   );
 }

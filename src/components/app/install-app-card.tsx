@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-type InstallPromptEvent = Event & {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-};
+import { usePwaInstallPrompt } from "@/components/app/pwa-install-provider";
 
 function isIosDevice(): boolean {
   if (typeof window === "undefined") {
@@ -33,13 +26,13 @@ function isStandaloneMode(): boolean {
   );
 }
 
-export function InstallWastePay() {
-  const [installPrompt, setInstallPrompt] =
-    useState<InstallPromptEvent | null>(null);
-
+export function AppInstallCard() {
+  const { installPrompt, clearInstallPrompt } = usePwaInstallPrompt();
   const [isInstalled, setIsInstalled] = useState(false);
 
   const [showIosInstructions, setShowIosInstructions] =
+    useState(false);
+  const [showBrowserInstructions, setShowBrowserInstructions] =
     useState(false);
 
   useEffect(() => {
@@ -47,40 +40,20 @@ export function InstallWastePay() {
       setIsInstalled(isStandaloneMode());
     });
 
-    const handleBeforeInstallPrompt = (event: Event) => {
-      event.preventDefault();
-      setInstallPrompt(event as InstallPromptEvent);
-    };
-
     const handleAppInstalled = () => {
-      setInstallPrompt(null);
+      clearInstallPrompt();
       setShowIosInstructions(false);
+      setShowBrowserInstructions(false);
       setIsInstalled(true);
     };
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      handleBeforeInstallPrompt,
-    );
-
-    window.addEventListener(
-      "appinstalled",
-      handleAppInstalled,
-    );
+    window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt,
-      );
-
-      window.removeEventListener(
-        "appinstalled",
-        handleAppInstalled,
-      );
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
-  }, []);
+  }, [clearInstallPrompt]);
 
   const handleInstall = async () => {
     if (isInstalled) {
@@ -91,9 +64,10 @@ export function InstallWastePay() {
       await installPrompt.prompt();
 
       const choice = await installPrompt.userChoice;
+      clearInstallPrompt();
 
       if (choice.outcome === "accepted") {
-        setInstallPrompt(null);
+        setIsInstalled(true);
       }
 
       return;
@@ -104,9 +78,7 @@ export function InstallWastePay() {
       return;
     }
 
-    window.alert(
-      "Open your browser menu and choose Install app or Add to Home screen. Installation may become available after WastePay is deployed online using HTTPS.",
-    );
+    setShowBrowserInstructions(true);
   };
 
   return (
@@ -115,25 +87,25 @@ export function InstallWastePay() {
         <div className="max-w-3xl">
           <div className="wp-install-card__app-icon">W</div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-400">
-            WastePay on your phone
+            WastePay app
           </p>
 
           <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl">
-            Install the public WastePay experience.
+            Keep your WastePay app one tap away.
           </h2>
 
           <p className="mt-4 text-sm font-light leading-7 text-slate-400 sm:text-base">
-            Add WastePay to your phone for faster access to collection
-            booking, programs, public impact, and partnership information.
+            Install WastePay on this device to open the app workspace directly
+            from your home screen.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-2">
-            <span>Fast access</span><span>Phone-first</span><span>Home-screen icon</span>
+            <span>Fast access</span><span>App workspace</span><span>Home-screen icon</span>
           </div>
 
           <p className="mt-4 text-sm font-bold leading-7 text-amber-200/70">
-            This public installation does not provide access to protected
-            driver, depot, manager, or administrative tools.
+            Your account still needs to sign in, and can only open its assigned
+            workspace.
           </p>
         </div>
 
@@ -143,7 +115,7 @@ export function InstallWastePay() {
           disabled={isInstalled}
           className="inline-flex min-h-14 shrink-0 items-center justify-center gap-3 rounded-2xl bg-emerald-400 px-7 py-4 text-xs font-black uppercase tracking-[0.18em] text-slate-950 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300 disabled:cursor-default disabled:bg-slate-700 disabled:text-slate-400"
         >
-          {isInstalled ? "WastePay installed" : "Install WastePay"}
+          {isInstalled ? "App installed" : "Install app"}
 
           {!isInstalled ? (
             <span aria-hidden="true">→</span>
@@ -181,6 +153,24 @@ export function InstallWastePay() {
           <button
             type="button"
             onClick={() => setShowIosInstructions(false)}
+            className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-slate-300"
+          >
+            Close instructions
+          </button>
+        </div>
+      ) : null}
+      {showBrowserInstructions ? (
+        <div className="mt-7 rounded-3xl border border-sky-400/15 bg-sky-400/[0.055] p-6">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-sky-400">
+            Install from your browser
+          </p>
+          <p className="mt-4 text-sm leading-7 text-slate-300">
+            Open the browser menu and choose <strong className="text-white">Install app</strong> or{" "}
+            <strong className="text-white">Add to Home screen</strong>.
+          </p>
+          <button
+            type="button"
+            onClick={() => setShowBrowserInstructions(false)}
             className="mt-6 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-slate-300"
           >
             Close instructions

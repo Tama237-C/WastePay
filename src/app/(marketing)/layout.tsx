@@ -1,4 +1,3 @@
-import { ServiceWorkerRegistration } from "@/components/marketing/service-worker-registration";
 import type { ReactNode } from "react";
 
 import { PublicFooter } from "@/components/marketing/public-footer";
@@ -18,7 +17,6 @@ export default async function MarketingLayout({
     : null;
   return (
     <div className="wp-page-shell">
-        <ServiceWorkerRegistration />
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 wp-grid-background opacity-70"

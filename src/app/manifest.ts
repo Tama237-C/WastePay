@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "WastePay",
     description:
       "Cameroon's digital infrastructure for plastic collection, circular recovery, material intelligence, and transparent value distribution.",
-    start_url: "/",
+    start_url: "/app",
     scope: "/",
     display: "standalone",
     orientation: "portrait-primary",

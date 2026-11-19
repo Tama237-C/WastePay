@@ -1,4 +1,3 @@
-import { InstallWastePay } from "@/components/marketing/install-wastepay";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { Metadata } from "next";
@@ -684,11 +683,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-     <section className="wp-section border-t border-white/10 bg-slate-900/25">
-  <div className="wp-page-container">
-    <InstallWastePay />
-  </div>
-</section>
       <section className="wp-section">
         <div className="wp-page-container">
           <div className="relative overflow-hidden rounded-[2.75rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.13),rgba(15,23,42,0.72)_45%,rgba(14,165,233,0.1))] px-7 py-14 shadow-2xl sm:px-12 sm:py-20 lg:px-16">
