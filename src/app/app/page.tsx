@@ -1,67 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { AppInstallCard } from "@/components/app/install-app-card";
 import { ConsumerAppShell } from "@/components/app/consumer-app-shell";
 import { CollectionRequestForm } from "@/components/marketing/collection-request-form";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { CollectionTracking } from "@/components/app/collection-tracking";
-import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "WastePay App",
   description: "Book and track plastic collection with WastePay.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ConsumerAppPage() {
-  const supabase = await createClient();
-  const {
-    data: { session },
-    error: sessionError,
-  } = await supabase.auth.getSession();
-  const authResult =
-    session && !sessionError ? await supabase.auth.getUser() : null;
-  const user = authResult?.data.user ?? null;
-  const authError = sessionError ?? authResult?.error ?? null;
-
-  if (authError) {
-    console.error(
-      "WastePay could not verify the current sign-in; showing the guest app.",
-      authError,
-    );
-  }
-
-  if (user && !authError) {
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .select("role, is_active, must_change_password")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    if (profileError) {
-      throw new Error("WastePay could not load the signed-in user’s role.", {
-        cause: profileError,
-      });
-    }
-
-    const dashboardPaths: Record<string, string> = {
-      admin: "/admin/overview",
-      manager: "/app/manager",
-      agent: "/app/agent",
-      driver: "/app/driver",
-      collector: "/app/collector",
-    };
-    const dashboardPath = profile ? dashboardPaths[profile.role] : undefined;
-
-    if (dashboardPath && profile?.is_active) {
-      if (profile.must_change_password) {
-        redirect("/app/change-password");
-      }
-
-      redirect(dashboardPath);
-    }
-  }
-
   const adminClient = createAdminClient();
   const { data: systemSettings } = await adminClient
     .from("system_settings")
@@ -75,16 +27,6 @@ export default async function ConsumerAppPage() {
     <ConsumerAppShell>
       <main className="wp-consumer-app">
         <section id="home" className="wp-consumer-app__hero">
-          {authError ? (
-            <p
-              role="status"
-              className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/[0.08] p-4 text-sm leading-6 text-amber-100"
-            >
-              We could not check your sign-in just now, so this is the guest
-              app. You can still book a pickup. Please try your account again
-              shortly.
-            </p>
-          ) : null}
           <p className="wp-overline">Your WastePay app</p>
           <h1>Make recovery part of your day.</h1>
           <p>

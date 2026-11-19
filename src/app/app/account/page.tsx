@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ConsumerAppShell } from "@/components/app/consumer-app-shell";
 import { CustomerAuthForm } from "@/components/app/customer-auth-form";
 import { createClient } from "@/lib/supabase/server";
@@ -87,6 +88,42 @@ export default async function CustomerAccountPage() {
                   Your pickup requests will appear here after you book one.
                 </p>
               )}
+            </section>
+          </main>
+        </ConsumerAppShell>
+      );
+    }
+
+    if (profile) {
+      const staffRoleLabels: Record<string, string> = {
+        admin: "Administrator",
+        manager: "Depot manager",
+        agent: "Depot agent",
+        driver: "Driver",
+        collector: "Collector",
+      };
+
+      return (
+        <ConsumerAppShell>
+          <main className="wp-consumer-app">
+            <section className="wp-consumer-app__hero">
+              <p className="wp-overline">Staff account</p>
+              <h1>{profile.full_name || "Your WastePay staff account"}</h1>
+              <p>
+                This is your {staffRoleLabels[profile.role] ?? "staff"} account.
+                Staff and customer accounts are separate. You can still book a
+                pickup from the app home as a guest.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/app/workspaces" className="wp-primary-button">
+                  Open my staff workspace
+                </Link>
+                <form action={logoutCustomer}>
+                  <button type="submit" className="wp-secondary-button">
+                    Sign out
+                  </button>
+                </form>
+              </div>
             </section>
           </main>
         </ConsumerAppShell>
