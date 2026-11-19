@@ -101,7 +101,7 @@ const programs = [
     title: "Home plastic collection",
     description:
       "Request a convenient pickup for sorted plastic waste from your home or residential community.",
-    href: "/contact",
+    href: "/app#pickup",
     callToAction: "Book home collection",
     accentClass:
       "border-emerald-400/15 bg-emerald-400/[0.055] hover:border-emerald-400/30 hover:shadow-emerald-500/[0.08]",
@@ -210,7 +210,7 @@ export default async function HomePage() {
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="wp-primary-button">
+                <Link href="/app#pickup" className="wp-primary-button">
                   Book home collection
                   <span aria-hidden="true">→</span>
                 </Link>
@@ -715,7 +715,7 @@ export default async function HomePage() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
-                <Link href="/contact" className="wp-primary-button">
+                <Link href="/app#pickup" className="wp-primary-button">
                   Request collection
                   <span aria-hidden="true">→</span>
                 </Link>

@@ -3,7 +3,7 @@ import Link from "next/link";
 const platformLinks = [
   {
     label: "Home collection",
-    href: "/contact",
+    href: "/app#pickup",
   },
   {
     label: "Business collection",
@@ -91,7 +91,7 @@ export function PublicFooter() {
 
           <div className="relative mt-8 flex flex-col gap-3 sm:flex-row lg:mt-0 lg:shrink-0 lg:flex-col">
             <Link
-              href="/contact"
+              href="/app#pickup"
               className="wp-primary-button"
             >
               Book a collection

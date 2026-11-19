@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CollectionTracking } from "./tracking-form";
+import { CollectionTracking } from "@/components/app/collection-tracking";
 
 export const metadata: Metadata = { title: "Track collection | WastePay", description: "Track the status of your WastePay collection request." };
 

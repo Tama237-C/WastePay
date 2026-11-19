@@ -1,7 +1,10 @@
 "use client";
 
 import { useActionState } from "react";
-import { trackCollectionRequest, type TrackingState } from "@/actions/public/track-collection-request";
+import {
+  trackCollectionRequest,
+  type TrackingState,
+} from "@/actions/public/track-collection-request";
 
 const initialState: TrackingState = { status: "idle", message: "", request: null };
 const statusLabels: Record<string, string> = { PENDING_REVIEW: "Request received", APPROVED: "Approved", ASSIGNED: "Driver assigned", IN_TRANSIT: "Driver en route", COLLECTED_PENDING_DEPOT: "Collected", COMPLETED: "Completed", REJECTED: "Needs attention", UNREACHABLE: "Could not reach you", RESCHEDULED: "Rescheduled", CANCELLED: "Cancelled" };

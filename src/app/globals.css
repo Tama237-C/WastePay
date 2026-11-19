@@ -529,3 +529,138 @@ canvas {
   position: relative;
   top: auto;
 }
+
+.wp-bottom-nav--consumer {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wp-consumer-app {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+.wp-consumer-app__hero,
+.wp-consumer-app__section {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.7rem;
+  background: linear-gradient(145deg, rgba(20, 27, 38, 0.94), rgba(10, 13, 19, 0.94));
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
+}
+
+.wp-consumer-app__hero {
+  padding: 1.5rem;
+}
+
+.wp-consumer-app__hero h1 {
+  max-width: 18ch;
+  margin: 0.8rem 0 0;
+  color: #f8fbff;
+  font-size: clamp(2rem, 9vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  line-height: 0.98;
+}
+
+.wp-consumer-app__hero > p:not(.wp-overline):not(.wp-consumer-app__guest-note) {
+  max-width: 35rem;
+  margin: 1rem 0 0;
+  color: #9ba9ba;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.wp-consumer-app__actions {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.3rem;
+}
+
+.wp-consumer-app__actions > a {
+  width: 100%;
+}
+
+.wp-consumer-app__guest-note {
+  margin: 0.9rem 0 0;
+  color: #77869a;
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+.wp-consumer-app__section {
+  padding: 1rem;
+}
+
+.wp-consumer-app__section-heading {
+  padding: 0.25rem 0.25rem 1rem;
+}
+
+.wp-consumer-app__section-heading h2 {
+  margin: 0.45rem 0 0;
+  color: #f8fbff;
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -0.05em;
+}
+
+.wp-consumer-app__section-heading > p:last-child {
+  margin: 0.5rem 0 0;
+  color: #8d9aac;
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.wp-consumer-app .wp-install-card {
+  padding: 1.25rem;
+}
+
+.wp-consumer-app .wp-install-card h2 {
+  font-size: 1.55rem;
+}
+
+.wp-consumer-app .wp-install-card > div {
+  gap: 1rem;
+}
+
+.wp-consumer-app .wp-install-card .max-w-3xl > p:last-child {
+  font-size: 0.72rem;
+}
+
+.wp-consumer-app__staff-link {
+  justify-self: end;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 0.8rem;
+  color: #aab7c6;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.wp-consumer-app__staff-link:focus-visible,
+.wp-bottom-nav__item:focus-visible {
+  outline: 2px solid #6cf1b9;
+  outline-offset: 3px;
+}
+
+@media (min-width: 420px) {
+  .wp-consumer-app__hero,
+  .wp-consumer-app__section {
+    padding: 1.4rem;
+  }
+
+  .wp-consumer-app__actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 640px) {
+  .wp-consumer-app__hero {
+    padding: 2rem;
+  }
+
+  .wp-consumer-app__section {
+    padding: 1.5rem;
+  }
+}

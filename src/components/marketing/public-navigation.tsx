@@ -36,7 +36,7 @@ const navigationItems = [
   },
   {
     label: "Track pickup",
-    href: "/track",
+    href: "/app#track",
   },
 ];
 
@@ -136,7 +136,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
             </Link>
 
             <Link
-              href="/contact"
+              href="/app#pickup"
               className="wp-primary-button min-h-11 px-5 py-3 text-[0.65rem]"
             >
               Book pickup
@@ -244,7 +244,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <Link
-                href="/contact"
+                href="/app#pickup"
                 className="wp-primary-button"
               >
                 Book pickup

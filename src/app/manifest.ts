@@ -46,7 +46,7 @@ export default function manifest(): MetadataRoute.Manifest {
         short_name: "Book Pickup",
         description:
           "Request a WastePay plastic collection from your home or organization.",
-        url: "/contact#home-collection",
+        url: "/app#pickup",
       },
       {
         name: "View WastePay Impact",
@@ -67,7 +67,7 @@ export default function manifest(): MetadataRoute.Manifest {
         short_name: "Staff",
         description:
           "Open secure WastePay operational staff access.",
-        url: "/app/staff-login",
+        url: "/app/workspaces",
       },
     ],
   };
