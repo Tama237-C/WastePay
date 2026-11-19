@@ -53,12 +53,33 @@ function describeAccountReadError(
 export default async function CustomerAccountPage() {
   const supabase = await createClient();
   const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
+
+  if (sessionError) {
+    console.error("WastePay could not load the account page session.", {
+      code: sessionError.code,
+      message: sessionError.message,
+    });
+    return (
+      <AccountLoadError
+        title="We could not load your sign-in."
+        message={
+          sessionError.code
+            ? `The account service returned error ${sessionError.code}. Refresh the page or sign in again.`
+            : "The account service could not verify your sign-in. Refresh the page or sign in again."
+        }
+      />
+    );
+  }
+
+  const authResult = session ? await supabase.auth.getUser() : null;
+  const userError = authResult?.error;
+  const user = authResult?.data.user ?? null;
 
   if (userError) {
-    console.error("WastePay could not verify the account page session.", {
+    console.error("WastePay could not verify the account page user.", {
       code: userError.code,
       message: userError.message,
     });
