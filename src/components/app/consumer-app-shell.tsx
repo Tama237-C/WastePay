@@ -7,7 +7,7 @@ const navigationItems = [
   { label: "Home", href: "#home", icon: "M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" },
   { label: "Book", href: "#pickup", icon: "M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z" },
   { label: "Track", href: "#track", icon: "M3 12h4l3-8 4 16 3-8h4" },
-  { label: "Staff", href: "/app/workspaces", icon: "M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-3v6m3-3h-6" },
+  { label: "Account", href: "/app/account", icon: "M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" },
 ] as const;
 
 export function ConsumerAppShell({ children }: { children: ReactNode }) {

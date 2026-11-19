@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient as createServerClient } from "@/lib/supabase/server";
 
 const allowedRequesterTypes = [
   "RESIDENT",
@@ -296,6 +297,23 @@ export async function createCollectionRequest(
   }
 
   const pickupLocation = `POINT(${longitude} ${latitude})`;
+  const serverClient = await createServerClient();
+  const {
+    data: { user },
+  } = await serverClient.auth.getUser();
+  let residentProfileId: string | null = null;
+
+  if (user) {
+    const { data: profile } = await serverClient
+      .from("profiles")
+      .select("role, is_active")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profile?.role === "resident" && profile.is_active) {
+      residentProfileId = user.id;
+    }
+  }
 
   const { data: createdRequest, error: insertError } = await adminClient
     .from("collection_requests")
@@ -309,6 +327,7 @@ export async function createCollectionRequest(
       pickup_location: pickupLocation,
       preferred_pickup_start: preferredPickupStart.toISOString(),
       preferred_pickup_end: preferredPickupEnd.toISOString(),
+      resident_profile_id: residentProfileId,
       status: "PENDING_REVIEW",
     })
     .select("id")
