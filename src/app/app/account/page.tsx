@@ -10,11 +10,69 @@ export const metadata: Metadata = {
   description: "Sign in or create a general WastePay account.",
 };
 
+function AccountLoadError({
+  title,
+  message,
+}: {
+  title: string;
+  message: string;
+}) {
+  return (
+    <ConsumerAppShell>
+      <main className="wp-consumer-app">
+        <section className="wp-consumer-app__hero">
+          <p className="wp-overline">Account unavailable</p>
+          <h1>{title}</h1>
+          <p role="alert">{message}</p>
+          <Link href="/app" className="wp-primary-button mt-6">
+            Return to the app
+          </Link>
+        </section>
+      </main>
+    </ConsumerAppShell>
+  );
+}
+
+function describeAccountReadError(
+  area: "profile" | "pickup history",
+  code: string | undefined,
+): string {
+  if (area === "pickup history" && (code === "42703" || code === "PGRST204")) {
+    return `WastePay could not load pickup history because a required database field is missing (error ${code}). Ask the administrator to verify the customer-account migration in Supabase.`;
+  }
+
+  if (code === "42501") {
+    return `The database denied access to your ${area} (error ${code}). Contact WastePay support and share this code.`;
+  }
+
+  return code
+    ? `WastePay could not load your ${area} (error ${code}). Refresh the page; if the problem continues, contact support and share this code.`
+    : `WastePay could not load your ${area}. Refresh the page; if the problem continues, contact support.`;
+}
+
 export default async function CustomerAccountPage() {
   const supabase = await createClient();
   const {
     data: { user },
+    error: userError,
   } = await supabase.auth.getUser();
+
+  if (userError) {
+    console.error("WastePay could not verify the account page session.", {
+      code: userError.code,
+      message: userError.message,
+    });
+    return (
+      <AccountLoadError
+        title="We could not verify your sign-in."
+        message={
+          userError.code
+            ? `The account service returned error ${userError.code}. Refresh the page or sign in again.`
+            : "The account service could not verify your sign-in. Refresh the page or sign in again."
+        }
+      />
+    );
+  }
 
   if (user) {
     const { data: profile, error: profileError } = await supabase
@@ -24,9 +82,16 @@ export default async function CustomerAccountPage() {
       .maybeSingle();
 
     if (profileError) {
-      throw new Error("WastePay could not load your account profile.", {
-        cause: profileError,
+      console.error("WastePay could not load the customer account profile.", {
+        code: profileError.code,
+        message: profileError.message,
       });
+      return (
+        <AccountLoadError
+          title="We could not load your account."
+          message={describeAccountReadError("profile", profileError.code)}
+        />
+      );
     }
 
     if (profile?.role === "resident") {
@@ -39,9 +104,19 @@ export default async function CustomerAccountPage() {
         .order("requested_at", { ascending: false });
 
       if (requestsError) {
-        throw new Error("WastePay could not load your pickup history.", {
-          cause: requestsError,
+        console.error("WastePay could not load customer pickup history.", {
+          code: requestsError.code,
+          message: requestsError.message,
         });
+        return (
+          <AccountLoadError
+            title="We could not load your pickups."
+            message={describeAccountReadError(
+              "pickup history",
+              requestsError.code,
+            )}
+          />
+        );
       }
 
       return (
