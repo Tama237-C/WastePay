@@ -4,7 +4,7 @@ create extension if not exists pgcrypto;
 create extension if not exists postgis;
 
 do $$ begin
-  create type public.staff_role as enum ('admin', 'manager', 'agent', 'driver', 'collector', 'resident');
+  create type public.staff_role as enum ('admin', 'manager', 'agent', 'driver', 'collector');
 exception when duplicate_object then null; end $$;
 do $$ begin
   create type public.collection_request_status as enum ('PENDING_REVIEW', 'APPROVED', 'REJECTED', 'ASSIGNED', 'IN_TRANSIT', 'UNREACHABLE', 'COLLECTED_PENDING_DEPOT', 'COMPLETED', 'RESCHEDULED', 'CANCELLED');

@@ -13,6 +13,20 @@ function normalizeText(value: FormDataEntryValue | null): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function normalizeCameroonPhoneNumber(value: string): string | null {
+  const cleanedValue = value.replace(/[\s()-]/g, "");
+
+  if (/^\+2376\d{8}$/.test(cleanedValue)) {
+    return cleanedValue;
+  }
+
+  if (/^6\d{8}$/.test(cleanedValue)) {
+    return `+237${cleanedValue}`;
+  }
+
+  return null;
+}
+
 export async function signInCustomer(
   _previousState: CustomerAuthState,
   formData: FormData,
@@ -37,14 +51,31 @@ export async function signInCustomer(
     };
   }
 
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("role, is_active")
     .eq("id", data.user.id)
     .maybeSingle();
 
+  if (profileError) {
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      throw new Error("WastePay could not close the unverified sign-in session.", {
+        cause: signOutError,
+      });
+    }
+    throw new Error("WastePay could not verify the customer account.", {
+      cause: profileError,
+    });
+  }
+
   if (!profile || !profile.is_active) {
-    await supabase.auth.signOut();
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      throw new Error("WastePay could not close the inactive account session.", {
+        cause: signOutError,
+      });
+    }
     return {
       status: "error",
       message: "This account is inactive or not available.",
@@ -52,7 +83,12 @@ export async function signInCustomer(
   }
 
   if (profile.role !== "resident") {
-    await supabase.auth.signOut();
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      throw new Error("WastePay could not close the staff account session.", {
+        cause: signOutError,
+      });
+    }
     return {
       status: "error",
       message: "Use the staff workspace for this account.",
@@ -67,14 +103,22 @@ export async function signUpCustomer(
   formData: FormData,
 ): Promise<CustomerAuthState> {
   const fullName = normalizeText(formData.get("fullName"));
-  const phoneNumber = normalizeText(formData.get("phoneNumber"));
+  const phoneNumberInput = normalizeText(formData.get("phoneNumber"));
   const email = normalizeText(formData.get("email")).toLowerCase();
   const password = normalizeText(formData.get("password"));
+  const phoneNumber = normalizeCameroonPhoneNumber(phoneNumberInput);
 
-  if (!fullName || !phoneNumber || !email || password.length < 8) {
+  if (
+    !fullName ||
+    fullName.length > 120 ||
+    !phoneNumber ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    password.length < 8 ||
+    password.length > 128
+  ) {
     return {
       status: "error",
-      message: "Enter your name, phone number, email, and a password of at least 8 characters.",
+      message: "Enter a valid name, Cameroon phone number, email, and a password between 8 and 128 characters.",
     };
   }
 
@@ -87,7 +131,7 @@ export async function signUpCustomer(
   if (error || !data.user) {
     return {
       status: "error",
-      message: error?.message || "Your account could not be created.",
+      message: "Your account could not be created. Check the details or try signing in.",
     };
   }
 
@@ -102,10 +146,18 @@ export async function signUpCustomer(
   });
 
   if (profileError) {
-    await supabase.auth.signOut();
+    const { error: deleteUserError } = await adminClient.auth.admin.deleteUser(
+      data.user.id,
+    );
+    if (deleteUserError) {
+      throw new Error(
+        "The customer profile could not be saved, and the incomplete account could not be removed.",
+        { cause: deleteUserError },
+      );
+    }
     return {
       status: "error",
-      message: "Your account was created, but your WastePay profile could not be saved.",
+      message: "A WastePay account could not be created with those details. Check the phone number or try another email.",
     };
   }
 
@@ -121,6 +173,9 @@ export async function signUpCustomer(
 
 export async function logoutCustomer(): Promise<never> {
   const supabase = await createClient();
-  await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    throw new Error("WastePay could not sign out this account.", { cause: error });
+  }
   redirect("/app");
 }
