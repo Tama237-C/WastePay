@@ -16,18 +16,22 @@ export const metadata: Metadata = {
 export default async function ConsumerAppPage() {
   const supabase = await createClient();
   const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
+  const authResult =
+    session && !sessionError ? await supabase.auth.getUser() : null;
+  const user = authResult?.data.user ?? null;
+  const authError = sessionError ?? authResult?.error ?? null;
 
-  if (userError) {
+  if (authError) {
     console.error(
       "WastePay could not verify the current sign-in; showing the guest app.",
-      userError,
+      authError,
     );
   }
 
-  if (user && !userError) {
+  if (user && !authError) {
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("role, is_active, must_change_password")
@@ -71,7 +75,7 @@ export default async function ConsumerAppPage() {
     <ConsumerAppShell>
       <main className="wp-consumer-app">
         <section id="home" className="wp-consumer-app__hero">
-          {userError ? (
+          {authError ? (
             <p
               role="status"
               className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/[0.08] p-4 text-sm leading-6 text-amber-100"
