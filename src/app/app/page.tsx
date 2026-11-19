@@ -21,12 +21,13 @@ export default async function ConsumerAppPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    throw new Error("WastePay could not verify the current sign-in.", {
-      cause: userError,
-    });
+    console.error(
+      "WastePay could not verify the current sign-in; showing the guest app.",
+      userError,
+    );
   }
 
-  if (user) {
+  if (user && !userError) {
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("role, is_active, must_change_password")
@@ -70,6 +71,16 @@ export default async function ConsumerAppPage() {
     <ConsumerAppShell>
       <main className="wp-consumer-app">
         <section id="home" className="wp-consumer-app__hero">
+          {userError ? (
+            <p
+              role="status"
+              className="mb-6 rounded-2xl border border-amber-400/20 bg-amber-400/[0.08] p-4 text-sm leading-6 text-amber-100"
+            >
+              We could not check your sign-in just now, so this is the guest
+              app. You can still book a pickup. Please try your account again
+              shortly.
+            </p>
+          ) : null}
           <p className="wp-overline">Your WastePay app</p>
           <h1>Make recovery part of your day.</h1>
           <p>
