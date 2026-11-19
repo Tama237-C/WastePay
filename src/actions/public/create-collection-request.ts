@@ -300,15 +300,32 @@ export async function createCollectionRequest(
   const serverClient = await createServerClient();
   const {
     data: { user },
+    error: userError,
   } = await serverClient.auth.getUser();
   let residentProfileId: string | null = null;
 
+  if (userError) {
+    return {
+      status: "error",
+      message: "WastePay could not verify your account. Refresh the app and try again.",
+      referenceNumber: null,
+    };
+  }
+
   if (user) {
-    const { data: profile } = await serverClient
+    const { data: profile, error: profileError } = await serverClient
       .from("profiles")
       .select("role, is_active")
       .eq("id", user.id)
       .maybeSingle();
+
+    if (profileError) {
+      return {
+        status: "error",
+        message: "WastePay could not verify your customer profile. Try again.",
+        referenceNumber: null,
+      };
+    }
 
     if (profile?.role === "resident" && profile.is_active) {
       residentProfileId = user.id;

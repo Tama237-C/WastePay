@@ -16,20 +16,32 @@ export default async function CustomerAccountPage() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from("profiles")
       .select("full_name, phone_number, role")
       .eq("id", user.id)
       .maybeSingle();
 
+    if (profileError) {
+      throw new Error("WastePay could not load your account profile.", {
+        cause: profileError,
+      });
+    }
+
     if (profile?.role === "resident") {
-      const { data: requests } = await supabase
+      const { data: requests, error: requestsError } = await supabase
         .from("collection_requests")
         .select(
           "id, status, neighbourhood, estimated_bag_count, estimated_weight_kg, requested_at, preferred_pickup_start, preferred_pickup_end",
         )
         .eq("resident_profile_id", user.id)
         .order("requested_at", { ascending: false });
+
+      if (requestsError) {
+        throw new Error("WastePay could not load your pickup history.", {
+          cause: requestsError,
+        });
+      }
 
       return (
         <ConsumerAppShell>

@@ -155,6 +155,13 @@ export async function signUpCustomer(
         { cause: deleteUserError },
       );
     }
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      throw new Error(
+        "The incomplete customer account was removed, but the sign-in session could not be closed.",
+        { cause: signOutError },
+      );
+    }
     return {
       status: "error",
       message: "A WastePay account could not be created with those details. Check the phone number or try another email.",
