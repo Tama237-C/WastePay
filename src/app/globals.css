@@ -526,8 +526,19 @@ canvas {
 
 .wp-gateway-page{position:relative;min-height:100vh;overflow:hidden;padding:1rem;background:radial-gradient(circle at 6% 0%,rgba(68,241,179,.14),transparent 28rem),#090a0e}.wp-gateway-page__glow{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none}.wp-gateway-page__glow--one{top:-12rem;right:-10rem;width:25rem;height:25rem;background:rgba(91,83,246,.16)}.wp-gateway-page__glow--two{bottom:-16rem;left:-11rem;width:26rem;height:26rem;background:rgba(51,225,164,.12)}.wp-gateway{position:relative;width:min(100%,34rem);margin:auto;padding:1rem 0 2rem}.wp-gateway__header{display:flex;align-items:center;justify-content:space-between}.wp-gateway__back{padding:.65rem .75rem;border-radius:.8rem;color:#99a7b8;font-size:.68rem;font-weight:750}.wp-gateway__intro{margin:3.5rem .2rem 1.7rem}.wp-gateway__intro h1{margin:.65rem 0;color:#f8fbff;font-size:clamp(2.5rem,11vw,4.1rem);font-weight:900;letter-spacing:-.08em;line-height:.87}.wp-gateway__intro h1 span{color:#72f1bc}.wp-gateway__intro>p:last-child{max-width:25rem;margin:1rem 0 0;color:#93a1b2;font-size:.82rem;line-height:1.55}.wp-gateway__workspaces{display:grid;gap:.65rem}.wp-workspace-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.85rem;padding:1rem;border:1px solid rgba(255,255,255,.1);border-radius:1.3rem;background:rgba(20,25,35,.8);box-shadow:0 12px 30px rgba(0,0,0,.16);transition:transform .2s,border-color .2s}.wp-workspace-card:hover{transform:translateY(-2px);border-color:rgba(112,241,189,.35)}.wp-workspace-card__icon{display:grid;place-items:center;width:2.65rem;height:2.65rem;border-radius:.9rem;background:rgba(255,255,255,.08);color:#c9d5e1;font-size:1.15rem}.wp-workspace-card__copy strong{display:block;color:#fff;font-size:.86rem;font-weight:850}.wp-workspace-card__copy small{display:block;margin-top:.28rem;color:#8390a1;font-size:.66rem;line-height:1.4}.wp-workspace-card>i{color:#8593a4;font-size:1.05rem;font-style:normal}.wp-workspace-card--emerald .wp-workspace-card__icon{color:#74f3ba}.wp-workspace-card--violet .wp-workspace-card__icon{color:#c4b5fd}.wp-workspace-card--sky .wp-workspace-card__icon{color:#7dd3fc}.wp-workspace-card--amber .wp-workspace-card__icon{color:#fcd56c}.wp-gateway__footnote{margin:1.4rem .25rem 0;color:#718094;font-size:.63rem;line-height:1.55}.wp-gateway__footnote span{color:#65efb5}
 .wp-app-header {
-  position: relative;
-  top: auto;
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(9, 10, 14, 0.92);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+}
+
+.wp-app-shell__content {
+  padding-top: 4.75rem;
 }
 
 .wp-account-auth-card {

@@ -26,7 +26,7 @@ export default async function ConsumerAppPage() {
   return (
     <ConsumerAppShell>
       <main className="wp-consumer-app">
-        <section id="home" className="wp-consumer-app__hero">
+        <section id="home" className="wp-consumer-app__hero scroll-mt-20">
           <p className="wp-overline">Your WastePay app</p>
           <h1>Make recovery part of your day.</h1>
           <p>
@@ -47,11 +47,11 @@ export default async function ConsumerAppPage() {
           </p>
         </section>
 
-        <section id="install" className="scroll-mt-6">
+        <section id="install" className="scroll-mt-20">
           <AppInstallCard />
         </section>
 
-        <section id="pickup" className="wp-consumer-app__section scroll-mt-6">
+        <section id="pickup" className="wp-consumer-app__section scroll-mt-20">
           <div className="wp-consumer-app__section-heading">
             <p className="wp-overline">Request a collection</p>
             <h2>Book a plastic pickup.</h2>
@@ -78,7 +78,7 @@ export default async function ConsumerAppPage() {
           )}
         </section>
 
-        <section id="track" className="wp-consumer-app__section scroll-mt-6">
+        <section id="track" className="wp-consumer-app__section scroll-mt-20">
           <div className="wp-consumer-app__section-heading">
             <p className="wp-overline">Pickup tracking</p>
             <h2>See where your pickup stands.</h2>

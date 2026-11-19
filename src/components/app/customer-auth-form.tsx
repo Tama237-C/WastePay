@@ -75,6 +75,7 @@ export function CustomerAuthForm() {
 
         {state.message ? (
           <p
+            role={state.status === "error" ? "alert" : "status"}
             className={
               state.status === "success"
                 ? "wp-account-auth-card__success"

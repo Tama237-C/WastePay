@@ -3,6 +3,10 @@
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import {
+  describeCustomerProfileSaveError,
+  describeCustomerSignupError,
+} from "@/actions/auth/customer-signup-errors";
 
 export type CustomerAuthState = {
   status: "idle" | "error" | "success";
@@ -108,17 +112,31 @@ export async function signUpCustomer(
   const password = normalizeText(formData.get("password"));
   const phoneNumber = normalizeCameroonPhoneNumber(phoneNumberInput);
 
-  if (
-    !fullName ||
-    fullName.length > 120 ||
-    !phoneNumber ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-    password.length < 8 ||
-    password.length > 128
-  ) {
+  if (!fullName || fullName.length > 120) {
     return {
       status: "error",
-      message: "Enter a valid name, Cameroon phone number, email, and a password between 8 and 128 characters.",
+      message: "Enter your full name using no more than 120 characters.",
+    };
+  }
+
+  if (!phoneNumber) {
+    return {
+      status: "error",
+      message: "Enter a valid Cameroon phone number, such as +2376XXXXXXXX.",
+    };
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return {
+      status: "error",
+      message: "Enter a valid email address.",
+    };
+  }
+
+  if (password.length < 8 || password.length > 128) {
+    return {
+      status: "error",
+      message: "Your password must be between 8 and 128 characters.",
     };
   }
 
@@ -128,10 +146,33 @@ export async function signUpCustomer(
     password,
   });
 
-  if (error || !data.user) {
+  if (error) {
+    console.error("WastePay customer sign-up failed.", {
+      code: error.code,
+      status: error.status,
+      message: error.message,
+    });
     return {
       status: "error",
-      message: "Your account could not be created. Check the details or try signing in.",
+      message: describeCustomerSignupError(error),
+    };
+  }
+
+  if (!data.user) {
+    console.error("WastePay sign-up returned no user and no error.");
+    return {
+      status: "error",
+      message: describeCustomerSignupError({
+        message: "The sign-up service did not return a user record.",
+      }),
+    };
+  }
+
+  if (data.user.identities && data.user.identities.length === 0) {
+    return {
+      status: "error",
+      message:
+        "An account with this email already exists. Choose Sign in, or use a different email address.",
     };
   }
 
@@ -146,25 +187,39 @@ export async function signUpCustomer(
   });
 
   if (profileError) {
+    console.error("WastePay could not save the new customer profile.", {
+      code: profileError.code,
+      message: profileError.message,
+    });
+    const profileFailureMessage =
+      describeCustomerProfileSaveError(profileError);
     const { error: deleteUserError } = await adminClient.auth.admin.deleteUser(
       data.user.id,
     );
     if (deleteUserError) {
-      throw new Error(
-        "The customer profile could not be saved, and the incomplete account could not be removed.",
-        { cause: deleteUserError },
-      );
+      console.error("WastePay could not remove the incomplete customer login.", {
+        code: deleteUserError.code,
+        message: deleteUserError.message,
+      });
+      return {
+        status: "error",
+        message: `${profileFailureMessage} WastePay also could not remove the incomplete sign-in (cleanup error ${deleteUserError.code ?? "unknown"}). Contact support before trying again.`,
+      };
     }
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
-      throw new Error(
-        "The incomplete customer account was removed, but the sign-in session could not be closed.",
-        { cause: signOutError },
-      );
+      console.error("WastePay could not close the incomplete customer session.", {
+        code: signOutError.code,
+        message: signOutError.message,
+      });
+      return {
+        status: "error",
+        message: `${profileFailureMessage} The incomplete account was removed, but the sign-in session could not be closed (error ${signOutError.code ?? "unknown"}). Refresh the page and contact support if the problem continues.`,
+      };
     }
     return {
       status: "error",
-      message: "A WastePay account could not be created with those details. Check the phone number or try another email.",
+      message: profileFailureMessage,
     };
   }
 
