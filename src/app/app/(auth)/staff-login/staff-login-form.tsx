@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -89,6 +90,15 @@ export function StaffLoginForm() {
           placeholder="Enter your secure password"
           className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition-all duration-300 ease-out placeholder:text-slate-600 hover:border-white/20 focus:border-emerald-400/50 focus:bg-white/[0.07] focus:ring-4 focus:ring-emerald-400/10"
         />
+      </div>
+
+      <div className="flex justify-end">
+        <Link
+          href="/app/password-recovery"
+          className="text-sm font-bold text-emerald-300 transition-colors duration-300 hover:text-emerald-200"
+        >
+          Forgot password?
+        </Link>
       </div>
 
       {state.message ? (

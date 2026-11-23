@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
+import { getStaffPasswordValidationError } from "@/lib/auth/staff-password-validation";
 
 export type ChangePasswordState = {
   status: "idle" | "error";
@@ -24,33 +25,12 @@ function getDashboardPath(role: string): string | null {
     case "driver":
       return "/app/driver";
 
+    case "collector":
+      return "/app/collector";
+
     default:
       return null;
   }
-}
-
-function validatePassword(password: string): string | null {
-  if (password.length < 12) {
-    return "Your new password must contain at least 12 characters.";
-  }
-
-  if (!/[A-Z]/.test(password)) {
-    return "Your new password must contain at least one uppercase letter.";
-  }
-
-  if (!/[a-z]/.test(password)) {
-    return "Your new password must contain at least one lowercase letter.";
-  }
-
-  if (!/[0-9]/.test(password)) {
-    return "Your new password must contain at least one number.";
-  }
-
-  if (!/[^A-Za-z0-9]/.test(password)) {
-    return "Your new password must contain at least one symbol.";
-  }
-
-  return null;
 }
 
 export async function changeTemporaryPassword(
@@ -66,19 +46,15 @@ export async function changeTemporaryPassword(
   const confirmation =
     typeof confirmationValue === "string" ? confirmationValue : "";
 
-  const validationMessage = validatePassword(password);
+  const validationMessage = getStaffPasswordValidationError(
+    password,
+    confirmation,
+  );
 
   if (validationMessage) {
     return {
       status: "error",
       message: validationMessage,
-    };
-  }
-
-  if (password !== confirmation) {
-    return {
-      status: "error",
-      message: "The two password entries do not match.",
     };
   }
 

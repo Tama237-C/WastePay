@@ -47,6 +47,9 @@ export default async function ChangePasswordPage() {
       case "driver":
         redirect("/app/driver");
 
+      case "collector":
+        redirect("/app/collector");
+
       default:
         await supabase.auth.signOut();
         redirect("/app/staff-login");
