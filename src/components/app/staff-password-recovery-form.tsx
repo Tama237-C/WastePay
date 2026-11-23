@@ -47,13 +47,13 @@ export function StaffPasswordRecoveryForm() {
           type="email"
           required
           autoComplete="email"
-          placeholder="name@wastepay.org"
+          placeholder="name@ecologix.org"
           className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base font-normal normal-case tracking-normal text-white outline-none transition-all duration-300 placeholder:text-slate-600 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10"
         />
       </label>
 
       <p className="text-sm leading-6 text-slate-400">
-        If this email belongs to an active WastePay staff account, we’ll send a
+        If this email belongs to an active ECOLOGIX staff account, we’ll send a
         password recovery link.
       </p>
 

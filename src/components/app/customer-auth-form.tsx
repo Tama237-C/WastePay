@@ -91,7 +91,7 @@ export function CustomerAuthForm() {
             ? "Please wait"
             : mode === "sign-in"
               ? "Sign in"
-              : "Create WastePay account"}
+              : "Create ECOLOGIX account"}
         </button>
       </form>
     </section>

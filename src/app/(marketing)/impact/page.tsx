@@ -5,11 +5,11 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 
 export const metadata: Metadata = {
-  title: "Our Impact | WastePay",
+  title: "Our Impact | ECOLOGIX",
   description:
-    "Explore live WastePay recovery metrics, operational reach, verified plastic movement, and the infrastructure supporting Cameroon’s circular plastic economy.",
+    "Explore live ECOLOGIX recovery metrics, operational reach, verified plastic movement, and the infrastructure supporting Cameroon’s circular plastic economy.",
   keywords: [
-    "WastePay impact",
+    "ECOLOGIX impact",
     "plastic recovery Cameroon",
     "circular economy impact",
     "plastic recycling data",
@@ -17,16 +17,16 @@ export const metadata: Metadata = {
     "plastic collection statistics",
   ],
   openGraph: {
-    title: "WastePay Impact",
+    title: "ECOLOGIX Impact",
     description:
-      "Live recovery infrastructure, collection, community, and verified plastic metrics from the WastePay network.",
+      "Live recovery infrastructure, collection, community, and verified plastic metrics from the ECOLOGIX network.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WastePay Impact",
+    title: "ECOLOGIX Impact",
     description:
       "Explore the measurable recovery activity behind Cameroon’s emerging circular plastic economy.",
   },
@@ -228,7 +228,7 @@ const impactPillars = [
     number: "02",
     title: "Local economic value",
     description:
-      "WastePay is designed to connect verified material recovery with transparent pricing and secure financial settlement.",
+      "ECOLOGIX is designed to connect verified material recovery with transparent pricing and secure financial settlement.",
     accentClass:
       "border-amber-400/15 bg-amber-400/[0.055] text-amber-400",
   },
@@ -255,7 +255,7 @@ const measurementLayers = [
     label: "Collection activity",
     title: "Requests and completed pickups",
     description:
-      "WastePay records how recovery demand enters the network and how requests progress through field execution.",
+      "ECOLOGIX records how recovery demand enters the network and how requests progress through field execution.",
   },
   {
     label: "Material movement",
@@ -312,7 +312,7 @@ export default async function ImpactPage() {
           ? "recovery centre"
           : "recovery centres",
       detail:
-        "Physical WastePay recovery infrastructure recorded in the live network.",
+        "Physical ECOLOGIX recovery infrastructure recorded in the live network.",
       accentClass:
         "border-emerald-400/15 bg-emerald-400/[0.055]",
       labelClass: "text-emerald-400",
@@ -335,7 +335,7 @@ export default async function ImpactPage() {
           ? "neighbourhood"
           : "neighbourhoods",
       detail:
-        "Unique neighbourhood names represented across WastePay collection demand.",
+        "Unique neighbourhood names represented across ECOLOGIX collection demand.",
       accentClass:
         "border-violet-400/15 bg-violet-400/[0.055]",
       labelClass: "text-violet-400",
@@ -369,7 +369,7 @@ export default async function ImpactPage() {
           <div className="grid gap-14 xl:grid-cols-[1.02fr_0.98fr] xl:items-center">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
-                WastePay impact
+                ECOLOGIX impact
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -380,7 +380,7 @@ export default async function ImpactPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay is designed to turn recovery activity into credible
+                ECOLOGIX is designed to turn recovery activity into credible
                 environmental, operational, geographic, and economic
                 intelligence—not isolated claims or disconnected reports.
               </p>
@@ -388,7 +388,7 @@ export default async function ImpactPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
@@ -414,7 +414,7 @@ export default async function ImpactPage() {
                       </p>
 
                       <p className="mt-2 text-sm text-slate-500">
-                        Aggregated from WastePay operations
+                        Aggregated from ECOLOGIX operations
                       </p>
                     </div>
 
@@ -463,7 +463,7 @@ export default async function ImpactPage() {
                     </div>
 
                     <p className="mt-5 text-sm font-light leading-7 text-slate-500">
-                      This figure increases when a WastePay depot records an
+                      This figure increases when an ECOLOGIX depot records an
                       actual verified delivery weight.
                     </p>
                   </div>
@@ -508,7 +508,7 @@ export default async function ImpactPage() {
                       <p className="text-right text-xs leading-5 text-slate-600">
                         Across all registered
                         <br />
-                        WastePay depots
+                        ECOLOGIX depots
                       </p>
                     </div>
                   </div>
@@ -560,7 +560,7 @@ export default async function ImpactPage() {
 
             <p className="wp-body-large mt-7 max-w-4xl">
               These figures come from the same operational records used by
-              WastePay administrators, depot teams, and field logistics.
+              ECOLOGIX administrators, depot teams, and field logistics.
             </p>
           </div>
 
@@ -608,7 +608,7 @@ export default async function ImpactPage() {
               </div>
 
               <p className="mt-5 text-sm font-light leading-7 text-slate-500">
-                Depots currently marked active inside WastePay’s operational
+                Depots currently marked active inside ECOLOGIX’s operational
                 database.
               </p>
             </article>
@@ -630,7 +630,7 @@ export default async function ImpactPage() {
 
               <p className="mt-5 text-sm font-light leading-7 text-slate-500">
                 Requests that have reached the final completed state in the
-                WastePay workflow.
+                ECOLOGIX workflow.
               </p>
             </article>
           </div>
@@ -745,7 +745,7 @@ export default async function ImpactPage() {
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                WastePay will publish additional indicators only after the
+                ECOLOGIX will publish additional indicators only after the
                 underlying operational records and verification workflows are
                 ready.
               </p>
@@ -753,7 +753,7 @@ export default async function ImpactPage() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/partners" className="wp-primary-button">
                   Sponsor recovery
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link
@@ -829,7 +829,7 @@ export default async function ImpactPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

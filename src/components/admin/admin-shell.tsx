@@ -104,7 +104,7 @@ const navigationItems: NavigationItem[] = [
 function getPageTitle(pathname: string): string {
   const activeItem = navigationItems.find((item) => pathname === item.href);
 
-  return activeItem?.label ?? "WastePay administration";
+  return activeItem?.label ?? "ECOLOGIX administration";
 }
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
@@ -167,7 +167,7 @@ export function AdminShell({
 
             <span>
               <span className="block text-sm font-black uppercase tracking-[0.24em] text-white">
-                WastePay
+                ECOLOGIX
               </span>
 
               <span className="mt-1 block text-[0.65rem] font-bold uppercase tracking-[0.2em] text-emerald-400">
@@ -285,7 +285,7 @@ export function AdminShell({
 
             <div className="min-w-0">
               <p className="text-[0.62rem] font-black uppercase tracking-[0.26em] text-emerald-400">
-                WastePay administration
+                ECOLOGIX administration
               </p>
 
               <h1 className="mt-1 truncate text-xl font-black tracking-[-0.035em] text-white sm:text-2xl">
@@ -344,7 +344,7 @@ export function AdminShell({
 
                 <span>
                   <span className="block text-sm font-black uppercase tracking-[0.2em] text-white">
-                    WastePay
+                    ECOLOGIX
                   </span>
 
                   <span className="mt-1 block text-[0.6rem] font-bold uppercase tracking-[0.18em] text-emerald-400">

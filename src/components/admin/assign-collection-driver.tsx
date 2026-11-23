@@ -93,7 +93,7 @@ export function AssignCollectionDriver({
                 </h2>
 
                 <p className="mt-3 max-w-xl text-sm font-light leading-6 text-slate-400">
-                  Select an active WastePay driver to execute this approved
+                  Select an active ECOLOGIX driver to execute this approved
                   collection request.
                 </p>
               </div>
@@ -104,7 +104,7 @@ export function AssignCollectionDriver({
                 aria-label="Close"
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl font-light text-slate-400 transition-all duration-300 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-200"
               >
-                ×
+                Ã—
               </button>
             </header>
 
@@ -116,7 +116,7 @@ export function AssignCollectionDriver({
                   htmlFor={`driver-${requestId}`}
                   className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
                 >
-                  Active WastePay driver
+                  Active ECOLOGIX driver
                 </label>
 
                 <select

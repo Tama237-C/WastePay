@@ -5,9 +5,9 @@ import { ChangePasswordForm } from "./change-password-form";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Secure Your Account | WastePay",
+  title: "Secure Your Account | ECOLOGIX",
   description:
-    "Replace your temporary WastePay staff password before entering the operational platform.",
+    "Replace your temporary ECOLOGIX staff password before entering the operational platform.",
 };
 
 export default async function ChangePasswordPage() {
@@ -60,10 +60,10 @@ export default async function ChangePasswordPage() {
     <div className="wp-auth-page__glow wp-auth-page__glow--one" />
     <div className="wp-auth-page__glow wp-auth-page__glow--two" />
     <section className="wp-auth-card">
-      <div className="wp-auth-brand"><span className="wp-app-brand__mark">W</span><span>WastePay</span><em>Account security</em></div>
-      <div className="wp-auth-intro"><p className="wp-overline">One last step</p><h1>Make this account yours.</h1><p>Replace your temporary password before entering the WastePay operational network.</p></div>
+      <div className="wp-auth-brand"><span className="wp-app-brand__mark">W</span><span>ECOLOGIX</span><em>Account security</em></div>
+      <div className="wp-auth-intro"><p className="wp-overline">One last step</p><h1>Make this account yours.</h1><p>Replace your temporary password before entering the ECOLOGIX operational network.</p></div>
       <ChangePasswordForm />
-      <p className="wp-auth-footnote"><span>●</span> WastePay administrators cannot view your permanent password.</p>
+      <p className="wp-auth-footnote"><span>â—</span> ECOLOGIX administrators cannot view your permanent password.</p>
     </section>
   </main>;
 }

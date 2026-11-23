@@ -241,7 +241,7 @@ const depotNamesById = new Map<string, string>(
 
             <p className="mt-5 max-w-2xl text-base font-light leading-8 text-slate-400">
               Review home, office, school, and hospitality pickup requests
-              before routing them into the WastePay depot and driver network.
+              before routing them into the ECOLOGIX depot and driver network.
             </p>
           </div>
 
@@ -321,7 +321,7 @@ const depotNamesById = new Map<string, string>(
             </p>
 
             <h3 className="mt-3 text-2xl font-black tracking-[-0.035em] text-white">
-              Incoming WastePay pickups
+              Incoming ECOLOGIX pickups
             </h3>
           </div>
 
@@ -337,7 +337,7 @@ const depotNamesById = new Map<string, string>(
         {pageError ? (
           <div className="m-6 rounded-3xl border border-red-400/20 bg-red-400/10 p-6 sm:m-8">
             <p className="text-sm font-bold text-red-200">
-              WastePay could not load the collection request queue.
+              ECOLOGIX could not load the collection request queue.
             </p>
 
             <p className="mt-2 text-sm leading-6 text-red-200/70">
@@ -357,7 +357,7 @@ const depotNamesById = new Map<string, string>(
 
               <p className="mt-3 text-sm font-light leading-7 text-slate-500">
                 Residential and commercial requests will appear here after the
-                public WastePay booking form is connected.
+                public ECOLOGIX booking form is connected.
               </p>
             </div>
           </div>

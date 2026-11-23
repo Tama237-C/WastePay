@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "WastePay",
-    short_name: "WastePay",
+    name: "ECOLOGIX",
+    short_name: "ECOLOGIX",
     description:
       "Cameroon's digital infrastructure for plastic collection, circular recovery, material intelligence, and transparent value distribution.",
     start_url: "/app",
@@ -45,28 +45,28 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Book Plastic Collection",
         short_name: "Book Pickup",
         description:
-          "Request a WastePay plastic collection from your home or organization.",
+          "Request an ECOLOGIX plastic collection from your home or organization.",
         url: "/app#pickup",
       },
       {
-        name: "View WastePay Impact",
+        name: "View ECOLOGIX Impact",
         short_name: "Impact",
         description:
-          "Explore live aggregate recovery metrics from the WastePay network.",
+          "Explore live aggregate recovery metrics from the ECOLOGIX network.",
         url: "/impact",
       },
       {
         name: "Discuss a Partnership",
         short_name: "Partner",
         description:
-          "Open the WastePay partnership enquiry journey.",
+          "Open the ECOLOGIX partnership enquiry journey.",
         url: "/contact?type=partnership",
       },
       {
         name: "Staff Sign In",
         short_name: "Staff",
         description:
-          "Open secure WastePay operational staff access.",
+          "Open secure ECOLOGIX operational staff access.",
         url: "/app/workspaces",
       },
     ],

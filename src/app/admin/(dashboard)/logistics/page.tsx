@@ -159,7 +159,7 @@ export default async function LogisticsPage() {
 
   const drivers: DriverOption[] = (driverData ?? []).map((driver) => ({
     id: driver.id,
-    fullName: driver.full_name?.trim() || "Unnamed WastePay driver",
+    fullName: driver.full_name?.trim() || "Unnamed ECOLOGIX driver",
     phoneNumber: driver.phone_number,
     locationZone: driver.active_location_zone,
   }));
@@ -206,7 +206,7 @@ export default async function LogisticsPage() {
           </h2>
 
           <p className="mt-5 max-w-2xl text-base font-light leading-8 text-slate-400">
-            Assign approved collection requests to active WastePay drivers and
+            Assign approved collection requests to active ECOLOGIX drivers and
             monitor pickups as they move through field operations.
           </p>
         </div>
@@ -278,7 +278,7 @@ export default async function LogisticsPage() {
             </p>
 
             <h3 className="mt-3 text-2xl font-black tracking-[-0.035em] text-white">
-              Approved WastePay pickups
+              Approved ECOLOGIX pickups
             </h3>
           </div>
 
@@ -294,7 +294,7 @@ export default async function LogisticsPage() {
         {pageError ? (
           <div className="m-6 rounded-3xl border border-red-400/20 bg-red-400/10 p-6 sm:m-8">
             <p className="text-sm font-bold text-red-200">
-              WastePay could not load the logistics queue.
+              ECOLOGIX could not load the logistics queue.
             </p>
 
             <p className="mt-2 text-sm leading-6 text-red-200/70">
@@ -314,7 +314,7 @@ export default async function LogisticsPage() {
 
               <p className="mt-3 text-sm font-light leading-7 text-slate-500">
                 Requests will enter this dispatch queue after an administrator
-                approves them and assigns a WastePay depot.
+                approves them and assigns an ECOLOGIX depot.
               </p>
             </div>
           </div>

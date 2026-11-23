@@ -6,7 +6,7 @@ export function ServiceWorkerRegistration() {
   useEffect(() => {
     if (!("serviceWorker" in navigator)) {
       console.warn(
-        "WastePay service workers are not supported in this browser.",
+        "ECOLOGIX service workers are not supported in this browser.",
       );
 
       return;
@@ -20,12 +20,12 @@ export function ServiceWorkerRegistration() {
           });
 
         console.log(
-          "WastePay service worker registered successfully:",
+          "ECOLOGIX service worker registered successfully:",
           registration.scope,
         );
       } catch (error) {
         console.error(
-          "WastePay service worker registration failed:",
+          "ECOLOGIX service worker registration failed:",
           error,
         );
       }

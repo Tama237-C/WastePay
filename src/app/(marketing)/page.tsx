@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "WastePay | Cameroon’s Circular Plastic Economy",
+  title: "ECOLOGIX | Cameroon’s Circular Plastic Economy",
   description:
-    "WastePay connects households, collectors, drivers, recovery depots, brands, and Mobile Money infrastructure to turn plastic waste into measurable economic value.",
+    "ECOLOGIX connects households, collectors, drivers, recovery depots, brands, and Mobile Money infrastructure to turn plastic waste into measurable economic value.",
   keywords: [
-    "WastePay",
+    "ECOLOGIX",
     "plastic recycling Cameroon",
     "home waste collection",
     "plastic buyback",
@@ -18,16 +18,16 @@ export const metadata: Metadata = {
     "plastic recovery Cameroon",
   ],
   openGraph: {
-    title: "WastePay | Cameroon’s Circular Plastic Economy",
+    title: "ECOLOGIX | Cameroon’s Circular Plastic Economy",
     description:
       "Schedule plastic collection, support transparent recovery, and help build Cameroon’s circular plastic economy.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WastePay | Cameroon’s Circular Plastic Economy",
+    title: "ECOLOGIX | Cameroon’s Circular Plastic Economy",
     description:
       "Technology, logistics, and financial inclusion for transparent plastic recovery.",
   },
@@ -39,7 +39,7 @@ const impactMetrics = [
     unit: "live depot",
     label: "Recovery infrastructure",
     detail:
-      "WastePay’s first recovery hub is connected to the operational network.",
+      "ECOLOGIX’s first recovery hub is connected to the operational network.",
   },
   {
     value: "100%",
@@ -60,7 +60,7 @@ const impactMetrics = [
     unit: "data visibility",
     label: "Operational intelligence",
     detail:
-      "WastePay turns every collection event into structured circular-economy data.",
+      "ECOLOGIX turns every collection event into structured circular-economy data.",
   },
 ];
 
@@ -74,7 +74,7 @@ const recoverySteps = [
   },
   {
     number: "02",
-    title: "WastePay dispatches",
+    title: "ECOLOGIX dispatches",
     description:
       "Operations reviews the request, assigns a recovery depot, and dispatches an authorized pickup driver.",
     accent: "sky",
@@ -124,7 +124,7 @@ const programs = [
     description:
       "Support transparent post-consumer plastic recovery with product-level data and measurable environmental reporting.",
     href: "/partners",
-    callToAction: "Partner with WastePay",
+    callToAction: "Partner with ECOLOGIX",
     accentClass:
       "border-violet-400/15 bg-violet-400/[0.055] hover:border-violet-400/30 hover:shadow-violet-500/[0.08]",
     labelClass: "text-violet-400",
@@ -206,17 +206,22 @@ export default async function HomePage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                {websiteContent?.homepage_hero_description ?? "WastePay is building Cameroon’s digital circular-plastic infrastructure—connecting residents, collectors, drivers, recovery depots, brands, data, and secure payments in one transparent operating network."}
+                {websiteContent?.homepage_hero_description ?? "ECOLOGIX is building Cameroon’s digital circular-plastic infrastructure—connecting residents, collectors, drivers, recovery depots, brands, data, and secure payments in one transparent operating network."}
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/app#pickup" className="wp-primary-button">
                   Book home collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
-                <Link href="/how-it-works" className="wp-secondary-button">
-                  See how WastePay works
+                 <Link href="/app" className="wp-secondary-button">
+                   Go to App
+                   <span aria-hidden="true">â†’</span>
+                 </Link>
+
+                 <Link href="/how-it-works" className="wp-ghost-button">
+                  See how ECOLOGIX works
                 </Link>
               </div>
 
@@ -251,7 +256,7 @@ export default async function HomePage() {
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[0.62rem] font-black uppercase tracking-[0.22em] text-emerald-400">
-                        WastePay recovery network
+                        ECOLOGIX recovery network
                       </p>
 
                       <p className="mt-2 text-sm text-slate-500">
@@ -390,7 +395,7 @@ export default async function HomePage() {
             </h2>
 
             <p className="wp-body-large mt-7 max-w-3xl">
-              WastePay does more than move plastic. It connects each operational
+              ECOLOGIX does more than move plastic. It connects each operational
               decision to structured data so communities, brands, and recovery
               partners can understand where material came from and what happened
               next.
@@ -424,7 +429,7 @@ export default async function HomePage() {
         <div className="wp-page-container">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <div className="lg:sticky lg:top-36">
-              <p className="wp-eyebrow">How WastePay works</p>
+              <p className="wp-eyebrow">How ECOLOGIX works</p>
 
               <h2 className="wp-section-title mt-7">
                 From a pickup request
@@ -444,7 +449,7 @@ export default async function HomePage() {
                 className="wp-secondary-button mt-8"
               >
                 Explore the full process
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>
 
@@ -503,8 +508,8 @@ export default async function HomePage() {
             </div>
 
             <Link href="/programs" className="wp-ghost-button">
-              View all WastePay programs
-              <span aria-hidden="true">→</span>
+              View all ECOLOGIX programs
+              <span aria-hidden="true">â†’</span>
             </Link>
           </div>
 
@@ -539,7 +544,7 @@ export default async function HomePage() {
                       aria-hidden="true"
                       className="transition-transform duration-300 group-hover:translate-x-2"
                     >
-                      →
+                      â†’
                     </span>
                   </Link>
                 </div>
@@ -563,7 +568,7 @@ export default async function HomePage() {
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                WastePay is designed to understand the product, material,
+                ECOLOGIX is designed to understand the product, material,
                 location, operational journey, and financial history behind
                 recovered plastic.
               </p>
@@ -708,7 +713,7 @@ export default async function HomePage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Request a WastePay collection or join the infrastructure
+                  Request an ECOLOGIX collection or join the infrastructure
                   helping Cameroon recover plastic transparently, locally, and
                   at scale.
                 </p>
@@ -717,11 +722,11 @@ export default async function HomePage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/app#pickup" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
-                  Partner with WastePay
+                  Partner with ECOLOGIX
                 </Link>
               </div>
             </div>
@@ -730,7 +735,7 @@ export default async function HomePage() {
       </section>
       <section className="mx-auto mb-20 max-w-6xl rounded-[2rem] border border-emerald-400/20 bg-emerald-400/[0.06] p-8 sm:p-12">
         {footerImage ? <Image src={footerImage} alt="" width={1200} height={500} className="mb-8 h-64 w-full rounded-3xl object-cover" /> : null}
-        <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">WastePay impact</p>
+        <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">ECOLOGIX impact</p>
         <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{websiteContent?.homepage_footer_title ?? "Build a cleaner circular economy."}</h2>
         <p className="mt-4 max-w-2xl text-base leading-8 text-slate-400">{websiteContent?.homepage_footer_text ?? "Every verified collection helps turn discarded plastic into measurable economic value."}</p>
       </section>

@@ -7,8 +7,8 @@ import { createClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Choose a New Staff Password | WastePay",
-  description: "Choose a new password for your WastePay staff account.",
+  title: "Choose a New Staff Password | ECOLOGIX",
+  description: "Choose a new password for your ECOLOGIX staff account.",
 };
 
 function RecoveryUnavailable({ message }: { message: string }) {
@@ -19,7 +19,7 @@ function RecoveryUnavailable({ message }: { message: string }) {
       <section className="wp-auth-card">
         <header className="wp-auth-brand">
           <span className="wp-app-brand__mark">W</span>
-          <span>WastePay</span>
+          <span>ECOLOGIX</span>
           <em>Account recovery</em>
         </header>
         <div className="wp-auth-intro">
@@ -46,7 +46,7 @@ export default async function UpdateRecoveredStaffPasswordPage() {
   } = await supabase.auth.getUser();
 
   if (userError) {
-    console.error("WastePay could not verify a recovered staff session.", {
+    console.error("ECOLOGIX could not verify a recovered staff session.", {
       code: userError.code,
       message: userError.message,
     });
@@ -65,12 +65,12 @@ export default async function UpdateRecoveredStaffPasswordPage() {
     .maybeSingle();
 
   if (profileError) {
-    console.error("WastePay could not verify the recovered staff profile.", {
+    console.error("ECOLOGIX could not verify the recovered staff profile.", {
       code: profileError.code,
       message: profileError.message,
     });
     return (
-      <RecoveryUnavailable message="WastePay could not verify your staff account. Contact the administrator." />
+      <RecoveryUnavailable message="ECOLOGIX could not verify your staff account. Contact the administrator." />
     );
   }
 
@@ -87,13 +87,13 @@ export default async function UpdateRecoveredStaffPasswordPage() {
 
     if (signOutError) {
       throw new Error(
-        "WastePay could not close an unverified password recovery session.",
+        "ECOLOGIX could not close an unverified password recovery session.",
         { cause: signOutError },
       );
     }
 
     return (
-      <RecoveryUnavailable message="This recovery link is not valid for an active WastePay staff account." />
+      <RecoveryUnavailable message="This recovery link is not valid for an active ECOLOGIX staff account." />
     );
   }
 
@@ -104,7 +104,7 @@ export default async function UpdateRecoveredStaffPasswordPage() {
       <section className="wp-auth-card">
         <header className="wp-auth-brand">
           <span className="wp-app-brand__mark">W</span>
-          <span>WastePay</span>
+          <span>ECOLOGIX</span>
           <em>Account recovery</em>
         </header>
         <div className="wp-auth-intro">

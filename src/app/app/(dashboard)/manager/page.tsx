@@ -146,7 +146,7 @@ export default async function ManagerDashboardPage() {
       {approvedBuybacks && approvedBuybacks.length > 0 ? (
         <section className="rounded-[2rem] border border-sky-400/15 bg-sky-400/[0.04] p-6 shadow-2xl backdrop-blur-xl sm:p-8">
           <p className="text-xs font-black uppercase tracking-[0.25em] text-sky-300">
-            Approved payouts
+            Approved buybacks awaiting payout
           </p>
           <div className="mt-5 grid gap-5 xl:grid-cols-2">
             {approvedBuybacks.map((transaction) => (
@@ -154,6 +154,9 @@ export default async function ManagerDashboardPage() {
                 <p className="font-mono text-sm font-bold text-sky-300">{transaction.receipt_code}</p>
                 <p className="mt-4 text-sm text-slate-400">
                   {Number(transaction.total_weight_kg).toLocaleString("en-CM")} KG · {Number(transaction.total_payout_cfa).toLocaleString("en-CM")} CFA
+                </p>
+                <p className="mt-3 text-sm leading-6 text-slate-500">
+                  Mobile Money settlement is not connected yet. Checking setup will not send money or change this transaction.
                 </p>
                 <QueuePayoutAction transactionId={transaction.id} />
               </article>
@@ -164,7 +167,7 @@ export default async function ManagerDashboardPage() {
 
       {pageError ? (
         <section className="rounded-3xl border border-red-400/20 bg-red-400/[0.08] p-6 text-sm leading-7 text-red-200">
-          WastePay could not load the manager workspace. Refresh the page or
+          ECOLOGIX could not load the manager workspace. Refresh the page or
           contact an administrator if the problem continues.
         </section>
       ) : null}
@@ -263,7 +266,7 @@ export default async function ManagerDashboardPage() {
                       id: driver.id,
                       fullName:
                         driver.full_name?.trim() ||
-                        "Unnamed WastePay driver",
+                        "Unnamed ECOLOGIX driver",
                       phoneNumber: driver.phone_number,
                       locationZone: driver.active_location_zone,
                     }))}

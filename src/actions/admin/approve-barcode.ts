@@ -39,7 +39,7 @@ export async function approveBarcode(
     })
     .eq("barcode_number", barcode)
     .eq("verification_status", "UNVERIFIED");
-  if (error) return { status: "error", message: "WastePay could not approve this barcode." };
+  if (error) return { status: "error", message: "ECOLOGIX could not approve this barcode." };
 
   revalidatePath("/admin/barcode-catalog");
   return { status: "success", message: "Barcode approved into the verified catalog." };

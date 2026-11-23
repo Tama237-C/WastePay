@@ -23,7 +23,7 @@ export async function updateCollectorAccount(_previous: UpdateCollectorAccountSt
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { status: "error", message: "Your session has ended. Sign in again to update your account." };
   const { error } = await supabase.from("profiles").update({ full_name: fullName, phone_number: phoneNumber, mobile_money_provider: provider }).eq("id", user.id).eq("role", "collector");
-  if (error) return { status: "error", message: error.code === "23505" ? "This phone number is already linked to another WastePay account." : "We could not update your account. Try again shortly." };
+  if (error) return { status: "error", message: error.code === "23505" ? "This phone number is already linked to another ECOLOGIX account." : "We could not update your account. Try again shortly." };
   revalidatePath("/app/collector");
   return { status: "success", message: "Your payout account has been updated." };
 }

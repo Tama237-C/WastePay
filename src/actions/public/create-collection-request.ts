@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient as createServerClient } from "@/lib/supabase/server";
+import { getVerifiedBookingUserId } from "@/lib/supabase/booking-user";
 
 const allowedRequesterTypes = [
   "RESIDENT",
@@ -117,11 +118,25 @@ export async function createCollectionRequest(
   formData: FormData,
 ): Promise<CreateCollectionRequestState> {
   const adminClient = createAdminClient();
-  const { data: systemSettings } = await adminClient
+  const { data: systemSettings, error: settingsError } = await adminClient
     .from("system_settings")
     .select("minimum_pickup_weight_kg, maximum_schedule_days, public_collection_requests_enabled")
     .eq("id", true)
     .maybeSingle();
+
+  if (settingsError) {
+    console.error("ECOLOGIX could not load public collection settings.", {
+      code: settingsError.code,
+      message: settingsError.message,
+    });
+    return {
+      status: "error",
+      message:
+        "ECOLOGIX could not load the current booking rules. Please try again shortly.",
+      referenceNumber: null,
+    };
+  }
+
   const minimumPickupWeightKg = Number(systemSettings?.minimum_pickup_weight_kg ?? 15);
   const maximumScheduleDays = Number(systemSettings?.maximum_schedule_days ?? 30);
 
@@ -279,10 +294,14 @@ export async function createCollectionRequest(
       .gte("requested_at", tenMinutesAgo);
 
   if (recentRequestError) {
+    console.error("ECOLOGIX could not check the recent request limit.", {
+      code: recentRequestError.code,
+      message: recentRequestError.message,
+    });
     return {
       status: "error",
       message:
-        "WastePay could not verify this request. Please try again shortly.",
+        "ECOLOGIX could not verify this request. Please try again shortly.",
       referenceNumber: null,
     };
   }
@@ -298,37 +317,44 @@ export async function createCollectionRequest(
 
   const pickupLocation = `POINT(${longitude} ${latitude})`;
   const serverClient = await createServerClient();
-  const {
-    data: { user },
-    error: userError,
-  } = await serverClient.auth.getUser();
   let residentProfileId: string | null = null;
+  const { userId, error: authError } =
+    await getVerifiedBookingUserId(serverClient);
 
-  if (userError) {
+  if (authError) {
+    console.error("ECOLOGIX could not read the booking session.", {
+      code: authError.code,
+      message: authError.message,
+    });
     return {
       status: "error",
-      message: "WastePay could not verify your account. Refresh the app and try again.",
+      message:
+        "ECOLOGIX could not check your account session. Refresh the app and try again.",
       referenceNumber: null,
     };
   }
 
-  if (user) {
+  if (userId) {
     const { data: profile, error: profileError } = await serverClient
       .from("profiles")
       .select("role, is_active")
-      .eq("id", user.id)
+      .eq("id", userId)
       .maybeSingle();
 
     if (profileError) {
+      console.error("ECOLOGIX could not verify the booking profile.", {
+        code: profileError.code,
+        message: profileError.message,
+      });
       return {
         status: "error",
-        message: "WastePay could not verify your customer profile. Try again.",
+        message: "ECOLOGIX could not verify your customer profile. Try again.",
         referenceNumber: null,
       };
     }
 
     if (profile?.role === "resident" && profile.is_active) {
-      residentProfileId = user.id;
+      residentProfileId = userId;
     }
   }
 
@@ -350,29 +376,54 @@ export async function createCollectionRequest(
     .select("id")
     .single();
 
-  if (insertError || !createdRequest) {
+  if (insertError) {
+    console.error("ECOLOGIX could not save the collection request.", {
+      code: insertError.code,
+      message: insertError.message,
+    });
     return {
       status: "error",
       message:
-        "WastePay could not save your collection request. Review the information and try again.",
+        `ECOLOGIX could not save your collection request${insertError.code ? ` (error ${insertError.code})` : ""}. Please try again; contact support if it continues.`,
       referenceNumber: null,
     };
   }
 
-  await adminClient.from("collection_request_events").insert({
+  if (!createdRequest) {
+    console.error("ECOLOGIX created no collection request record.");
+    return {
+      status: "error",
+      message:
+        "ECOLOGIX could not confirm that your collection request was saved. Contact support before submitting it again.",
+      referenceNumber: null,
+    };
+  }
+
+  const { error: eventError } = await adminClient
+    .from("collection_request_events")
+    .insert({
     collection_request_id: createdRequest.id,
     previous_status: null,
     new_status: "PENDING_REVIEW",
     reason: "Collection request submitted.",
   });
 
+  if (eventError) {
+    console.error("ECOLOGIX could not record the initial collection event.", {
+      code: eventError.code,
+      message: eventError.message,
+      requestId: createdRequest.id,
+    });
+  }
+
   revalidatePath("/admin/collection-requests");
   revalidatePath("/admin/overview");
 
   return {
     status: "success",
-    message:
-      "Your collection request has been received and is awaiting review by the WastePay operations team.",
+    message: eventError
+      ? "Your pickup request was saved and is awaiting review. Its status timeline may take time to appear."
+      : "Your collection request has been received and is awaiting review by the ECOLOGIX operations team.",
     referenceNumber: createPublicReferenceNumber(createdRequest.id),
   };
 }

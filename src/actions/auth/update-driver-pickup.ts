@@ -38,7 +38,7 @@ export async function updateDriverPickup(
   if (!requestId) {
     return {
       status: "error",
-      message: "WastePay could not identify this pickup.",
+      message: "ECOLOGIX could not identify this pickup.",
     };
   }
 
@@ -78,7 +78,7 @@ export async function updateDriverPickup(
     return {
       status: "error",
       message:
-        "Your account is not authorized to update WastePay pickups.",
+        "Your account is not authorized to update ECOLOGIX pickups.",
     };
   }
 
@@ -90,6 +90,8 @@ export async function updateDriverPickup(
     };
   }
 
+  const driverId = user.id;
+
   const { data: request, error: requestError } = await supabase
     .from("collection_requests")
     .select("id, status, assigned_driver_id")
@@ -100,7 +102,7 @@ export async function updateDriverPickup(
   if (requestError) {
     return {
       status: "error",
-      message: "WastePay could not verify this assigned pickup.",
+      message: "ECOLOGIX could not verify this assigned pickup.",
     };
   }
 
@@ -108,8 +110,37 @@ export async function updateDriverPickup(
     return {
       status: "error",
       message:
-        "This pickup is not assigned to your WastePay driver account.",
+        "This pickup is not assigned to your ECOLOGIX driver account.",
     };
+  }
+
+  async function recordTransitionEvent(
+    previousStatus: string,
+    newStatus: string,
+    reason?: string,
+  ): Promise<boolean> {
+    const { error } = await supabase
+      .from("collection_request_events")
+      .insert({
+        collection_request_id: requestId,
+        previous_status: previousStatus,
+        new_status: newStatus,
+        actor_id: driverId,
+        reason: reason ?? null,
+      });
+
+    if (error) {
+      console.error("ECOLOGIX could not record a pickup status event.", {
+        code: error.code,
+        message: error.message,
+        requestId,
+        previousStatus,
+        newStatus,
+      });
+      return false;
+    }
+
+    return true;
   }
 
   if (intent === "start") {
@@ -135,7 +166,7 @@ export async function updateDriverPickup(
     if (updateError) {
       return {
         status: "error",
-        message: "WastePay could not start this pickup.",
+        message: "ECOLOGIX could not start this pickup.",
       };
     }
 
@@ -147,14 +178,20 @@ export async function updateDriverPickup(
       };
     }
 
+    const eventRecorded = await recordTransitionEvent(
+      "ASSIGNED",
+      "IN_TRANSIT",
+    );
+
     revalidatePath("/app/driver");
     revalidatePath("/admin/logistics");
     revalidatePath("/admin/collection-requests");
 
     return {
       status: "success",
-      message:
-        "Pickup started. WastePay now shows this route as in transit.",
+      message: eventRecorded
+        ? "Pickup started. ECOLOGIX now shows this route as in transit."
+        : "Pickup started, but its status history could not be recorded. Contact support if the history does not update.",
     };
   }
 
@@ -165,12 +202,6 @@ export async function updateDriverPickup(
         message: "Only an assigned or in-transit pickup can be marked unreachable.",
       };
     }
-    await supabase.from("collection_request_events").insert({
-      collection_request_id: requestId,
-      previous_status: "ASSIGNED",
-      new_status: "IN_TRANSIT",
-      actor_id: user.id,
-    });
 
     if (failureReason.length < 5 || failureReason.length > 500) {
       return {
@@ -193,16 +224,14 @@ export async function updateDriverPickup(
     if (updateError || !updatedRequests || updatedRequests.length !== 1) {
       return {
         status: "error",
-        message: "WastePay could not record the unsuccessful pickup.",
+        message: "ECOLOGIX could not record the unsuccessful pickup.",
       };
     }
-    await supabase.from("collection_request_events").insert({
-      collection_request_id: requestId,
-      previous_status: request.status,
-      new_status: "UNREACHABLE",
-      actor_id: user.id,
-      reason: failureReason,
-    });
+    const eventRecorded = await recordTransitionEvent(
+      request.status,
+      "UNREACHABLE",
+      failureReason,
+    );
 
     revalidatePath("/app/driver");
     revalidatePath("/admin/logistics");
@@ -210,7 +239,9 @@ export async function updateDriverPickup(
 
     return {
       status: "success",
-      message: "The pickup was marked unreachable and the reason was recorded.",
+      message: eventRecorded
+        ? "The pickup was marked unreachable and the reason was recorded."
+        : "The pickup was marked unreachable, but its status history could not be recorded. Contact support if the history does not update.",
     };
   }
 
@@ -227,7 +258,7 @@ export async function updateDriverPickup(
   if (!(collectionPhoto instanceof File) || collectionPhoto.size === 0 || !collectionPhoto.type.startsWith("image/") || collectionPhoto.size > 5 * 1024 * 1024) return { status: "error", message: "Capture an image under 5 MB before confirming the pickup." };
   const photoPath = `driver/${user.id}/${requestId}-${Date.now()}`;
   const { error: photoError } = await supabase.storage.from("pickup-photos").upload(photoPath, collectionPhoto, { contentType: collectionPhoto.type, upsert: false });
-  if (photoError) return { status: "error", message: "WastePay could not upload the collection photo." };
+  if (photoError) return { status: "error", message: "ECOLOGIX could not upload the collection photo." };
 
   const { data: updatedRequests, error: updateError } =
     await supabase
@@ -247,7 +278,7 @@ export async function updateDriverPickup(
     return {
       status: "error",
       message:
-        "WastePay could not confirm that this plastic was collected.",
+        "ECOLOGIX could not confirm that this plastic was collected.",
     };
   }
 
@@ -258,12 +289,10 @@ export async function updateDriverPickup(
         "This pickup changed before collection could be confirmed. Refresh and try again.",
     };
   }
-  await supabase.from("collection_request_events").insert({
-    collection_request_id: requestId,
-    previous_status: "IN_TRANSIT",
-    new_status: "COLLECTED_PENDING_DEPOT",
-    actor_id: user.id,
-  });
+  const eventRecorded = await recordTransitionEvent(
+    "IN_TRANSIT",
+    "COLLECTED_PENDING_DEPOT",
+  );
 
   revalidatePath("/app/driver");
   revalidatePath("/admin/logistics");
@@ -271,7 +300,8 @@ export async function updateDriverPickup(
 
   return {
     status: "success",
-    message:
-      "Plastic collection confirmed. Deliver the material to the assigned depot.",
+    message: eventRecorded
+      ? "Plastic collection confirmed. Deliver the material to the assigned depot."
+      : "Plastic collection confirmed. Its status history could not be recorded; deliver the material to the assigned depot and contact support if the history does not update.",
   };
 }

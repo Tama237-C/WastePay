@@ -87,15 +87,15 @@ export function AppInstallCard() {
         <div className="max-w-3xl">
           <div className="wp-install-card__app-icon">W</div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-400">
-            WastePay app
+            ECOLOGIX app
           </p>
 
           <h2 className="mt-4 text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl">
-            Keep your WastePay app one tap away.
+            Keep your ECOLOGIX app one tap away.
           </h2>
 
           <p className="mt-4 text-sm font-light leading-7 text-slate-400 sm:text-base">
-            Install WastePay on this device to open the app workspace directly
+            Install ECOLOGIX on this device to open the app workspace directly
             from your home screen.
           </p>
 
@@ -118,7 +118,7 @@ export function AppInstallCard() {
           {isInstalled ? "App installed" : "Install app"}
 
           {!isInstalled ? (
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">â†’</span>
           ) : null}
         </button>
       </div>

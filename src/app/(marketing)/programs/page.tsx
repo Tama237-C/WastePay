@@ -3,11 +3,11 @@ import Link from "next/link";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 
 export const metadata: Metadata = {
-  title: "WastePay Programs | Plastic Recovery Solutions",
+  title: "ECOLOGIX Programs | Plastic Recovery Solutions",
   description:
-    "Explore WastePay plastic recovery programs for households, businesses, schools, municipalities, brands, and recovery partners in Cameroon.",
+    "Explore ECOLOGIX plastic recovery programs for households, businesses, schools, municipalities, brands, and recovery partners in Cameroon.",
   keywords: [
-    "WastePay programs",
+    "ECOLOGIX programs",
     "home plastic collection Cameroon",
     "business plastic recycling",
     "school recycling program Cameroon",
@@ -16,18 +16,18 @@ export const metadata: Metadata = {
     "plastic buyback program",
   ],
   openGraph: {
-    title: "WastePay Plastic Recovery Programs",
+    title: "ECOLOGIX Plastic Recovery Programs",
     description:
       "Flexible plastic recovery programs for households, institutions, municipalities, brands, and recovery partners.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WastePay Plastic Recovery Programs",
+    title: "ECOLOGIX Plastic Recovery Programs",
     description:
-      "Join Cameroon’s circular plastic economy through a WastePay recovery program.",
+      "Join Cameroon’s circular plastic economy through an ECOLOGIX recovery program.",
   },
 };
 
@@ -42,7 +42,7 @@ const programs = [
       "Mobile-friendly booking",
       "Secure GPS location capture",
       "Request review and depot routing",
-      "Authorized WastePay pickup driver",
+      "Authorized ECOLOGIX pickup driver",
       "Collection-status tracking",
       "Verified depot intake",
     ],
@@ -165,19 +165,19 @@ const participationSteps = [
     number: "01",
     title: "Identify the right program",
     description:
-      "Choose the WastePay service that matches your household, institution, municipality, brand, or recovery operation.",
+      "Choose the ECOLOGIX service that matches your household, institution, municipality, brand, or recovery operation.",
   },
   {
     number: "02",
     title: "Define the recovery need",
     description:
-      "Tell WastePay about the location, material volume, service frequency, reporting requirements, and operational constraints.",
+      "Tell ECOLOGIX about the location, material volume, service frequency, reporting requirements, and operational constraints.",
   },
   {
     number: "03",
     title: "Configure the workflow",
     description:
-      "WastePay connects the program to collection requests, responsible depots, field teams, verification steps, and reporting.",
+      "ECOLOGIX connects the program to collection requests, responsible depots, field teams, verification steps, and reporting.",
   },
   {
     number: "04",
@@ -222,7 +222,7 @@ const programCapabilities = [
 
 const programQuestions = [
   {
-    question: "Can WastePay support recurring collections?",
+    question: "Can ECOLOGIX support recurring collections?",
     answer:
       "Yes. Business, school, hotel, municipal, and institutional programs can be designed around recurring collection schedules.",
   },
@@ -232,14 +232,14 @@ const programQuestions = [
       "The planned business workflow supports multiple operating locations, collection points, and recovery reports under one program.",
   },
   {
-    question: "Does WastePay accept every type of waste?",
+    question: "Does ECOLOGIX accept every type of waste?",
     answer:
-      "WastePay’s current operating focus is recoverable plastic, beginning with PET, HDPE, and PP material streams.",
+      "ECOLOGIX’s current operating focus is recoverable plastic, beginning with PET, HDPE, and PP material streams.",
   },
   {
     question: "How will program impact be verified?",
     answer:
-      "WastePay connects requests, assigned staff, depots, verified weight, material records, photographs, and transaction history.",
+      "ECOLOGIX connects requests, assigned staff, depots, verified weight, material records, photographs, and transaction history.",
   },
 ];
 
@@ -261,7 +261,7 @@ export default function ProgramsPage() {
           <div className="grid gap-14 xl:grid-cols-[1.03fr_0.97fr] xl:items-center">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
-                WastePay programs
+                ECOLOGIX programs
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -272,7 +272,7 @@ export default function ProgramsPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay provides different entry points into the circular
+                ECOLOGIX provides different entry points into the circular
                 plastic economy for households, businesses, schools, cities,
                 brands, collectors, and recovery partners.
               </p>
@@ -280,7 +280,7 @@ export default function ProgramsPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request a collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
@@ -423,7 +423,7 @@ export default function ProgramsPage() {
             </h2>
 
             <p className="wp-body-large mt-7 max-w-4xl">
-              Each WastePay program uses the same accountable operational
+              Each ECOLOGIX program uses the same accountable operational
               backbone while adapting collection, reporting, and participation
               to a specific audience.
             </p>
@@ -485,7 +485,7 @@ export default function ProgramsPage() {
                       aria-hidden="true"
                       className="transition-transform duration-300 group-hover:translate-x-2"
                     >
-                      →
+                      â†’
                     </span>
                   </Link>
                 </div>
@@ -511,7 +511,7 @@ export default function ProgramsPage() {
               </h2>
 
               <p className="wp-body-large mt-7">
-                WastePay first understands the participant, material stream,
+                ECOLOGIX first understands the participant, material stream,
                 locations, collection needs, and reporting expectations before
                 configuring the operational workflow.
               </p>
@@ -597,13 +597,13 @@ export default function ProgramsPage() {
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                WastePay programs are configured around actual recovery needs,
+                ECOLOGIX programs are configured around actual recovery needs,
                 not generic sustainability promises.
               </p>
 
               <Link href="/contact" className="wp-primary-button mt-9">
                 Discuss your recovery need
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>
 
@@ -650,14 +650,14 @@ export default function ProgramsPage() {
                 </p>
 
                 <h2 className="mt-7 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
-                  There is a WastePay
+                  There is an ECOLOGIX
                   <span className="block font-light text-slate-400">
                     recovery pathway for you.
                   </span>
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Start with a household request or contact WastePay to design
+                  Start with a household request or contact ECOLOGIX to design
                   an institutional, municipal, corporate, or recovery-centre
                   program.
                 </p>
@@ -666,7 +666,7 @@ export default function ProgramsPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Get started
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

@@ -5,9 +5,9 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WastePay | Digital recycling infrastructure",
-  description: "Digital infrastructure for plastic collection, recovery, and transparent value distribution.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://wastepay.app"),
+  title: "ECOLOGIX | Plastic intelligence",
+  description: "Barcode plastic scans, collection, recovery, and transparent environmental intelligence.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ecologix.app"),
 };
 
 export default async function RootLayout({

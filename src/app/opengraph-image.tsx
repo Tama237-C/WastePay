@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "WastePay — Cameroon’s circular plastic economy infrastructure";
+  "ECOLOGIX — Cameroon’s circular plastic economy infrastructure";
 
 export const size = {
   width: 1200,
@@ -121,7 +121,7 @@ export default function OpenGraphImage() {
                     letterSpacing: "7px",
                   }}
                 >
-                  WASTEPAY
+                  ECOLOGIX
                 </div>
 
                 <div

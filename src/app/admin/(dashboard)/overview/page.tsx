@@ -139,7 +139,7 @@ export default async function AdminOverviewPage() {
             <p className="mt-6 max-w-2xl text-base font-light leading-8 text-slate-400 sm:text-lg">
               Monitor financial movement, material recovery, depot activity,
               corporate plastic intelligence, and field logistics across the
-              WastePay network.
+              ECOLOGIX network.
             </p>
           </div>
 
@@ -250,7 +250,7 @@ export default async function AdminOverviewPage() {
                 </div>
                 <h3 className="mt-6 text-xl font-black text-white">No operational events yet</h3>
                 <p className="mt-3 text-sm font-light leading-7 text-slate-500">
-                  Collection activity will appear here as WastePay operations begin.
+                  Collection activity will appear here as ECOLOGIX operations begin.
                 </p>
               </div>
             </div>
@@ -285,7 +285,7 @@ export default async function AdminOverviewPage() {
                       </span>
 
                       <span className="text-emerald-400 transition-transform duration-300 ease-out group-hover:translate-x-1">
-                        →
+                        â†’
                       </span>
                     </span>
 

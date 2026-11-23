@@ -147,7 +147,7 @@ const depots: DepotRecord[] = (data ?? []).map((depot) => ({
             </h2>
 
             <p className="mt-5 max-w-2xl text-base font-light leading-8 text-slate-400">
-              Register and supervise WastePay recovery centres, operational
+              Register and supervise ECOLOGIX recovery centres, operational
               capacity, regional coverage, and Mobile Money float positions.
             </p>
           </div>
@@ -222,7 +222,7 @@ const depots: DepotRecord[] = (data ?? []).map((depot) => ({
             </p>
 
             <h3 className="mt-3 text-2xl font-black tracking-[-0.035em] text-white">
-              WastePay recovery centres
+              ECOLOGIX recovery centres
             </h3>
           </div>
 
@@ -240,7 +240,7 @@ const depots: DepotRecord[] = (data ?? []).map((depot) => ({
         {error ? (
           <div className="m-6 rounded-3xl border border-red-400/20 bg-red-400/10 p-6 sm:m-8">
             <p className="text-sm font-bold text-red-200">
-              WastePay could not load the depot directory.
+              ECOLOGIX could not load the depot directory.
             </p>
 
             <p className="mt-2 text-sm leading-6 text-red-200/70">
@@ -259,7 +259,7 @@ const depots: DepotRecord[] = (data ?? []).map((depot) => ({
               </h3>
 
               <p className="mt-3 text-sm font-light leading-7 text-slate-500">
-                The first WastePay recovery centre will appear here after it
+                The first ECOLOGIX recovery centre will appear here after it
                 is registered through the secure depot creation workflow.
               </p>
             </div>

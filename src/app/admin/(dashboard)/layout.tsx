@@ -38,7 +38,7 @@ export default async function AdminDashboardLayout({
   }
 
   const administratorName =
-    profile.full_name?.trim() || "WastePay Administrator";
+    profile.full_name?.trim() || "ECOLOGIX Administrator";
 
   const administratorEmail =
     user.email?.trim() || "Administrator account";

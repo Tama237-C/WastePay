@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    console.error("WastePay could not verify a password recovery link.", {
+    console.error("ECOLOGIX could not verify a password recovery link.", {
       code: error.code,
       message: error.message,
     });

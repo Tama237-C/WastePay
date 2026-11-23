@@ -67,7 +67,7 @@ export function CreateStaffAccount({ depots }: { depots: DepotOption[] }) {
     }
 
     const credentials = [
-      "WastePay staff access",
+      "ECOLOGIX staff access",
       `Email: ${state.createdEmail}`,
       `Temporary password: ${state.temporaryPassword}`,
       "Login: http://localhost:3000/app/staff-login",
@@ -137,7 +137,7 @@ export function CreateStaffAccount({ depots }: { depots: DepotOption[] }) {
                 aria-label="Close"
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl font-light text-slate-400 transition-all duration-300 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-200"
               >
-                ×
+                Ã—
               </button>
             </header>
 
@@ -252,7 +252,7 @@ export function CreateStaffAccount({ depots }: { depots: DepotOption[] }) {
                         type="email"
                         required
                         autoComplete="off"
-                        placeholder="staff@wastepay.org"
+                        placeholder="staff@ecologix.org"
                         className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition-all duration-300 placeholder:text-slate-700 hover:border-white/20 focus:border-emerald-400/50 focus:ring-4 focus:ring-emerald-400/10"
                       />
                     </div>

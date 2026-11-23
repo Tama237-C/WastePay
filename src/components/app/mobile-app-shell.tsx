@@ -44,7 +44,7 @@ export function MobileAppShell({ children, role, name }: MobileAppShellProps) {
   }, []);
   const homeHref = role ? `/app/${role}` : "/app/staff-login";
   const firstName = name?.trim().split(/\s+/)[0] || "there";
-  const workspace = role ? roleLabels[role] : "WastePay";
+  const workspace = role ? roleLabels[role] : "ECOLOGIX";
   const navigationCopy = role === "driver"
     ? { work: "Route", collection: "Pickups", wallet: "History", profile: "Account" }
     : role === "agent"
@@ -65,9 +65,9 @@ export function MobileAppShell({ children, role, name }: MobileAppShellProps) {
       <div className="wp-app-shell__glow wp-app-shell__glow--one" />
       <div className="wp-app-shell__glow wp-app-shell__glow--two" />
       <header className="wp-app-header">
-        <Link href={homeHref} className="wp-app-brand" aria-label="WastePay home">
+        <Link href={homeHref} className="wp-app-brand" aria-label="ECOLOGIX home">
           <span className="wp-app-brand__mark">W</span>
-          <span>WastePay</span>
+          <span>ECOLOGIX</span>
         </Link>
         <div className="wp-app-header__context">
           <p>Good to see you, {firstName}</p>
@@ -78,8 +78,8 @@ export function MobileAppShell({ children, role, name }: MobileAppShellProps) {
           <i />
         </button>
         {isNotificationsOpen ? <aside className="wp-notification-popover" aria-label="Notifications">
-          <div className="wp-notification-popover__header"><div><p>Activity</p><span>Latest account updates</span></div><button type="button" onClick={() => setIsNotificationsOpen(false)} aria-label="Close notifications">×</button></div>
-          <div className="wp-notification-popover__item"><span>✓</span><div><strong>Workspace connected</strong><p>Your live WastePay workspace is ready.</p></div></div>
+          <div className="wp-notification-popover__header"><div><p>Activity</p><span>Latest account updates</span></div><button type="button" onClick={() => setIsNotificationsOpen(false)} aria-label="Close notifications">Ã—</button></div>
+          <div className="wp-notification-popover__item"><span>âœ“</span><div><strong>Workspace connected</strong><p>Your live ECOLOGIX workspace is ready.</p></div></div>
           <div className="wp-notification-popover__empty">New payout, pickup, and intake updates will appear here.</div>
         </aside> : null}
       </header>

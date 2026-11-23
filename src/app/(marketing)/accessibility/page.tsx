@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Accessibility Statement | WastePay",
+  title: "Accessibility Statement | ECOLOGIX",
   description:
-    "Read WastePay’s accessibility goals, current measures, known limitations, and how to report a barrier when using the public website or operational platform.",
+    "Read ECOLOGIX’s accessibility goals, current measures, known limitations, and how to report a barrier when using the public website or operational platform.",
   openGraph: {
-    title: "WastePay Accessibility Statement",
+    title: "ECOLOGIX Accessibility Statement",
     description:
-      "WastePay is working toward an inclusive public website and operational platform that can be used across devices and abilities.",
+      "ECOLOGIX is working toward an inclusive public website and operational platform that can be used across devices and abilities.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
 };
 
@@ -20,7 +20,7 @@ const commitments = [
     number: "01",
     title: "Perceivable content",
     description:
-      "WastePay aims to provide readable text, meaningful headings, sufficient contrast, visible focus states, and text alternatives for important visual content.",
+      "ECOLOGIX aims to provide readable text, meaningful headings, sufficient contrast, visible focus states, and text alternatives for important visual content.",
   },
   {
     number: "02",
@@ -32,7 +32,7 @@ const commitments = [
     number: "03",
     title: "Understandable experiences",
     description:
-      "WastePay aims to use clear language, consistent navigation, descriptive labels, understandable validation messages, and predictable status changes.",
+      "ECOLOGIX aims to use clear language, consistent navigation, descriptive labels, understandable validation messages, and predictable status changes.",
   },
   {
     number: "04",
@@ -59,7 +59,7 @@ const knownLimitations = [
   {
     title: "Formal audit not yet completed",
     description:
-      "WastePay has not yet completed an independent accessibility audit, so the website should not presently claim full WCAG conformance.",
+      "ECOLOGIX has not yet completed an independent accessibility audit, so the website should not presently claim full WCAG conformance.",
   },
   {
     title: "Camera and barcode workflows",
@@ -74,7 +74,7 @@ const knownLimitations = [
   {
     title: "Third-party services",
     description:
-      "Email applications, telecommunications providers, payment services, and other external systems may have accessibility limitations outside WastePay’s direct control.",
+      "Email applications, telecommunications providers, payment services, and other external systems may have accessibility limitations outside ECOLOGIX’s direct control.",
   },
 ];
 
@@ -82,7 +82,7 @@ const reportingDetails = [
   {
     label: "Page or screen",
     value:
-      "Tell us the exact page address or the name of the WastePay screen where the problem occurred.",
+      "Tell us the exact page address or the name of the ECOLOGIX screen where the problem occurred.",
   },
   {
     label: "Barrier encountered",
@@ -118,7 +118,7 @@ export default function AccessibilityPage() {
         <div className="wp-page-container">
           <div className="max-w-5xl">
             <p className="wp-eyebrow wp-fade-up">
-              Accessibility at WastePay
+              Accessibility at ECOLOGIX
             </p>
 
             <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -129,22 +129,22 @@ export default function AccessibilityPage() {
             </h1>
 
             <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-4xl">
-              WastePay is working to make its public website and operational
+              ECOLOGIX is working to make its public website and operational
               platform usable by people with different abilities, devices,
               technologies, and levels of digital experience.
             </p>
 
             <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
               <a
-                href="mailto:accessibility@wastepay.org"
+                href="mailto:accessibility@ecologix.org"
                 className="wp-primary-button"
               >
                 Report an accessibility barrier
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </a>
 
               <Link href="/contact" className="wp-secondary-button">
-                Contact WastePay
+                Contact ECOLOGIX
               </Link>
             </div>
 
@@ -186,7 +186,7 @@ export default function AccessibilityPage() {
       <section className="border-y border-amber-400/15 bg-amber-400/[0.045]">
         <div className="wp-page-container py-8">
           <p className="text-sm font-light leading-7 text-amber-100/75">
-            WastePay is targeting WCAG 2.2 Level AA, but a complete independent
+            ECOLOGIX is targeting WCAG 2.2 Level AA, but a complete independent
             audit has not yet been performed. This statement describes our
             current objectives and known limitations rather than claiming full
             conformance.
@@ -204,12 +204,12 @@ export default function AccessibilityPage() {
             <h2 className="wp-section-title mt-7">
               Four principles guide
               <span className="block font-light text-slate-500">
-                every WastePay interface.
+                every ECOLOGIX interface.
               </span>
             </h2>
 
             <p className="wp-body-large mt-7 max-w-4xl">
-              WastePay’s target reflects the four WCAG principles: perceivable,
+              ECOLOGIX’s target reflects the four WCAG principles: perceivable,
               operable, understandable, and robust.
             </p>
           </div>
@@ -253,7 +253,7 @@ export default function AccessibilityPage() {
               </h2>
 
               <p className="wp-body-large mt-7">
-                The current WastePay interface includes several accessibility
+                The current ECOLOGIX interface includes several accessibility
                 measures, although they still require structured testing.
               </p>
             </div>
@@ -332,17 +332,17 @@ export default function AccessibilityPage() {
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                Accessibility reports help WastePay prioritize practical
+                Accessibility reports help ECOLOGIX prioritize practical
                 improvements across public, driver, agent, manager, and
                 administrative experiences.
               </p>
 
               <a
-                href="mailto:accessibility@wastepay.org"
+                href="mailto:accessibility@ecologix.org"
                 className="wp-primary-button mt-9"
               >
                 Email accessibility team
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </a>
             </div>
 
@@ -384,21 +384,21 @@ export default function AccessibilityPage() {
                 </p>
 
                 <h2 className="mt-7 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
-                  Ask WastePay for
+                  Ask ECOLOGIX for
                   <span className="block font-light text-slate-400">
                     another way to participate.
                   </span>
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  When a digital workflow is inaccessible, contact WastePay and
+                  When a digital workflow is inaccessible, contact ECOLOGIX and
                   describe the assistance or alternative format you require.
                 </p>
               </div>
 
               <Link href="/contact" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>
           </div>

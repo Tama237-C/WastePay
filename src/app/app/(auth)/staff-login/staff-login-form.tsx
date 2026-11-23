@@ -23,7 +23,7 @@ function SubmitButton() {
       className="group relative flex min-h-14 w-full items-center justify-center overflow-hidden rounded-2xl border border-emerald-300/20 bg-emerald-400 px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-slate-950 shadow-2xl shadow-emerald-500/20 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-emerald-300 hover:shadow-emerald-500/30 focus:outline-none focus:ring-4 focus:ring-emerald-400/20 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
     >
       <span className="relative z-10">
-        {pending ? "Verifying account" : "Enter WastePay"}
+        {pending ? "Verifying account" : "Enter ECOLOGIX"}
       </span>
 
       {pending ? (
@@ -36,7 +36,7 @@ function SubmitButton() {
           aria-hidden="true"
           className="relative z-10 ml-3 transition-transform duration-300 ease-out group-hover:translate-x-1"
         >
-          →
+          â†’
         </span>
       )}
     </button>
@@ -62,7 +62,7 @@ export function StaffLoginForm() {
           type="email"
           autoComplete="email"
           required
-          placeholder="name@wastepay.org"
+          placeholder="name@ecologix.org"
           className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition-all duration-300 ease-out placeholder:text-slate-600 hover:border-white/20 focus:border-emerald-400/50 focus:bg-white/[0.07] focus:ring-4 focus:ring-emerald-400/10"
         />
       </div>

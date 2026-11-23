@@ -7,6 +7,13 @@ import {
   describeCustomerProfileSaveError,
   describeCustomerSignupError,
 } from "../src/actions/auth/customer-signup-errors.ts";
+import { getVerifiedBookingUserId } from "../src/lib/supabase/booking-user.ts";
+import {
+  getBuybackBarcodeError,
+  isValidBuybackBarcode,
+  normalizeCameroonPhoneNumber,
+} from "../src/lib/buyback-validation.ts";
+import { getStaffPasswordValidationError } from "../src/lib/auth/staff-password-validation.ts";
 
 test("mock payout accepts a request without sending money", { concurrency: false }, async () => {
   process.env.WASTEPAY_INTEGRATION_MODE = "mock";
@@ -67,5 +74,94 @@ test("customer profile setup errors identify migration and permissions problems"
       message: "permission denied",
     }),
     /permissions problem/i,
+  );
+});
+
+test("guest pickup booking does not require an authenticated user lookup", async () => {
+  let userLookups = 0;
+  const result = await getVerifiedBookingUserId({
+    auth: {
+      async getSession() {
+        return { data: { session: null }, error: null };
+      },
+      async getUser() {
+        userLookups += 1;
+        return { data: { user: null }, error: null };
+      },
+    },
+  });
+
+  assert.deepEqual(result, { userId: null, error: null });
+  assert.equal(userLookups, 0);
+});
+
+test("signed-in pickup booking verifies the user before linking the profile", async () => {
+  const result = await getVerifiedBookingUserId({
+    auth: {
+      async getSession() {
+        return {
+          data: { session: { user: { id: "resident-profile-id" } } },
+          error: null,
+        };
+      },
+      async getUser() {
+        return {
+          data: { user: { id: "resident-profile-id" } },
+          error: null,
+        };
+      },
+    },
+  });
+
+  assert.deepEqual(result, {
+    userId: "resident-profile-id",
+    error: null,
+  });
+});
+
+test("buyback intake normalizes valid Cameroon phone numbers and rejects invalid ones", () => {
+  assert.equal(
+    normalizeCameroonPhoneNumber(" 6 12 34 56 78 "),
+    "+237612345678",
+  );
+  assert.equal(
+    normalizeCameroonPhoneNumber("+237612345678"),
+    "+237612345678",
+  );
+  assert.equal(normalizeCameroonPhoneNumber("+33123456789"), null);
+});
+
+test("buyback intake rejects malformed codes and mismatched or archived barcodes", () => {
+  assert.equal(isValidBuybackBarcode("1234567890123"), true);
+  assert.equal(isValidBuybackBarcode("123 456"), false);
+  assert.equal(isValidBuybackBarcode("x".repeat(129)), false);
+  assert.equal(
+    getBuybackBarcodeError(
+      { material_type: "PET_CLEAR", verification_status: "VERIFIED" },
+      "PET_COLORED",
+    ),
+    "material-mismatch",
+  );
+  assert.equal(
+    getBuybackBarcodeError(
+      { material_type: "PET_CLEAR", verification_status: "ARCHIVED" },
+      "PET_CLEAR",
+    ),
+    "archived",
+  );
+});
+
+test("staff password recovery requires a strong matching password", () => {
+  assert.equal(
+    getStaffPasswordValidationError("WastePay-Secure-2030", "WastePay-Secure-2030"),
+    null,
+  );
+  assert.match(
+    getStaffPasswordValidationError("short", "short") ?? "",
+    /at least 12 characters/i,
+  );
+  assert.match(
+    getStaffPasswordValidationError("WastePay-Secure-2030", "DifferentPass-2030") ?? "",
+    /do not match/i,
   );
 });

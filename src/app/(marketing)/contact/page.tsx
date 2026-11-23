@@ -6,30 +6,30 @@ import { PartnershipEnquiryForm } from "@/components/marketing/partnership-enqui
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
-  title: "Contact WastePay | Collection and Partnerships",
+  title: "Contact ECOLOGIX | Collection and Partnerships",
   description:
-    "Request plastic collection from WastePay or contact our team about corporate, municipal, educational, recovery, funding, and research partnerships.",
+    "Request plastic collection from ECOLOGIX or contact our team about corporate, municipal, educational, recovery, funding, and research partnerships.",
   keywords: [
-    "contact WastePay",
+    "contact ECOLOGIX",
     "plastic collection Cameroon",
     "home plastic pickup",
-    "WastePay partnership",
+    "ECOLOGIX partnership",
     "corporate plastic recovery",
     "municipal recycling Cameroon",
   ],
   openGraph: {
-    title: "Contact WastePay",
+    title: "Contact ECOLOGIX",
     description:
-      "Book plastic collection or discuss a measurable circular-plastic partnership with WastePay.",
+      "Book plastic collection or discuss a measurable circular-plastic partnership with ECOLOGIX.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact WastePay",
+    title: "Contact ECOLOGIX",
     description:
-      "Request plastic collection or explore a WastePay recovery partnership.",
+      "Request plastic collection or explore an ECOLOGIX recovery partnership.",
   },
 };
 
@@ -42,21 +42,21 @@ type ContactPageProps = {
 const contactChannels = [
   {
     label: "Corporate partnerships",
-    value: "partners@wastepay.org",
+    value: "partners@ecologix.org",
     detail:
       "CSR campaigns, brand recovery programs, producer responsibility, and corporate plastic intelligence.",
   },
   {
     label: "Municipal cooperation",
-    value: "cities@wastepay.org",
+    value: "cities@ecologix.org",
     detail:
       "City recovery infrastructure, public collection programs, depot networks, and operational reporting.",
   },
   {
     label: "General enquiries",
-    value: "hello@wastepay.org",
+    value: "hello@ecologix.org",
     detail:
-      "Questions about WastePay, our programs, collection coverage, and circular-economy infrastructure.",
+      "Questions about ECOLOGIX, our programs, collection coverage, and circular-economy infrastructure.",
   },
 ];
 
@@ -65,11 +65,11 @@ const collectionSteps = [
     number: "01",
     title: "Submit your request",
     description:
-      "Tell WastePay who you are, where the plastic is located, and the estimated amount ready for collection.",
+      "Tell ECOLOGIX who you are, where the plastic is located, and the estimated amount ready for collection.",
   },
   {
     number: "02",
-    title: "WastePay reviews it",
+    title: "ECOLOGIX reviews it",
     description:
       "Our operations team verifies the request and assigns the most appropriate recovery depot.",
   },
@@ -77,13 +77,13 @@ const collectionSteps = [
     number: "03",
     title: "A driver is dispatched",
     description:
-      "An authenticated WastePay driver receives the pickup and coordinates collection with you.",
+      "An authenticated ECOLOGIX driver receives the pickup and coordinates collection with you.",
   },
   {
     number: "04",
     title: "Plastic enters recovery",
     description:
-      "The collected material is delivered to a WastePay depot for weighing, verification, classification, and processing.",
+      "The collected material is delivered to an ECOLOGIX depot for weighing, verification, classification, and processing.",
   },
 ];
 
@@ -131,7 +131,7 @@ export default async function ContactPage({
           <div className="grid gap-14 xl:grid-cols-[0.9fr_1.1fr] xl:items-start">
             <div className="relative z-10 xl:sticky xl:top-36">
               <p className="wp-eyebrow wp-fade-up">
-                Contact WastePay
+                Contact ECOLOGIX
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -142,7 +142,7 @@ export default async function ContactPage({
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-2xl">
-                Schedule a WastePay collection for plastic waste from your
+                Schedule an ECOLOGIX collection for plastic waste from your
                 home, office, school, hotel, or institution—or speak with us
                 about building a measurable recovery partnership.
               </p>
@@ -198,7 +198,7 @@ export default async function ContactPage({
                       aria-hidden="true"
                       className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
                     >
-                      →
+                      â†’
                     </span>
                   </p>
                 </a>
@@ -226,7 +226,7 @@ export default async function ContactPage({
                       aria-hidden="true"
                       className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
                     >
-                      →
+                      â†’
                     </span>
                   </p>
                 </a>
@@ -272,14 +272,14 @@ export default async function ContactPage({
             </p>
 
             <h2 className="wp-section-title mt-7">
-              Work with WastePay
+              Work with ECOLOGIX
               <span className="block font-light text-slate-500">
                 across the circular economy.
               </span>
             </h2>
 
             <p className="wp-body-large mt-7 max-w-4xl">
-              WastePay partnerships can support collection access, recovery
+              ECOLOGIX partnerships can support collection access, recovery
               infrastructure, operational technology, material intelligence,
               public reporting, and transparent value distribution.
             </p>
@@ -315,7 +315,7 @@ export default async function ContactPage({
               <h2 className="wp-section-title mt-7">
                 Reach the right
                 <span className="block font-light text-slate-500">
-                  WastePay team.
+                  ECOLOGIX team.
                 </span>
               </h2>
 
@@ -384,7 +384,7 @@ export default async function ContactPage({
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                WastePay will route your enquiry to the appropriate operational
+                ECOLOGIX will route your enquiry to the appropriate operational
                 or partnership workflow.
               </p>
             </div>

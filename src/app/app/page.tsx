@@ -7,8 +7,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { CollectionTracking } from "@/components/app/collection-tracking";
 
 export const metadata: Metadata = {
-  title: "WastePay App",
-  description: "Book and track plastic collection with WastePay.",
+  title: "ECOLOGIX App",
+  description: "Scan plastic, book pickup, and track collection with ECOLOGIX.",
 };
 
 export const dynamic = "force-dynamic";
@@ -27,15 +27,18 @@ export default async function ConsumerAppPage() {
     <ConsumerAppShell>
       <main className="wp-consumer-app">
         <section id="home" className="wp-consumer-app__hero scroll-mt-20">
-          <p className="wp-overline">Your WastePay app</p>
+          <p className="wp-overline">Your ECOLOGIX app</p>
           <h1>Make recovery part of your day.</h1>
           <p>
             Book a plastic pickup, follow its progress, and take part in
             Cameroon’s circular economy.
           </p>
           <div className="wp-consumer-app__actions">
+            <Link href="/app/scan" className="wp-primary-button">
+              Start with a scan <span aria-hidden="true">⌁</span>
+            </Link>
             <Link href="#pickup" className="wp-primary-button">
-              Book a pickup <span aria-hidden="true">→</span>
+              Book a pickup <span aria-hidden="true">â†’</span>
             </Link>
             <Link href="#track" className="wp-secondary-button">
               Track a pickup

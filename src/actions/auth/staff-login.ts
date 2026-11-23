@@ -45,13 +45,13 @@ export async function signInStaff(
 
   if (!email) {
     return {
-      message: "Enter your WastePay staff email address.",
+      message: "Enter your ECOLOGIX staff email address.",
     };
   }
 
   if (!password) {
     return {
-      message: "Enter your WastePay account password.",
+      message: "Enter your ECOLOGIX account password.",
     };
   }
 
@@ -81,7 +81,7 @@ export async function signInStaff(
 
     return {
       message:
-        "WastePay could not find a staff profile for this account. Contact the system administrator.",
+        "ECOLOGIX could not find a staff profile for this account. Contact the system administrator.",
     };
   }
 
@@ -90,7 +90,7 @@ export async function signInStaff(
 
     return {
       message:
-        "This WastePay account is inactive. Contact the system administrator.",
+        "This ECOLOGIX account is inactive. Contact the system administrator.",
     };
   }
 
@@ -101,7 +101,7 @@ export async function signInStaff(
 
     return {
       message:
-        "This login page is reserved for WastePay operational staff and administrators.",
+        "This login page is reserved for ECOLOGIX operational staff and administrators.",
     };
   }
 

@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | WastePay",
+  title: "Privacy Policy | ECOLOGIX",
   description:
-    "Read how WastePay collects, uses, stores, protects, and shares personal information across its public website and plastic-recovery operations.",
+    "Read how ECOLOGIX collects, uses, stores, protects, and shares personal information across its public website and plastic-recovery operations.",
   openGraph: {
-    title: "WastePay Privacy Policy",
+    title: "ECOLOGIX Privacy Policy",
     description:
-      "How WastePay handles personal information across collection, logistics, depot, partnership, and payment workflows.",
+      "How ECOLOGIX handles personal information across collection, logistics, depot, partnership, and payment workflows.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
 };
 
@@ -20,28 +20,28 @@ const policySections = [
     number: "01",
     title: "Who this policy applies to",
     paragraphs: [
-      "This Privacy Policy applies to people who visit the WastePay public website, submit collection requests, send partnership enquiries, use WastePay operational accounts, participate in collection or recovery activities, or otherwise provide personal information to WastePay.",
-      "WastePay is based in Cameroon and is building public, operational, logistics, depot, plastic-intelligence, and payment infrastructure for circular plastic recovery.",
+      "This Privacy Policy applies to people who visit the ECOLOGIX public website, submit collection requests, send partnership enquiries, use ECOLOGIX operational accounts, participate in collection or recovery activities, or otherwise provide personal information to ECOLOGIX.",
+      "ECOLOGIX is based in Cameroon and is building public, operational, logistics, depot, plastic-intelligence, and payment infrastructure for circular plastic recovery.",
     ],
   },
   {
     number: "02",
-    title: "Information WastePay may collect",
+    title: "Information ECOLOGIX may collect",
     paragraphs: [
-      "Depending on how you interact with WastePay, we may collect your full name, phone or WhatsApp number, email address, organization, organization type, city, neighbourhood, and other contact information.",
+      "Depending on how you interact with ECOLOGIX, we may collect your full name, phone or WhatsApp number, email address, organization, organization type, city, neighbourhood, and other contact information.",
       "For a collection request, we may also collect the requester type, estimated bag count, estimated plastic weight, optional photographs, browser-provided geographic coordinates, request status, assigned depot, assigned driver, and operational timestamps.",
       "For staff accounts, we may collect identity details, work contact information, assigned role, assigned depot, account status, sign-in information, password-change status, and records of authorized operational actions.",
-      "For depot and transaction workflows, WastePay may process verified material weight, material category, barcode and product information, verification photographs, pricing details, payout instructions, Mobile Money number, payment status, and telecom transaction references.",
+      "For depot and transaction workflows, ECOLOGIX may process verified material weight, material category, barcode and product information, verification photographs, pricing details, payout instructions, Mobile Money number, payment status, and telecom transaction references.",
       "Technical information may include browser type, device information, timestamps, error records, security events, and information required to operate and protect the platform.",
     ],
   },
   {
     number: "03",
-    title: "How WastePay uses information",
+    title: "How ECOLOGIX uses information",
     paragraphs: [
-      "WastePay uses personal information to review collection requests, contact requesters, assign recovery depots, dispatch drivers, verify deliveries, process material intake, operate staff accounts, respond to enquiries, and provide requested services.",
+      "ECOLOGIX uses personal information to review collection requests, contact requesters, assign recovery depots, dispatch drivers, verify deliveries, process material intake, operate staff accounts, respond to enquiries, and provide requested services.",
       "Information may also be used to calculate verified material value, prepare and reconcile payments, prevent fraud, investigate operational problems, maintain audit records, improve service coverage, and produce internal performance analysis.",
-      "WastePay may publish aggregated impact statistics such as total plastic recovered, collection-request counts, communities represented, and active depots. These public indicators are designed not to reveal personal names, phone numbers, exact GPS locations, staff emails, or private transaction details.",
+      "ECOLOGIX may publish aggregated impact statistics such as total plastic recovered, collection-request counts, communities represented, and active depots. These public indicators are designed not to reveal personal names, phone numbers, exact GPS locations, staff emails, or private transaction details.",
     ],
   },
   {
@@ -49,7 +49,7 @@ const policySections = [
     title: "Location information",
     paragraphs: [
       "The public collection form may request permission to obtain the device's current geographic coordinates. The browser will not provide this location unless the user grants permission.",
-      "WastePay uses location information to identify a pickup point, support depot assignment, improve service-area decisions, and prepare future routing and geographic analysis.",
+      "ECOLOGIX uses location information to identify a pickup point, support depot assignment, improve service-area decisions, and prepare future routing and geographic analysis.",
       "Users should provide location information only for a place where they are authorized to request collection. Exact pickup coordinates are operational information and are not intended for public display.",
     ],
   },
@@ -57,7 +57,7 @@ const policySections = [
     number: "05",
     title: "Photos, barcodes, and material evidence",
     paragraphs: [
-      "WastePay may collect photographs submitted with collection requests or captured during driver and depot workflows. These images may be used to verify the existence, condition, quantity, weight, or classification of recovered material.",
+      "ECOLOGIX may collect photographs submitted with collection requests or captured during driver and depot workflows. These images may be used to verify the existence, condition, quantity, weight, or classification of recovered material.",
       "Barcode scans may be used to identify a product, brand, manufacturer, packaging size, plastic category, and other material attributes.",
       "Users and staff should avoid capturing unnecessary people, identity documents, private conversations, or unrelated personal information in operational photographs.",
     ],
@@ -66,8 +66,8 @@ const policySections = [
     number: "06",
     title: "Payments and Mobile Money",
     paragraphs: [
-      "When WastePay's payout workflow becomes available, we may process a recipient's Mobile Money number, selected telecom provider, verified account information, payout amount, transaction status, error reason, and telecom reference.",
-      "WastePay does not need to store a user's Mobile Money PIN. Users must never provide their Mobile Money PIN, one-time password, or private wallet security code to WastePay staff or through a WastePay form.",
+      "When ECOLOGIX's payout workflow becomes available, we may process a recipient's Mobile Money number, selected telecom provider, verified account information, payout amount, transaction status, error reason, and telecom reference.",
+      "ECOLOGIX does not need to store a user's Mobile Money PIN. Users must never provide their Mobile Money PIN, one-time password, or private wallet security code to ECOLOGIX staff or through an ECOLOGIX form.",
       "Payment information may be shared with the relevant payment or telecommunications provider when necessary to validate or execute a requested transaction.",
     ],
   },
@@ -75,44 +75,44 @@ const policySections = [
     number: "07",
     title: "When information may be shared",
     paragraphs: [
-      "WastePay may share information with authorized employees, drivers, depot teams, managers, service providers, technology providers, payment providers, recycling partners, and professional advisers where access is necessary for a legitimate operational purpose.",
+      "ECOLOGIX may share information with authorized employees, drivers, depot teams, managers, service providers, technology providers, payment providers, recycling partners, and professional advisers where access is necessary for a legitimate operational purpose.",
       "Access should be limited according to role and responsibility. For example, a driver may require pickup contact and location information, while a depot agent may require delivery and material-verification information.",
-      "WastePay may also disclose information when required by applicable law, a valid legal process, a regulator, or where disclosure is reasonably necessary to protect users, staff, the public, or WastePay's systems.",
-      "WastePay does not intend to sell personal information as a commercial data product.",
+      "ECOLOGIX may also disclose information when required by applicable law, a valid legal process, a regulator, or where disclosure is reasonably necessary to protect users, staff, the public, or ECOLOGIX's systems.",
+      "ECOLOGIX does not intend to sell personal information as a commercial data product.",
     ],
   },
   {
     number: "08",
     title: "Storage and security",
     paragraphs: [
-      "WastePay uses technical and organizational safeguards intended to protect information against unauthorized access, loss, misuse, alteration, or disclosure.",
+      "ECOLOGIX uses technical and organizational safeguards intended to protect information against unauthorized access, loss, misuse, alteration, or disclosure.",
       "Current safeguards include authenticated staff accounts, role checks, database Row Level Security, server-side access controls, restricted administrative credentials, controlled request statuses, and separation between public metrics and private operational records.",
-      "No internet service or storage system can guarantee absolute security. Users should protect their passwords, avoid sharing temporary credentials, and notify WastePay if they suspect unauthorized account access.",
+      "No internet service or storage system can guarantee absolute security. Users should protect their passwords, avoid sharing temporary credentials, and notify ECOLOGIX if they suspect unauthorized account access.",
     ],
   },
   {
     number: "09",
     title: "How long information is retained",
     paragraphs: [
-      "WastePay intends to retain information only for as long as it is reasonably necessary for the purposes described in this policy, including service delivery, payment reconciliation, legal compliance, security, dispute handling, reporting, and audit requirements.",
+      "ECOLOGIX intends to retain information only for as long as it is reasonably necessary for the purposes described in this policy, including service delivery, payment reconciliation, legal compliance, security, dispute handling, reporting, and audit requirements.",
       "Different records may require different retention periods. Operational, financial, security, and legal records may need to be retained longer than an unanswered general enquiry.",
-      "WastePay will refine and document formal retention periods as production operations and regulatory requirements are finalized.",
+      "ECOLOGIX will refine and document formal retention periods as production operations and regulatory requirements are finalized.",
     ],
   },
   {
     number: "10",
     title: "Your choices and requests",
     paragraphs: [
-      "Subject to applicable law and operational requirements, a person may contact WastePay to ask whether personal information is being processed, request access or correction, raise an objection, ask for deletion where appropriate, or request further information about how data is used.",
+      "Subject to applicable law and operational requirements, a person may contact ECOLOGIX to ask whether personal information is being processed, request access or correction, raise an objection, ask for deletion where appropriate, or request further information about how data is used.",
       "Some information cannot be deleted immediately where it must be retained for a transaction, security investigation, legal obligation, audit trail, dispute, or fraud-prevention purpose.",
-      "WastePay may need to verify the identity and authority of the person making a privacy request before providing or changing protected information.",
+      "ECOLOGIX may need to verify the identity and authority of the person making a privacy request before providing or changing protected information.",
     ],
   },
   {
     number: "11",
     title: "Children and educational programs",
     paragraphs: [
-      "WastePay may work with schools and youth-focused environmental programs. School or program representatives should provide appropriate adult supervision and authorization before submitting personal information about children.",
+      "ECOLOGIX may work with schools and youth-focused environmental programs. School or program representatives should provide appropriate adult supervision and authorization before submitting personal information about children.",
       "The public website is not designed to invite children to independently submit financial, location, or operational information without appropriate adult involvement.",
     ],
   },
@@ -120,24 +120,24 @@ const policySections = [
     number: "12",
     title: "Third-party services and links",
     paragraphs: [
-      "WastePay may rely on services such as hosting providers, database providers, mapping or location services, email applications, telecommunications providers, and payment systems.",
-      "Third-party websites and services may apply their own privacy policies and security practices. WastePay is not responsible for the content or privacy practices of an unrelated third-party website merely because the public website contains a link to it.",
+      "ECOLOGIX may rely on services such as hosting providers, database providers, mapping or location services, email applications, telecommunications providers, and payment systems.",
+      "Third-party websites and services may apply their own privacy policies and security practices. ECOLOGIX is not responsible for the content or privacy practices of an unrelated third-party website merely because the public website contains a link to it.",
     ],
   },
   {
     number: "13",
     title: "Changes to this policy",
     paragraphs: [
-      "WastePay may update this Privacy Policy as the platform, operational workflows, payment integrations, legal requirements, and public services develop.",
+      "ECOLOGIX may update this Privacy Policy as the platform, operational workflows, payment integrations, legal requirements, and public services develop.",
       "The updated version will be published on this page with a revised effective date. Material changes may also be communicated through an appropriate additional notice.",
     ],
   },
   {
     number: "14",
-    title: "Contact WastePay",
+    title: "Contact ECOLOGIX",
     paragraphs: [
-      "Questions or requests about this policy can be sent to privacy@wastepay.org.",
-      "General enquiries may be directed to hello@wastepay.org, while partnership enquiries may be sent through the dedicated partnership form.",
+      "Questions or requests about this policy can be sent to privacy@ecologix.org.",
+      "General enquiries may be directed to hello@ecologix.org, while partnership enquiries may be sent through the dedicated partnership form.",
     ],
   },
 ];
@@ -159,7 +159,7 @@ export default function PrivacyPage() {
         <div className="wp-page-container">
           <div className="max-w-5xl">
             <p className="wp-eyebrow wp-fade-up">
-              Privacy at WastePay
+              Privacy at ECOLOGIX
             </p>
 
             <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -170,15 +170,15 @@ export default function PrivacyPage() {
             </h1>
 
             <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-4xl">
-              This policy explains what WastePay may collect, why it is needed,
+              This policy explains what ECOLOGIX may collect, why it is needed,
               how it may be used, and how private operational information is
               separated from public circular-economy reporting.
             </p>
 
             <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
 
               <Link href="/terms" className="wp-secondary-button">
@@ -226,7 +226,7 @@ export default function PrivacyPage() {
           <p className="text-sm font-light leading-7 text-amber-100/75">
             This document is a practical pre-launch draft and does not replace
             advice from a qualified Cameroonian lawyer. It must be reviewed
-            before WastePay accepts production users or processes live
+            before ECOLOGIX accepts production users or processes live
             payments.
           </p>
         </div>
@@ -241,7 +241,7 @@ export default function PrivacyPage() {
               </p>
 
               <h2 className="mt-7 text-3xl font-black tracking-[-0.05em] text-white">
-                How WastePay handles information.
+                How ECOLOGIX handles information.
               </h2>
 
               <nav
@@ -315,15 +315,15 @@ export default function PrivacyPage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Contact WastePay before submitting sensitive information when
+                  Contact ECOLOGIX before submitting sensitive information when
                   you need clarification about a collection, account,
                   partnership, or payment workflow.
                 </p>
               </div>
 
               <Link href="/contact" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>
           </div>

@@ -39,11 +39,11 @@ export function SiteThemeForm({ theme, logoUrl }: {
       </div>
       <label className="block text-sm text-slate-300">
         Logo
-        {logoUrl ? <Image src={logoUrl} alt="Current WastePay logo" width={96} height={96} className="my-3 h-24 w-24 rounded-2xl object-cover" /> : null}
+        {logoUrl ? <Image src={logoUrl} alt="Current ECOLOGIX logo" width={96} height={96} className="my-3 h-24 w-24 rounded-2xl object-cover" /> : null}
         <input name="logo" type="file" accept="image/*" className="mt-3 block text-sm text-slate-400" />
         {logoUrl ? <span className="mt-3 flex items-center gap-2"><input name="removeLogo" type="checkbox" /> Remove current logo</span> : null}
       </label>
-      <label className="flex items-center gap-3 text-sm text-amber-200"><input name="resetTheme" type="checkbox" className="h-5 w-5 accent-amber-400" />Reset to WastePay defaults</label>
+      <label className="flex items-center gap-3 text-sm text-amber-200"><input name="resetTheme" type="checkbox" className="h-5 w-5 accent-amber-400" />Reset to ECOLOGIX defaults</label>
       {state.message ? <p className={state.status === "success" ? "text-emerald-300" : "text-red-300"}>{state.message}</p> : null}
       <button disabled={pending} className="rounded-2xl bg-emerald-400 px-6 py-4 text-xs font-black uppercase tracking-[0.18em] text-slate-950 disabled:opacity-50">{pending ? "Saving..." : "Save theme"}</button>
     </form>

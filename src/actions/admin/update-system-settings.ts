@@ -82,7 +82,7 @@ export async function updateSystemSettings(
   if (error) {
     return {
       status: "error",
-      message: `WastePay could not save the system settings (${error.code}: ${error.message}).`,
+      message: `ECOLOGIX could not save the system settings (${error.code}: ${error.message}).`,
     };
   }
 

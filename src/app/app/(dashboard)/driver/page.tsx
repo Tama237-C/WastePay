@@ -221,12 +221,12 @@ export default async function DriverDashboardPage() {
               <span className="h-2.5 w-2.5 rounded-full bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.9)]" />
 
               <p className="text-xs font-black uppercase tracking-[0.3em] text-sky-400">
-                WastePay field logistics
+                ECOLOGIX field logistics
               </p>
             </div>
 
             <h1 className="mt-5 text-3xl font-black tracking-[-0.045em] text-white sm:text-4xl">
-              Welcome, {profile.full_name ?? "WastePay Driver"}.
+              Welcome, {profile.full_name ?? "ECOLOGIX Driver"}.
             </h1>
 
             <p className="mt-3 text-sm font-light text-slate-400">
@@ -303,7 +303,7 @@ export default async function DriverDashboardPage() {
           {pageError ? (
             <div className="m-6 rounded-3xl border border-red-400/20 bg-red-400/10 p-6 sm:m-8">
               <p className="text-sm font-bold text-red-200">
-                WastePay could not load your pickup queue.
+                ECOLOGIX could not load your pickup queue.
               </p>
 
               <p className="mt-2 text-sm leading-6 text-red-200/70">
@@ -322,7 +322,7 @@ export default async function DriverDashboardPage() {
                 </h3>
 
                 <p className="mt-3 text-sm font-light leading-7 text-slate-500">
-                  New approved pickups will appear here when WastePay dispatch
+                  New approved pickups will appear here when ECOLOGIX dispatch
                   assigns them to your driver account.
                 </p>
               </div>
@@ -394,7 +394,7 @@ export default async function DriverDashboardPage() {
                       </p>
 
                       <p className="mt-3 font-bold text-white">
-                        {depot?.name ?? "WastePay depot"}
+                        {depot?.name ?? "ECOLOGIX depot"}
                       </p>
 
                       <p className="mt-2 text-sm leading-6 text-slate-500">

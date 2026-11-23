@@ -122,11 +122,11 @@ export default async function AgentDashboardPage() {
           </p>
 
           <h1 className="mt-7 text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">
-            Your account is not connected to a WastePay depot.
+            Your account is not connected to an ECOLOGIX depot.
           </h1>
 
           <p className="mt-6 text-lg font-light leading-8 text-amber-100/70">
-            Ask a WastePay administrator to assign your agent account to an
+            Ask an ECOLOGIX administrator to assign your agent account to an
             operational recovery centre.
           </p>
 
@@ -254,12 +254,12 @@ export default async function AgentDashboardPage() {
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.9)]" />
 
               <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-400">
-                WastePay depot operations
+                ECOLOGIX depot operations
               </p>
             </div>
 
             <h1 className="mt-5 text-3xl font-black tracking-[-0.045em] text-white sm:text-4xl">
-              Welcome, {profile.full_name ?? "WastePay Agent"}.
+              Welcome, {profile.full_name ?? "ECOLOGIX Agent"}.
             </h1>
 
             <p className="mt-3 text-sm font-light text-slate-400">
@@ -353,7 +353,7 @@ export default async function AgentDashboardPage() {
           {pageError ? (
             <div className="m-6 rounded-3xl border border-red-400/20 bg-red-400/10 p-6 sm:m-8">
               <p className="text-sm font-bold text-red-200">
-                WastePay could not load the depot delivery queue.
+                ECOLOGIX could not load the depot delivery queue.
               </p>
 
               <p className="mt-2 text-sm leading-6 text-red-200/70">
@@ -439,7 +439,7 @@ export default async function AgentDashboardPage() {
                     </p>
 
                     <p className="mt-2 text-sm font-bold text-white">
-                      {depot?.name ?? "WastePay depot"}
+                      {depot?.name ?? "ECOLOGIX depot"}
                     </p>
 
                     <p className="mt-2 text-sm leading-6 text-slate-500">

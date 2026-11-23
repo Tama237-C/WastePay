@@ -36,7 +36,7 @@ export default async function TransactionsPage() {
 
       {error ? (
         <p className="rounded-2xl border border-red-400/20 bg-red-400/[0.08] p-5 text-sm text-red-200">
-          WastePay could not load the transaction ledger.
+          ECOLOGIX could not load the transaction ledger.
         </p>
       ) : null}
 

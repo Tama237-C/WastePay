@@ -2,30 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | WastePay",
+  title: "Frequently Asked Questions | ECOLOGIX",
   description:
-    "Find answers about WastePay plastic collection, accepted materials, minimum pickup quantities, depot operations, partnerships, payments, privacy, and service availability.",
+    "Find answers about ECOLOGIX plastic collection, accepted materials, minimum pickup quantities, depot operations, partnerships, payments, privacy, and service availability.",
   keywords: [
-    "WastePay FAQ",
+    "ECOLOGIX FAQ",
     "plastic collection Cameroon",
     "home plastic pickup questions",
     "plastic recycling Cameroon",
-    "WastePay partnership questions",
+    "ECOLOGIX partnership questions",
     "plastic buyback Cameroon",
   ],
   openGraph: {
-    title: "WastePay Frequently Asked Questions",
+    title: "ECOLOGIX Frequently Asked Questions",
     description:
-      "Answers about collection requests, accepted plastic, recovery operations, payments, partnerships, and WastePay services.",
+      "Answers about collection requests, accepted plastic, recovery operations, payments, partnerships, and ECOLOGIX services.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "WastePay Frequently Asked Questions",
+    title: "ECOLOGIX Frequently Asked Questions",
     description:
-      "Understand how WastePay collection, recovery, verification, and partnerships work.",
+      "Understand how ECOLOGIX collection, recovery, verification, and partnerships work.",
   },
 };
 
@@ -57,14 +57,14 @@ const faqCategories: FaqCategory[] = [
       "border-emerald-400/20 bg-emerald-400/[0.08] text-emerald-400",
     items: [
       {
-        question: "Who can request a WastePay collection?",
+        question: "Who can request an ECOLOGIX collection?",
         answer:
-          "Residents, residential communities, schools, offices, hotels, businesses, and other institutions can submit a collection request through the public WastePay form.",
+          "Residents, residential communities, schools, offices, hotels, businesses, and other institutions can submit a collection request through the public ECOLOGIX form.",
       },
       {
         question: "Is there a minimum quantity for home collection?",
         answer:
-          "WastePay currently plans residential pickup operations around a minimum estimated quantity of 15 kilograms. Operational approval may also depend on service coverage, route availability, and the assigned depot.",
+          "ECOLOGIX currently plans residential pickup operations around a minimum estimated quantity of 15 kilograms. Operational approval may also depend on service coverage, route availability, and the assigned depot.",
       },
       {
         question: "Do I need to create an account before requesting a pickup?",
@@ -72,14 +72,14 @@ const faqCategories: FaqCategory[] = [
           "No. The current public collection form allows a requester to submit a pickup without creating an account.",
       },
       {
-        question: "Why does WastePay request my GPS location?",
+        question: "Why does ECOLOGIX request my GPS location?",
         answer:
-          "The secure browser location helps WastePay understand where the pickup is located, identify the appropriate recovery depot, and support future routing. Exact location information is not displayed publicly.",
+          "The secure browser location helps ECOLOGIX understand where the pickup is located, identify the appropriate recovery depot, and support future routing. Exact location information is not displayed publicly.",
       },
       {
         question: "What happens after I submit the form?",
         answer:
-          "The request enters WastePay's administrative review queue. An authorized administrator can approve or reject it, assign a recovery depot, and dispatch an authenticated driver.",
+          "The request enters ECOLOGIX's administrative review queue. An authorized administrator can approve or reject it, assign a recovery depot, and dispatch an authenticated driver.",
       },
       {
         question: "Does submitting a request guarantee collection?",
@@ -93,16 +93,16 @@ const faqCategories: FaqCategory[] = [
     eyebrow: "Accepted materials",
     title: "Preparing plastic for recovery",
     description:
-      "Guidance on the material categories WastePay is designed to accept and how plastic should be prepared.",
+      "Guidance on the material categories ECOLOGIX is designed to accept and how plastic should be prepared.",
     accentClass:
       "border-sky-400/15 bg-sky-400/[0.045]",
     badgeClass:
       "border-sky-400/20 bg-sky-400/[0.08] text-sky-400",
     items: [
       {
-        question: "Which plastic materials does WastePay accept?",
+        question: "Which plastic materials does ECOLOGIX accept?",
         answer:
-          "WastePay's initial operational focus is PET, HDPE, and PP plastic. More detailed material rules will be published as depot intake and pricing operations expand.",
+          "ECOLOGIX's initial operational focus is PET, HDPE, and PP plastic. More detailed material rules will be published as depot intake and pricing operations expand.",
       },
       {
         question: "Should the plastic be sorted before pickup?",
@@ -120,9 +120,9 @@ const faqCategories: FaqCategory[] = [
           "Acceptance depends on the material category and the operating capability of the assigned depot. The initial platform prioritizes PET, HDPE, and PP streams rather than every flexible-plastic format.",
       },
       {
-        question: "Can WastePay collect mixed household waste?",
+        question: "Can ECOLOGIX collect mixed household waste?",
         answer:
-          "No. WastePay is being built as a plastic-recovery network, not a general household-waste disposal service.",
+          "No. ECOLOGIX is being built as a plastic-recovery network, not a general household-waste disposal service.",
       },
     ],
   },
@@ -131,7 +131,7 @@ const faqCategories: FaqCategory[] = [
     eyebrow: "Drivers and depots",
     title: "Collection and verification",
     description:
-      "How WastePay drivers, recovery depots, agents, and controlled status transitions support accountability.",
+      "How ECOLOGIX drivers, recovery depots, agents, and controlled status transitions support accountability.",
     accentClass:
       "border-violet-400/15 bg-violet-400/[0.045]",
     badgeClass:
@@ -140,7 +140,7 @@ const faqCategories: FaqCategory[] = [
       {
         question: "Who collects the plastic?",
         answer:
-          "An approved request can be assigned to an active WastePay driver using a protected operational account.",
+          "An approved request can be assigned to an active ECOLOGIX driver using a protected operational account.",
       },
       {
         question: "Where does the collected plastic go?",
@@ -155,7 +155,7 @@ const faqCategories: FaqCategory[] = [
       {
         question: "Can any depot agent process every delivery?",
         answer:
-          "No. WastePay connects operational agents to specific depots. Database security is designed to limit an agent to deliveries associated with the assigned recovery centre.",
+          "No. ECOLOGIX connects operational agents to specific depots. Database security is designed to limit an agent to deliveries associated with the assigned recovery centre.",
       },
       {
         question: "Why are photos and barcode scans planned?",
@@ -176,19 +176,19 @@ const faqCategories: FaqCategory[] = [
       "border-amber-400/20 bg-amber-400/[0.08] text-amber-400",
     items: [
       {
-        question: "Does WastePay currently pay every home pickup requester?",
+        question: "Does ECOLOGIX currently pay every home pickup requester?",
         answer:
           "The full pricing, manager-approval, and Mobile Money payout workflow is still under development. A submitted collection request should not be interpreted as a guaranteed payment offer.",
       },
       {
-        question: "How will WastePay calculate plastic value?",
+        question: "How will ECOLOGIX calculate plastic value?",
         answer:
           "The planned pricing engine uses a base material rate, a regional multiplier, and any active campaign bonus. The calculation will rely on verified material type and weight.",
       },
       {
         question: "Will payments use MTN MoMo and Orange Money?",
         answer:
-          "WastePay plans to support MTN Mobile Money and Orange Money for verified payouts in Cameroon after the payment integrations, validation controls, and reconciliation workflow are production-ready.",
+          "ECOLOGIX plans to support MTN Mobile Money and Orange Money for verified payouts in Cameroon after the payment integrations, validation controls, and reconciliation workflow are production-ready.",
       },
       {
         question: "Why is manager approval required?",
@@ -205,7 +205,7 @@ const faqCategories: FaqCategory[] = [
   {
     number: "05",
     eyebrow: "Programs and partnerships",
-    title: "Working with WastePay",
+    title: "Working with ECOLOGIX",
     description:
       "Information for businesses, municipalities, schools, brands, funders, and recycling partners.",
     accentClass:
@@ -216,10 +216,10 @@ const faqCategories: FaqCategory[] = [
       {
         question: "Can a business arrange recurring collection?",
         answer:
-          "WastePay plans structured recurring recovery programs for offices, hotels, campuses, retailers, and other organizations that produce regular plastic volumes.",
+          "ECOLOGIX plans structured recurring recovery programs for offices, hotels, campuses, retailers, and other organizations that produce regular plastic volumes.",
       },
       {
-        question: "Can WastePay support a school or university program?",
+        question: "Can ECOLOGIX support a school or university program?",
         answer:
           "Yes. Education programs can combine collection points, scheduled pickups, student participation, environmental education, and recovery reporting.",
       },
@@ -229,9 +229,9 @@ const faqCategories: FaqCategory[] = [
           "A brand can discuss a program based on target materials, locations, recovery volumes, product intelligence, campaign duration, and reporting requirements.",
       },
       {
-        question: "Can municipalities work with WastePay?",
+        question: "Can municipalities work with ECOLOGIX?",
         answer:
-          "WastePay is designed to support municipal cooperation around collection demand, service zones, depots, field operations, and public impact reporting.",
+          "ECOLOGIX is designed to support municipal cooperation around collection demand, service zones, depots, field operations, and public impact reporting.",
       },
       {
         question: "How do I start a partnership discussion?",
@@ -245,7 +245,7 @@ const faqCategories: FaqCategory[] = [
     eyebrow: "Privacy and public data",
     title: "Protecting operational information",
     description:
-      "How WastePay separates private personal information from public aggregate impact reporting.",
+      "How ECOLOGIX separates private personal information from public aggregate impact reporting.",
     accentClass:
       "border-cyan-400/15 bg-cyan-400/[0.04]",
     badgeClass:
@@ -262,12 +262,12 @@ const faqCategories: FaqCategory[] = [
           "Operational dashboards are protected by authentication and role checks. Staff members are routed to the tools appropriate for their assigned role.",
       },
       {
-        question: "Why does WastePay store operational history?",
+        question: "Why does ECOLOGIX store operational history?",
         answer:
           "Status history, verification records, assignments, weights, and future payment references are necessary for accountability, dispute resolution, reporting, and system security.",
       },
       {
-        question: "Is the partnership form stored in WastePay's database?",
+        question: "Is the partnership form stored in ECOLOGIX's database?",
         answer:
           "Not yet. The current initial partnership form prepares an email through the visitor's email application. A secure database-backed enquiry workflow is planned for a later module.",
       },
@@ -327,7 +327,7 @@ export default function FaqPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                Understand WastePay collection requests, accepted materials,
+                Understand ECOLOGIX collection requests, accepted materials,
                 depot verification, future payments, partnerships, privacy, and
                 operational coverage.
               </p>
@@ -335,7 +335,7 @@ export default function FaqPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link
@@ -394,7 +394,7 @@ export default function FaqPage() {
                 </p>
 
                 <p className="mt-2 text-sm font-black text-white">
-                  Contact WastePay before submitting.
+                  Contact ECOLOGIX before submitting.
                 </p>
               </div>
             </div>
@@ -422,7 +422,7 @@ export default function FaqPage() {
         <div className="wp-page-container">
           <div className="max-w-5xl">
             <p className="wp-eyebrow">
-              WastePay knowledge centre
+              ECOLOGIX knowledge centre
             </p>
 
             <h2 className="wp-section-title mt-7">
@@ -515,7 +515,7 @@ export default function FaqPage() {
                 <h2 className="mt-7 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
                   Speak with the
                   <span className="block font-light text-slate-400">
-                    appropriate WastePay team.
+                    appropriate ECOLOGIX team.
                   </span>
                 </h2>
 
@@ -527,8 +527,8 @@ export default function FaqPage() {
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
-                  Contact WastePay
-                  <span aria-hidden="true">→</span>
+                  Contact ECOLOGIX
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link

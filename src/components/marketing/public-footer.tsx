@@ -21,7 +21,7 @@ const platformLinks = [
 
 const companyLinks = [
   {
-    label: "About WastePay",
+    label: "About ECOLOGIX",
     href: "/about",
   },
   {
@@ -85,7 +85,7 @@ export function PublicFooter() {
 
             <p className="mt-5 max-w-2xl text-base font-light leading-8 text-slate-400">
               Schedule a pickup, join a recovery program, or partner with
-              WastePay to build Cameroon&apos;s circular plastic economy.
+              ECOLOGIX to build Cameroon&apos;s circular plastic economy.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function PublicFooter() {
               className="wp-primary-button"
             >
               Book a collection
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">â†’</span>
             </Link>
 
             <Link
@@ -119,7 +119,7 @@ export function PublicFooter() {
 
               <span>
                 <span className="block text-lg font-black uppercase tracking-[0.24em] text-white">
-                  WastePay
+                  ECOLOGIX
                 </span>
 
                 <span className="mt-1.5 block text-[0.62rem] font-black uppercase tracking-[0.22em] text-emerald-400">
@@ -129,7 +129,7 @@ export function PublicFooter() {
             </Link>
 
             <p className="mt-6 text-sm font-light leading-7 text-slate-500">
-              WastePay connects households, collectors, drivers, recovery
+              ECOLOGIX connects households, collectors, drivers, recovery
               depots, brands, and payment infrastructure in one transparent
               circular-plastic network.
             </p>
@@ -213,7 +213,7 @@ export function PublicFooter() {
 
         <div className="flex flex-col gap-4 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {currentYear} WastePay. Building Cameroon&apos;s circular
+            Â© {currentYear} ECOLOGIX. Building Cameroon&apos;s circular
             plastic economy.
           </p>
 

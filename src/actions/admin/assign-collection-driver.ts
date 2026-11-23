@@ -42,7 +42,7 @@ async function verifyCurrentAdministrator(): Promise<
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, is_active, assigned_depot_id")
+    .select("role, is_active, assigned_depot_id, must_change_password")
     .eq("id", user.id)
     .single();
 
@@ -55,7 +55,14 @@ async function verifyCurrentAdministrator(): Promise<
     return {
       authorized: false,
       message:
-        "Your account is not authorized to dispatch WastePay drivers.",
+        "Your account is not authorized to dispatch ECOLOGIX drivers.",
+    };
+  }
+
+  if (profile.must_change_password) {
+    return {
+      authorized: false,
+      message: "Change your temporary password before dispatching drivers.",
     };
   }
 
@@ -86,7 +93,7 @@ export async function assignCollectionDriver(
   if (!requestId) {
     return {
       status: "error",
-      message: "WastePay could not identify this collection request.",
+      message: "ECOLOGIX could not identify this collection request.",
     };
   }
 
@@ -108,7 +115,7 @@ export async function assignCollectionDriver(
   if (requestError) {
     return {
       status: "error",
-      message: "WastePay could not verify this collection request.",
+      message: "ECOLOGIX could not verify this collection request.",
     };
   }
 
@@ -157,7 +164,7 @@ export async function assignCollectionDriver(
   if (driverError) {
     return {
       status: "error",
-      message: "WastePay could not verify the selected driver.",
+      message: "ECOLOGIX could not verify the selected driver.",
     };
   }
 
@@ -171,7 +178,7 @@ export async function assignCollectionDriver(
   if (driver.role !== "driver") {
     return {
       status: "error",
-      message: "The selected account is not a WastePay pickup driver.",
+      message: "The selected account is not an ECOLOGIX pickup driver.",
     };
   }
 
@@ -204,7 +211,7 @@ export async function assignCollectionDriver(
     return {
       status: "error",
       message:
-        "WastePay could not assign this collection request to the driver.",
+        "ECOLOGIX could not assign this collection request to the driver.",
     };
   }
 
@@ -215,13 +222,23 @@ export async function assignCollectionDriver(
         "The request changed before the driver could be assigned. Refresh the page and try again.",
     };
   }
-  await adminClient.from("collection_request_events").insert({
-    collection_request_id: requestId,
-    previous_status: request.status,
-    new_status: "ASSIGNED",
-    actor_id: authorization.actorId,
-    reason: `Assigned to ${driver.full_name?.trim() || "selected driver"}`,
-  });
+  const { error: eventError } = await adminClient
+    .from("collection_request_events")
+    .insert({
+      collection_request_id: requestId,
+      previous_status: request.status,
+      new_status: "ASSIGNED",
+      actor_id: authorization.actorId,
+      reason: `Assigned to ${driver.full_name?.trim() || "selected driver"}`,
+    });
+
+  if (eventError) {
+    console.error("ECOLOGIX could not record the driver assignment event.", {
+      code: eventError.code,
+      message: eventError.message,
+      requestId,
+    });
+  }
 
   revalidatePath("/admin/logistics");
   revalidatePath("/admin/collection-requests");
@@ -230,8 +247,12 @@ export async function assignCollectionDriver(
 
   return {
     status: "success",
-    message: `The pickup was assigned to ${
-      driver.full_name?.trim() || "the selected WastePay driver"
-    }.`,
+    message: eventError
+      ? `The pickup was assigned to ${
+          driver.full_name?.trim() || "the selected ECOLOGIX driver"
+        }, but its status history could not be recorded. Refresh the request timeline or contact support.`
+      : `The pickup was assigned to ${
+          driver.full_name?.trim() || "the selected ECOLOGIX driver"
+        }.`,
   };
 }

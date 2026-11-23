@@ -3,20 +3,20 @@ import Link from "next/link";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 
 export const metadata: Metadata = {
-  title: "About WastePay | Circular Plastic Infrastructure",
+  title: "About ECOLOGIX | Circular Plastic Infrastructure",
   description:
-    "Learn how WastePay combines plastic recovery, field logistics, data intelligence, and financial inclusion to build Cameroon’s circular plastic economy.",
+    "Learn how ECOLOGIX combines plastic recovery, field logistics, data intelligence, and financial inclusion to build Cameroon’s circular plastic economy.",
   openGraph: {
-    title: "About WastePay",
+    title: "About ECOLOGIX",
     description:
-      "WastePay is building the digital and physical infrastructure required to recover plastic transparently across Cameroon.",
+      "ECOLOGIX is building the digital and physical infrastructure required to recover plastic transparently across Cameroon.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About WastePay",
+    title: "About ECOLOGIX",
     description:
       "Technology, logistics, data, and financial inclusion for circular plastic recovery.",
   },
@@ -35,7 +35,7 @@ const operatingPrinciples = [
     number: "02",
     title: "Every kilogram should be traceable",
     description:
-      "WastePay connects requests, locations, staff, depots, material records, prices, and payments so recovery activity can be understood and audited.",
+      "ECOLOGIX connects requests, locations, staff, depots, material records, prices, and payments so recovery activity can be understood and audited.",
     accentClass:
       "border-sky-400/15 bg-sky-400/[0.055] text-sky-400",
   },
@@ -68,7 +68,7 @@ const infrastructureLayers = [
     label: "Field logistics",
     title: "Driver dispatch",
     detail:
-      "Approved requests move into a controlled logistics queue and are assigned to authenticated WastePay pickup drivers.",
+      "Approved requests move into a controlled logistics queue and are assigned to authenticated ECOLOGIX pickup drivers.",
   },
   {
     label: "Recovery operations",
@@ -180,7 +180,7 @@ export default function AboutPage() {
           <div className="grid gap-14 xl:grid-cols-[1.03fr_0.97fr] xl:items-center">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
-                About WastePay
+                About ECOLOGIX
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -191,7 +191,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay is building the digital and physical operating
+                ECOLOGIX is building the digital and physical operating
                 infrastructure required to recover plastic transparently,
                 coordinate field teams, create local economic value, and
                 generate credible circular-economy intelligence.
@@ -200,11 +200,11 @@ export default function AboutPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/how-it-works" className="wp-primary-button">
                   See how it works
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
-                  Partner with WastePay
+                  Partner with ECOLOGIX
                 </Link>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function AboutPage() {
 
                 <div className="relative">
                   <p className="text-[0.62rem] font-black uppercase tracking-[0.23em] text-emerald-400">
-                    The WastePay model
+                    The ECOLOGIX model
                   </p>
 
                   <h2 className="mt-5 text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl">
@@ -263,7 +263,7 @@ export default function AboutPage() {
 
               <div className="absolute -bottom-6 -right-3 hidden rounded-2xl border border-white/10 bg-slate-950/90 p-5 shadow-2xl backdrop-blur-xl sm:block">
                 <p className="text-[0.56rem] font-black uppercase tracking-[0.18em] text-slate-600">
-                  WastePay mission
+                  ECOLOGIX mission
                 </p>
 
                 <p className="mt-2 max-w-[15rem] text-sm font-black leading-6 text-white">
@@ -316,7 +316,7 @@ export default function AboutPage() {
         <div className="wp-page-container">
           <div className="max-w-5xl">
             <p className="wp-eyebrow">
-              Why WastePay exists
+              Why ECOLOGIX exists
             </p>
 
             <h2 className="wp-section-title mt-7">
@@ -329,7 +329,7 @@ export default function AboutPage() {
             <p className="wp-body-large mt-7 max-w-4xl">
               Valuable materials are frequently mixed, discarded, burned, or
               lost because access, incentives, logistics, verification, and
-              market information are disconnected. WastePay brings those
+              market information are disconnected. ECOLOGIX brings those
               pieces together in one operating system.
             </p>
           </div>
@@ -375,7 +375,7 @@ export default function AboutPage() {
               </h2>
 
               <p className="wp-body-large mt-7">
-                WastePay links the public experience to operational workflows,
+                ECOLOGIX links the public experience to operational workflows,
                 material verification, financial controls, and measurable
                 environmental outcomes.
               </p>
@@ -452,7 +452,7 @@ export default function AboutPage() {
           <div className="grid gap-12 xl:grid-cols-[1fr_1fr] xl:items-center">
             <div>
               <p className="wp-eyebrow">
-                The WastePay journey
+                The ECOLOGIX journey
               </p>
 
               <h2 className="wp-section-title mt-7">
@@ -463,7 +463,7 @@ export default function AboutPage() {
               </h2>
 
               <p className="wp-body-large mt-7 max-w-3xl">
-                WastePay’s growth is designed around operational proof:
+                ECOLOGIX’s growth is designed around operational proof:
                 reliable service, verified material records, transparent
                 payments, strong local partnerships, and measurable outcomes.
               </p>
@@ -471,7 +471,7 @@ export default function AboutPage() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/impact" className="wp-primary-button">
                   Explore our impact
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/contact" className="wp-secondary-button">
@@ -537,15 +537,15 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Join WastePay as a household, recovery partner, institution,
+                  Join ECOLOGIX as a household, recovery partner, institution,
                   brand, municipality, or development organization.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/partners" className="wp-primary-button">
-                  Partner with WastePay
-                  <span aria-hidden="true">→</span>
+                  Partner with ECOLOGIX
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/contact" className="wp-secondary-button">

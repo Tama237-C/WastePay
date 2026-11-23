@@ -12,7 +12,7 @@ export default function CustomerAccountError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error("WastePay account page encountered an unexpected error.", {
+    console.error("ECOLOGIX account page encountered an unexpected error.", {
       digest: error.digest,
       message: error.message,
     });
@@ -26,7 +26,7 @@ export default function CustomerAccountError({
           <h1>We could not load your account.</h1>
           <p role="alert">
             The account page encountered an unexpected problem. Try again. If
-            it happens again, contact WastePay support
+            it happens again, contact ECOLOGIX support
             {error.digest ? ` and share reference ${error.digest}` : ""}.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">

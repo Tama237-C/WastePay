@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Partner With WastePay | Circular Plastic Recovery",
+  title: "Partner With ECOLOGIX | Circular Plastic Recovery",
   description:
-    "Partner with WastePay to build transparent plastic recovery programs for brands, municipalities, institutions, development organizations, and recovery centres in Cameroon.",
+    "Partner with ECOLOGIX to build transparent plastic recovery programs for brands, municipalities, institutions, development organizations, and recovery centres in Cameroon.",
   openGraph: {
-    title: "Partner With WastePay",
+    title: "Partner With ECOLOGIX",
     description:
-      "Build measurable, transparent plastic recovery programs through WastePay.",
+      "Build measurable, transparent plastic recovery programs through ECOLOGIX.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
 };
 
@@ -81,7 +81,7 @@ export default function PartnersPage() {
           <div className="grid gap-14 xl:grid-cols-[1.03fr_0.97fr] xl:items-center">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
-                Partner with WastePay
+                Partner with ECOLOGIX
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -92,7 +92,7 @@ export default function PartnersPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay works with brands, municipalities, institutions,
+                ECOLOGIX works with brands, municipalities, institutions,
                 recovery centres, and development partners to design
                 transparent plastic-recovery programs in Cameroon.
               </p>
@@ -100,11 +100,11 @@ export default function PartnersPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact?type=partnership" className="wp-primary-button">
                   Start a partnership discussion
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/impact" className="wp-secondary-button">
-                  View WastePay impact
+                  View ECOLOGIX impact
                 </Link>
               </div>
             </div>
@@ -194,14 +194,14 @@ export default function PartnersPage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Tell WastePay about your organization, recovery objectives,
+                  Tell ECOLOGIX about your organization, recovery objectives,
                   locations, material streams, and reporting needs.
                 </p>
               </div>
 
               <Link href="/contact?type=partnership" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>F
           </div>

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { StaffPasswordRecoveryForm } from "@/components/app/staff-password-recovery-form";
 
 export const metadata: Metadata = {
-  title: "Recover Staff Password | WastePay",
-  description: "Securely recover access to your WastePay staff account.",
+  title: "Recover Staff Password | ECOLOGIX",
+  description: "Securely recover access to your ECOLOGIX staff account.",
 };
 
 export default async function StaffPasswordRecoveryPage({
@@ -21,7 +21,7 @@ export default async function StaffPasswordRecoveryPage({
       <section className="wp-auth-card">
         <header className="wp-auth-brand">
           <span className="wp-app-brand__mark">W</span>
-          <span>WastePay</span>
+          <span>ECOLOGIX</span>
           <em>Account recovery</em>
         </header>
 
@@ -29,7 +29,7 @@ export default async function StaffPasswordRecoveryPage({
           <p className="wp-overline">Secure staff access</p>
           <h1>Recover your account.</h1>
           <p>
-            Enter your WastePay staff email. We’ll send a secure link if it
+            Enter your ECOLOGIX staff email. We’ll send a secure link if it
             belongs to an active staff account.
           </p>
         </div>
@@ -46,7 +46,7 @@ export default async function StaffPasswordRecoveryPage({
         <StaffPasswordRecoveryForm />
 
         <footer className="wp-auth-footnote">
-          <span>●</span> Recovery links are private and can only be used once.
+          <span>â—</span> Recovery links are private and can only be used once.
         </footer>
       </section>
     </main>

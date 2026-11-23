@@ -115,7 +115,7 @@ export function CollectionRequestActions({
                 </h2>
 
                 <p className="mt-3 max-w-xl text-sm font-light leading-6 text-slate-400">
-                  Assign the request to a WastePay recovery centre or record a
+                  Assign the request to an ECOLOGIX recovery centre or record a
                   clear rejection reason.
                 </p>
               </div>
@@ -126,7 +126,7 @@ export function CollectionRequestActions({
                 aria-label="Close"
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl font-light text-slate-400 transition-all duration-300 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-200"
               >
-                ×
+                Ã—
               </button>
             </header>
 
@@ -138,7 +138,7 @@ export function CollectionRequestActions({
                   htmlFor={`depot-${requestId}`}
                   className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
                 >
-                  Assign WastePay depot
+                  Assign ECOLOGIX depot
                 </label>
 
                 <select
@@ -160,7 +160,7 @@ export function CollectionRequestActions({
 
                 {availableDepots.length === 0 ? (
                   <p className="mt-3 text-sm leading-6 text-amber-300">
-                    No planned or active WastePay depot is currently available.
+                    No planned or active ECOLOGIX depot is currently available.
                   </p>
                 ) : null}
               </div>

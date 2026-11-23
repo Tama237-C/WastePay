@@ -6,9 +6,11 @@ import { createClient } from "@/lib/supabase/server";
 import { logoutCustomer } from "@/actions/auth/customer-auth";
 
 export const metadata: Metadata = {
-  title: "WastePay Account",
-  description: "Sign in or create a general WastePay account.",
+  title: "ECOLOGIX Account",
+  description: "Sign in or create a general ECOLOGIX account.",
 };
+
+export const dynamic = "force-dynamic";
 
 function AccountLoadError({
   title,
@@ -38,27 +40,58 @@ function describeAccountReadError(
   code: string | undefined,
 ): string {
   if (area === "pickup history" && (code === "42703" || code === "PGRST204")) {
-    return `WastePay could not load pickup history because a required database field is missing (error ${code}). Ask the administrator to verify the customer-account migration in Supabase.`;
+    return `ECOLOGIX could not load pickup history because a required database field is missing (error ${code}). Ask the administrator to verify the customer-account migration in Supabase.`;
   }
 
   if (code === "42501") {
-    return `The database denied access to your ${area} (error ${code}). Contact WastePay support and share this code.`;
+    return `The database denied access to your ${area} (error ${code}). Contact ECOLOGIX support and share this code.`;
   }
 
   return code
-    ? `WastePay could not load your ${area} (error ${code}). Refresh the page; if the problem continues, contact support and share this code.`
-    : `WastePay could not load your ${area}. Refresh the page; if the problem continues, contact support.`;
+    ? `ECOLOGIX could not load your ${area} (error ${code}). Refresh the page; if the problem continues, contact support and share this code.`
+    : `ECOLOGIX could not load your ${area}. Refresh the page; if the problem continues, contact support.`;
 }
 
 export default async function CustomerAccountPage() {
-  const supabase = await createClient();
+  let supabase;
+
+  try {
+    supabase = await createClient();
+  } catch (error) {
+    console.error("ECOLOGIX could not initialize the account service.", {
+      message: error instanceof Error ? error.message : "Unknown configuration error",
+    });
+    return (
+      <AccountLoadError
+        title="We could not load your sign-in."
+        message="The account service is not configured correctly. Refresh the page; if the problem continues, contact ECOLOGIX support."
+      />
+    );
+  }
+
+  let sessionResult;
+
+  try {
+    sessionResult = await supabase.auth.getSession();
+  } catch (error) {
+    console.error("ECOLOGIX could not connect to the account service.", {
+      message: error instanceof Error ? error.message : "Unknown connection error",
+    });
+    return (
+      <AccountLoadError
+        title="We could not connect to your account."
+        message="ECOLOGIX could not reach the sign-in service. Check your internet connection and refresh the page."
+      />
+    );
+  }
+
   const {
     data: { session },
     error: sessionError,
-  } = await supabase.auth.getSession();
+  } = sessionResult;
 
   if (sessionError) {
-    console.error("WastePay could not load the account page session.", {
+    console.error("ECOLOGIX could not load the account page session.", {
       code: sessionError.code,
       message: sessionError.message,
     });
@@ -74,12 +107,28 @@ export default async function CustomerAccountPage() {
     );
   }
 
-  const authResult = session ? await supabase.auth.getUser() : null;
+  let authResult;
+
+  if (session) {
+    try {
+      authResult = await supabase.auth.getUser();
+    } catch (error) {
+      console.error("ECOLOGIX could not verify the account page user.", {
+        message: error instanceof Error ? error.message : "Unknown connection error",
+      });
+      return (
+        <AccountLoadError
+          title="We could not verify your sign-in."
+          message="ECOLOGIX could not reach the account service. Check your internet connection and refresh the page."
+        />
+      );
+    }
+  }
   const userError = authResult?.error;
   const user = authResult?.data.user ?? null;
 
   if (userError) {
-    console.error("WastePay could not verify the account page user.", {
+    console.error("ECOLOGIX could not verify the account page user.", {
       code: userError.code,
       message: userError.message,
     });
@@ -103,7 +152,7 @@ export default async function CustomerAccountPage() {
       .maybeSingle();
 
     if (profileError) {
-      console.error("WastePay could not load the customer account profile.", {
+      console.error("ECOLOGIX could not load the customer account profile.", {
         code: profileError.code,
         message: profileError.message,
       });
@@ -125,7 +174,7 @@ export default async function CustomerAccountPage() {
         .order("requested_at", { ascending: false });
 
       if (requestsError) {
-        console.error("WastePay could not load customer pickup history.", {
+        console.error("ECOLOGIX could not load customer pickup history.", {
           code: requestsError.code,
           message: requestsError.message,
         });
@@ -144,7 +193,7 @@ export default async function CustomerAccountPage() {
         <ConsumerAppShell>
           <main className="wp-consumer-app">
             <section className="wp-consumer-app__hero">
-              <p className="wp-overline">WastePay account</p>
+              <p className="wp-overline">ECOLOGIX account</p>
               <h1>{profile.full_name || "Your account"}</h1>
               <p>{profile.phone_number || "Phone number not provided"}</p>
               <form action={logoutCustomer} className="mt-6">
@@ -204,7 +253,7 @@ export default async function CustomerAccountPage() {
           <main className="wp-consumer-app">
             <section className="wp-consumer-app__hero">
               <p className="wp-overline">Staff account</p>
-              <h1>{profile.full_name || "Your WastePay staff account"}</h1>
+              <h1>{profile.full_name || "Your ECOLOGIX staff account"}</h1>
               <p>
                 This is your {staffRoleLabels[profile.role] ?? "staff"} account.
                 Staff and customer accounts are separate. You can still book a
@@ -231,10 +280,10 @@ export default async function CustomerAccountPage() {
     <ConsumerAppShell>
       <main className="wp-consumer-app">
         <section className="wp-consumer-app__hero">
-          <p className="wp-overline">WastePay account</p>
+          <p className="wp-overline">ECOLOGIX account</p>
           <h1>Sign in or create your account.</h1>
           <p>
-            Save your pickup details and keep your WastePay activity together.
+            Save your pickup details and keep your ECOLOGIX activity together.
           </p>
         </section>
         <CustomerAuthForm />

@@ -81,7 +81,7 @@ export async function changeTemporaryPassword(
   if (profileError || !profile) {
     return {
       status: "error",
-      message: "WastePay could not locate your staff profile.",
+      message: "ECOLOGIX could not locate your staff profile.",
     };
   }
 
@@ -90,7 +90,7 @@ export async function changeTemporaryPassword(
 
     return {
       status: "error",
-      message: "This WastePay account is inactive.",
+      message: "This ECOLOGIX account is inactive.",
     };
   }
 
@@ -113,7 +113,7 @@ export async function changeTemporaryPassword(
     return {
       status: "error",
       message:
-        "WastePay could not update your password. Choose a different password and try again.",
+        "ECOLOGIX could not update your password. Choose a different password and try again.",
     };
   }
 
@@ -130,7 +130,7 @@ export async function changeTemporaryPassword(
     return {
       status: "error",
       message:
-        "Your password changed, but WastePay could not complete the account activation. Contact the administrator.",
+        "Your password changed, but ECOLOGIX could not complete the account activation. Contact the administrator.",
     };
   }
 

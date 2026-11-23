@@ -92,7 +92,7 @@ async function verifyCurrentAdministrator(): Promise<
     return {
       authorized: false,
       message:
-        "Your account is not authorized to create WastePay staff accounts.",
+        "Your account is not authorized to create ECOLOGIX staff accounts.",
     };
   }
 
@@ -231,7 +231,7 @@ export async function createStaffAccount(
   ) {
     return {
       status: "error",
-      message: "Select an active or planned WastePay depot.",
+      message: "Select an active or planned ECOLOGIX depot.",
       temporaryPassword: null,
       createdEmail: null,
     };
@@ -247,7 +247,7 @@ export async function createStaffAccount(
     return {
       status: "error",
       message:
-        "WastePay could not verify whether this phone number already exists.",
+        "ECOLOGIX could not verify whether this phone number already exists.",
       temporaryPassword: null,
       createdEmail: null,
     };
@@ -257,7 +257,7 @@ export async function createStaffAccount(
     return {
       status: "error",
       message:
-        "This phone number is already connected to another WastePay account.",
+        "This phone number is already connected to another ECOLOGIX account.",
       temporaryPassword: null,
       createdEmail: null,
     };
@@ -325,7 +325,7 @@ export async function createStaffAccount(
     return {
       status: "error",
       message:
-        "The authentication account was cancelled because WastePay could not complete its staff profile.",
+        "The authentication account was cancelled because ECOLOGIX could not complete its staff profile.",
       temporaryPassword: null,
       createdEmail: null,
     };

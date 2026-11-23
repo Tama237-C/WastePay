@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | WastePay",
+  title: "Terms of Use | ECOLOGIX",
   description:
-    "Read the terms governing the use of WastePay's website, operational platform, recovery services, and future payment infrastructure.",
+    "Read the terms governing the use of ECOLOGIX's website, operational platform, recovery services, and future payment infrastructure.",
 };
 
 const sections = [
@@ -12,8 +12,8 @@ const sections = [
     number: "01",
     title: "Acceptance of these terms",
     paragraphs: [
-      "By accessing or using WastePay services, you agree to comply with these Terms of Use and all applicable laws and regulations.",
-      "If you do not agree with these terms, you should not use WastePay's services or submit information through the platform.",
+      "By accessing or using ECOLOGIX services, you agree to comply with these Terms of Use and all applicable laws and regulations.",
+      "If you do not agree with these terms, you should not use ECOLOGIX's services or submit information through the platform.",
     ],
   },
 
@@ -22,7 +22,7 @@ const sections = [
     title: "Eligibility",
     paragraphs: [
       "You must have the legal authority to submit information on behalf of yourself or your organization.",
-      "Individuals using operational staff accounts must be authorized by WastePay or an approved WastePay partner.",
+      "Individuals using operational staff accounts must be authorized by ECOLOGIX or an approved ECOLOGIX partner.",
     ],
   },
 
@@ -31,7 +31,7 @@ const sections = [
     title: "Collection requests",
     paragraphs: [
       "Submitting a collection request does not guarantee collection or payment.",
-      "WastePay reserves the right to approve, reject, postpone, or cancel collection requests based on operational capacity and service availability.",
+      "ECOLOGIX reserves the right to approve, reject, postpone, or cancel collection requests based on operational capacity and service availability.",
     ],
   },
 
@@ -48,7 +48,7 @@ const sections = [
     number: "05",
     title: "Pricing and payouts",
     paragraphs: [
-      "WastePay may publish pricing information when operational pricing becomes available.",
+      "ECOLOGIX may publish pricing information when operational pricing becomes available.",
       "Future payouts remain subject to verification, manager approval, fraud prevention procedures, and successful payment processing.",
     ],
   },
@@ -57,7 +57,7 @@ const sections = [
     number: "06",
     title: "Operational accounts",
     paragraphs: [
-      "Operational accounts are intended solely for authorized WastePay personnel and approved partners.",
+      "Operational accounts are intended solely for authorized ECOLOGIX personnel and approved partners.",
       "Users are responsible for maintaining the confidentiality of their credentials.",
     ],
   },
@@ -67,7 +67,7 @@ const sections = [
     title: "Prohibited conduct",
     paragraphs: [
       "Users must not attempt to manipulate collection requests, payment records, material weights, or operational workflows.",
-      "Fraudulent, abusive, or unlawful use of WastePay services may result in account suspension or legal action.",
+      "Fraudulent, abusive, or unlawful use of ECOLOGIX services may result in account suspension or legal action.",
     ],
   },
 
@@ -75,7 +75,7 @@ const sections = [
     number: "08",
     title: "Intellectual property",
     paragraphs: [
-      "WastePay's branding, software, content, graphics, operational workflows, and public metrics remain the intellectual property of WastePay unless otherwise stated.",
+      "ECOLOGIX's branding, software, content, graphics, operational workflows, and public metrics remain the intellectual property of ECOLOGIX unless otherwise stated.",
     ],
   },
 
@@ -83,7 +83,7 @@ const sections = [
     number: "09",
     title: "Service availability",
     paragraphs: [
-      "WastePay services may change, expand, or be temporarily unavailable without prior notice.",
+      "ECOLOGIX services may change, expand, or be temporarily unavailable without prior notice.",
       "Pilot programs may operate in selected regions before wider deployment.",
     ],
   },
@@ -92,8 +92,8 @@ const sections = [
     number: "10",
     title: "Limitation of liability",
     paragraphs: [
-      "WastePay provides its services on an 'as available' basis.",
-      "WastePay is not liable for indirect, incidental, or consequential damages arising from the use of its services, except where prohibited by law.",
+      "ECOLOGIX provides its services on an 'as available' basis.",
+      "ECOLOGIX is not liable for indirect, incidental, or consequential damages arising from the use of its services, except where prohibited by law.",
     ],
   },
 
@@ -101,7 +101,7 @@ const sections = [
     number: "11",
     title: "Changes to the terms",
     paragraphs: [
-      "WastePay may update these Terms of Use as its services evolve.",
+      "ECOLOGIX may update these Terms of Use as its services evolve.",
       "Continued use of the platform after updates constitutes acceptance of the revised terms.",
     ],
   },
@@ -110,7 +110,7 @@ const sections = [
     number: "12",
     title: "Contact information",
     paragraphs: [
-      "Questions regarding these Terms of Use may be directed to hello@wastepay.org.",
+      "Questions regarding these Terms of Use may be directed to hello@ecologix.org.",
     ],
   },
 ];
@@ -131,22 +131,22 @@ export default function TermsPage() {
             </p>
 
             <h1 className="wp-display-title mt-8">
-              Using WastePay
+              Using ECOLOGIX
               <span className="wp-gradient-text block">
                 responsibly.
               </span>
             </h1>
 
             <p className="wp-body-large mt-8 max-w-4xl">
-              These terms explain the rules governing WastePay&apos;s public website,
+              These terms explain the rules governing ECOLOGIX&apos;s public website,
               operational platform, collection services, and future payment
               infrastructure.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
 
               <Link href="/privacy" className="wp-secondary-button">
@@ -203,19 +203,19 @@ export default function TermsPage() {
                 <h2 className="mt-7 text-4xl font-black tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
                   Contact the
                   <span className="block font-light text-slate-400">
-                    WastePay team.
+                    ECOLOGIX team.
                   </span>
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  If you have questions about these terms or how WastePay
+                  If you have questions about these terms or how ECOLOGIX
                   operates, our team will be happy to help.
                 </p>
               </div>
 
               <Link href="/contact" className="wp-primary-button">
-                Contact WastePay
-                <span aria-hidden="true">→</span>
+                Contact ECOLOGIX
+                <span aria-hidden="true">â†’</span>
               </Link>
             </div>
           </div>

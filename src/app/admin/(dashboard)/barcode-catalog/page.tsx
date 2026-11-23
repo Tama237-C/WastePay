@@ -21,13 +21,13 @@ export default async function BarcodeCatalogPage() {
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-8 text-slate-400">
           Review verified product, brand, manufacturer and material records
-          collected across the WastePay network.
+          collected across the ECOLOGIX network.
         </p>
       </section>
 
       {error ? (
         <p className="rounded-2xl border border-red-400/20 bg-red-400/[0.08] p-5 text-sm text-red-200">
-          WastePay could not load the barcode catalog.
+          ECOLOGIX could not load the barcode catalog.
         </p>
       ) : null}
 

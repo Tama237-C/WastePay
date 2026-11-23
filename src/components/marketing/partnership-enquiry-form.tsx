@@ -29,7 +29,7 @@ export function PartnershipEnquiryForm({
           </p>
 
           <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-white sm:text-3xl">
-            Discuss a WastePay partnership
+            Discuss an ECOLOGIX partnership
           </h2>
 
           <p className="mt-3 max-w-2xl text-sm font-light leading-7 text-slate-400">
@@ -39,7 +39,7 @@ export function PartnershipEnquiryForm({
         </div>
 
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl text-slate-300">
-          {isExpanded ? "−" : "+"}
+          {isExpanded ? "âˆ’" : "+"}
         </span>
       </button>
 
@@ -49,7 +49,7 @@ export function PartnershipEnquiryForm({
           className="border-t border-white/10 px-6 py-7 sm:px-8 sm:py-8"
         >
           <form
-            action="mailto:partners@wastepay.org"
+            action="mailto:partners@ecologix.org"
             method="post"
             encType="text/plain"
             className="space-y-7"
@@ -181,7 +181,7 @@ export function PartnershipEnquiryForm({
                   name="location"
                   type="text"
                   required
-                  placeholder="Douala, Yaoundé, Littoral..."
+                  placeholder="Douala, YaoundÃ©, Littoral..."
                   className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-950/45 px-5 py-4 text-white outline-none transition-all placeholder:text-slate-700 focus:border-violet-400/40 focus:ring-4 focus:ring-violet-400/10"
                 />
               </div>
@@ -273,14 +273,14 @@ export function PartnershipEnquiryForm({
             <div className="rounded-2xl border border-violet-400/15 bg-violet-400/[0.06] p-5">
               <p className="text-sm font-light leading-7 text-violet-100/70">
                 This initial form opens your email application and prepares a
-                message for WastePay. A secure database-backed partnership
+                message for ECOLOGIX. A secure database-backed partnership
                 enquiry system will be connected in a later module.
               </p>
             </div>
 
             <button type="submit" className="wp-primary-button w-full">
               Send partnership enquiry
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">â†’</span>
             </button>
           </form>
         </div>

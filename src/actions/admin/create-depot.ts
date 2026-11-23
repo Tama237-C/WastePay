@@ -132,7 +132,7 @@ async function verifyCurrentAdministrator(): Promise<
   ) {
     return {
       authorized: false,
-      message: "Your account is not authorized to register WastePay depots.",
+      message: "Your account is not authorized to register ECOLOGIX depots.",
     };
   }
 
@@ -300,7 +300,7 @@ export async function createDepot(
   if (lookupError) {
     return {
       status: "error",
-      message: "WastePay could not verify the depot code.",
+      message: "ECOLOGIX could not verify the depot code.",
       createdDepotName: null,
       createdDepotCode: null,
     };
@@ -309,7 +309,7 @@ export async function createDepot(
   if (existingDepot) {
     return {
       status: "error",
-      message: "Another WastePay depot already uses this depot code.",
+      message: "Another ECOLOGIX depot already uses this depot code.",
       createdDepotName: null,
       createdDepotCode: null,
     };
@@ -337,7 +337,7 @@ export async function createDepot(
     return {
       status: "error",
       message:
-        "WastePay could not register this depot. Review the details and try again.",
+        "ECOLOGIX could not register this depot. Review the details and try again.",
       createdDepotName: null,
       createdDepotCode: null,
     };
@@ -348,7 +348,7 @@ export async function createDepot(
 
   return {
     status: "success",
-    message: "The WastePay depot was registered successfully.",
+    message: "The ECOLOGIX depot was registered successfully.",
     createdDepotName: name,
     createdDepotCode: code,
   };

@@ -64,11 +64,11 @@ export async function signInCustomer(
   if (profileError) {
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
-      throw new Error("WastePay could not close the unverified sign-in session.", {
+      throw new Error("ECOLOGIX could not close the unverified sign-in session.", {
         cause: signOutError,
       });
     }
-    throw new Error("WastePay could not verify the customer account.", {
+    throw new Error("ECOLOGIX could not verify the customer account.", {
       cause: profileError,
     });
   }
@@ -76,7 +76,7 @@ export async function signInCustomer(
   if (!profile || !profile.is_active) {
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
-      throw new Error("WastePay could not close the inactive account session.", {
+      throw new Error("ECOLOGIX could not close the inactive account session.", {
         cause: signOutError,
       });
     }
@@ -89,7 +89,7 @@ export async function signInCustomer(
   if (profile.role !== "resident") {
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
-      throw new Error("WastePay could not close the staff account session.", {
+      throw new Error("ECOLOGIX could not close the staff account session.", {
         cause: signOutError,
       });
     }
@@ -147,7 +147,7 @@ export async function signUpCustomer(
   });
 
   if (error) {
-    console.error("WastePay customer sign-up failed.", {
+    console.error("ECOLOGIX customer sign-up failed.", {
       code: error.code,
       status: error.status,
       message: error.message,
@@ -159,7 +159,7 @@ export async function signUpCustomer(
   }
 
   if (!data.user) {
-    console.error("WastePay sign-up returned no user and no error.");
+    console.error("ECOLOGIX sign-up returned no user and no error.");
     return {
       status: "error",
       message: describeCustomerSignupError({
@@ -187,7 +187,7 @@ export async function signUpCustomer(
   });
 
   if (profileError) {
-    console.error("WastePay could not save the new customer profile.", {
+    console.error("ECOLOGIX could not save the new customer profile.", {
       code: profileError.code,
       message: profileError.message,
     });
@@ -197,18 +197,18 @@ export async function signUpCustomer(
       data.user.id,
     );
     if (deleteUserError) {
-      console.error("WastePay could not remove the incomplete customer login.", {
+      console.error("ECOLOGIX could not remove the incomplete customer login.", {
         code: deleteUserError.code,
         message: deleteUserError.message,
       });
       return {
         status: "error",
-        message: `${profileFailureMessage} WastePay also could not remove the incomplete sign-in (cleanup error ${deleteUserError.code ?? "unknown"}). Contact support before trying again.`,
+        message: `${profileFailureMessage} ECOLOGIX also could not remove the incomplete sign-in (cleanup error ${deleteUserError.code ?? "unknown"}). Contact support before trying again.`,
       };
     }
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) {
-      console.error("WastePay could not close the incomplete customer session.", {
+      console.error("ECOLOGIX could not close the incomplete customer session.", {
         code: signOutError.code,
         message: signOutError.message,
       });
@@ -237,7 +237,7 @@ export async function logoutCustomer(): Promise<never> {
   const supabase = await createClient();
   const { error } = await supabase.auth.signOut();
   if (error) {
-    throw new Error("WastePay could not sign out this account.", { cause: error });
+    throw new Error("ECOLOGIX could not sign out this account.", { cause: error });
   }
   redirect("/app");
 }

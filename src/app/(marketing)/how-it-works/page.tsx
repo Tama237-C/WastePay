@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How WastePay Works | Plastic Recovery Journey",
+  title: "How ECOLOGIX Works | Plastic Recovery Journey",
   description:
-    "See how WastePay connects collection requests, field logistics, recovery depots, material verification, pricing, payments, and impact reporting.",
+    "See how ECOLOGIX connects collection requests, field logistics, recovery depots, material verification, pricing, payments, and impact reporting.",
   keywords: [
-    "how WastePay works",
+    "how ECOLOGIX works",
     "plastic collection Cameroon",
     "plastic recovery process",
     "home waste pickup",
@@ -14,16 +14,16 @@ export const metadata: Metadata = {
     "circular economy platform",
   ],
   openGraph: {
-    title: "How WastePay Works",
+    title: "How ECOLOGIX Works",
     description:
-      "Follow the complete WastePay recovery journey from collection request to verified circular value.",
+      "Follow the complete ECOLOGIX recovery journey from collection request to verified circular value.",
     type: "website",
     locale: "en_CM",
-    siteName: "WastePay",
+    siteName: "ECOLOGIX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "How WastePay Works",
+    title: "How ECOLOGIX Works",
     description:
       "Collection, logistics, verification, pricing, payment, and measurable impact in one connected recovery system.",
   },
@@ -52,9 +52,9 @@ const recoveryStages = [
   {
     number: "02",
     eyebrow: "Operations review",
-    title: "WastePay verifies and routes the request",
+    title: "ECOLOGIX verifies and routes the request",
     description:
-      "An authorized administrator reviews the submission, confirms whether the request can be served, and assigns it to the most appropriate WastePay recovery depot.",
+      "An authorized administrator reviews the submission, confirms whether the request can be served, and assigns it to the most appropriate ECOLOGIX recovery depot.",
     systemRecords: [
       "Review status",
       "Assigned depot",
@@ -73,7 +73,7 @@ const recoveryStages = [
     eyebrow: "Logistics dispatch",
     title: "An authenticated driver receives the pickup",
     description:
-      "The approved request enters the logistics queue. WastePay dispatch selects an active pickup driver and connects the assignment to the responsible depot.",
+      "The approved request enters the logistics queue. ECOLOGIX dispatch selects an active pickup driver and connects the assignment to the responsible depot.",
     systemRecords: [
       "Driver identity",
       "Driver status",
@@ -111,7 +111,7 @@ const recoveryStages = [
     eyebrow: "Depot arrival",
     title: "The material enters a controlled recovery centre",
     description:
-      "After collection, the plastic is delivered to the assigned WastePay depot. Only authorized agents assigned to that depot can view and process the incoming delivery.",
+      "After collection, the plastic is delivered to the assigned ECOLOGIX depot. Only authorized agents assigned to that depot can view and process the incoming delivery.",
     systemRecords: [
       "Depot assignment",
       "Incoming delivery queue",
@@ -168,7 +168,7 @@ const recoveryStages = [
     eyebrow: "Circular value",
     title: "Verified material is priced and reconciled",
     description:
-      "WastePay applies active pricing rules to the verified material, prepares the transaction for approval, and connects the payout to secure Mobile Money settlement and an auditable financial ledger.",
+      "ECOLOGIX applies active pricing rules to the verified material, prepares the transaction for approval, and connects the payout to secure Mobile Money settlement and an auditable financial ledger.",
     systemRecords: [
       "Material rate",
       "Regional multiplier",
@@ -192,7 +192,7 @@ const platformRoles = [
     accent: "text-emerald-400",
   },
   {
-    title: "WastePay administrator",
+    title: "ECOLOGIX administrator",
     responsibility:
       "Reviews requests, assigns depots, provisions staff, and supervises operations.",
     accent: "text-sky-400",
@@ -291,7 +291,7 @@ const outcomeCards = [
     label: "For communities",
     title: "Recovery that creates local value",
     description:
-      "WastePay is designed to connect verified plastic with economic participation and accountable financial distribution.",
+      "ECOLOGIX is designed to connect verified plastic with economic participation and accountable financial distribution.",
     accentClass:
       "border-amber-400/15 bg-amber-400/[0.055]",
   },
@@ -315,7 +315,7 @@ export default function HowItWorksPage() {
           <div className="grid gap-14 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
-                How WastePay works
+                How ECOLOGIX works
               </p>
 
               <h1 className="wp-display-title wp-fade-up-delay-1 mt-8">
@@ -326,7 +326,7 @@ export default function HowItWorksPage() {
               </h1>
 
               <p className="wp-body-large wp-fade-up-delay-2 mt-8 max-w-3xl">
-                WastePay connects public collection access, field logistics,
+                ECOLOGIX connects public collection access, field logistics,
                 depot verification, plastic intelligence, transparent pricing,
                 secure payments, and measurable impact in one operational
                 system.
@@ -335,7 +335,7 @@ export default function HowItWorksPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request home collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/impact" className="wp-secondary-button">
@@ -467,7 +467,7 @@ export default function HowItWorksPage() {
             </h2>
 
             <p className="wp-body-large mt-7 max-w-4xl">
-              WastePay reduces the gaps between collection demand, field
+              ECOLOGIX reduces the gaps between collection demand, field
               execution, material verification, financial settlement, and
               impact reporting.
             </p>
@@ -545,7 +545,7 @@ export default function HowItWorksPage() {
               </h2>
 
               <p className="wp-body-large mt-7">
-                WastePay separates responsibilities so operational decisions
+                ECOLOGIX separates responsibilities so operational decisions
                 remain attributable and protected.
               </p>
             </div>
@@ -674,7 +674,7 @@ export default function HowItWorksPage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Request a collection, explore a WastePay program, or work
+                  Request a collection, explore an ECOLOGIX program, or work
                   with us to expand transparent plastic recovery.
                 </p>
               </div>
@@ -682,7 +682,7 @@ export default function HowItWorksPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Book collection
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

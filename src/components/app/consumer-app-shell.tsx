@@ -5,6 +5,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 const navigationItems = [
   { label: "Home", href: "#home", icon: "M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" },
+  { label: "Scan", href: "/app/scan", icon: "M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8" },
   { label: "Book", href: "#pickup", icon: "M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z" },
   { label: "Track", href: "#track", icon: "M3 12h4l3-8 4 16 3-8h4" },
   { label: "Account", href: "/app/account", icon: "M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" },
@@ -23,9 +24,9 @@ export function ConsumerAppShell({ children }: { children: ReactNode }) {
   return (
     <div className="wp-app-shell">
       <header className="wp-app-header">
-        <Link href="/app#home" className="wp-app-brand" aria-label="WastePay app home">
-          <span className="wp-app-brand__mark">W</span>
-          <span>WastePay</span>
+        <Link href="/app#home" className="wp-app-brand" aria-label="ECOLOGIX app home">
+          <span className="wp-app-brand__mark">E</span>
+          <span>ECOLOGIX</span>
         </Link>
         <div className="wp-app-header__context">
           <p>Your circular recovery app</p>

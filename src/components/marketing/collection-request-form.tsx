@@ -67,7 +67,7 @@ function SubmitButton({
             aria-hidden="true"
             className="ml-3 transition-transform duration-300 group-hover:translate-x-1"
           >
-            →
+            â†’
           </span>
         </>
       )}
@@ -123,7 +123,7 @@ export function CollectionRequestForm({
       },
       (error) => {
         let message =
-          "WastePay could not capture your location. Check your browser permissions and try again.";
+          "ECOLOGIX could not capture your location. Check your browser permissions and try again.";
 
         if (error.code === error.PERMISSION_DENIED) {
           message =
@@ -168,7 +168,7 @@ export function CollectionRequestForm({
           </div>
 
           <h2 className="mt-7 text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-            WastePay will review your pickup.
+            ECOLOGIX will review your pickup.
           </h2>
 
           <p className="mt-5 text-base font-light leading-7 text-emerald-100/75">
@@ -186,7 +186,7 @@ export function CollectionRequestForm({
           </div>
 
           <p className="mt-6 text-sm leading-6 text-slate-400">
-            Keep this reference. A WastePay representative may contact you
+            Keep this reference. A ECOLOGIX representative may contact you
             through the phone number submitted.
           </p>
         </div>
@@ -496,7 +496,7 @@ export function CollectionRequestForm({
             <SubmitButton locationReady={locationReady} />
 
             <p className="mt-5 text-center text-xs leading-5 text-slate-600">
-              Your location is used only to review and route this WastePay
+              Your location is used only to review and route this ECOLOGIX
               collection request.
             </p>
           </div>

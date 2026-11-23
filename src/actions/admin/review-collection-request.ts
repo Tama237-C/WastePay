@@ -46,7 +46,7 @@ async function verifyCurrentAdministrator(): Promise<
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, is_active")
+    .select("role, is_active, must_change_password")
     .eq("id", user.id)
     .single();
 
@@ -60,6 +60,13 @@ async function verifyCurrentAdministrator(): Promise<
       authorized: false,
       message:
         "Your account is not authorized to review collection requests.",
+    };
+  }
+
+  if (profile.must_change_password) {
+    return {
+      authorized: false,
+      message: "Change your temporary password before reviewing collection requests.",
     };
   }
 
@@ -90,7 +97,7 @@ export async function reviewCollectionRequest(
   if (!requestId) {
     return {
       status: "error",
-      message: "WastePay could not identify this collection request.",
+      message: "ECOLOGIX could not identify this collection request.",
     };
   }
 
@@ -113,7 +120,7 @@ export async function reviewCollectionRequest(
   if (requestLookupError) {
     return {
       status: "error",
-      message: "WastePay could not verify this collection request.",
+      message: "ECOLOGIX could not verify this collection request.",
     };
   }
 
@@ -136,7 +143,7 @@ export async function reviewCollectionRequest(
     if (!depotId) {
       return {
         status: "error",
-        message: "Select the WastePay depot that will handle this request.",
+        message: "Select the ECOLOGIX depot that will handle this request.",
       };
     }
 
@@ -150,7 +157,7 @@ export async function reviewCollectionRequest(
     if (depotLookupError) {
       return {
         status: "error",
-        message: "WastePay could not verify the selected depot.",
+        message: "ECOLOGIX could not verify the selected depot.",
       };
     }
 
@@ -187,16 +194,25 @@ export async function reviewCollectionRequest(
       return {
         status: "error",
         message:
-          "WastePay could not approve and assign this collection request.",
+          "ECOLOGIX could not approve and assign this collection request.",
       };
     }
-    await adminClient.from("collection_request_events").insert({
+    const { error: eventError } = await adminClient
+      .from("collection_request_events")
+      .insert({
       collection_request_id: requestId,
       previous_status: "PENDING_REVIEW",
       new_status: "APPROVED",
       actor_id: authorization.administratorId,
       reason: `Approved for ${selectedDepot.name}`,
     });
+    if (eventError) {
+      console.error("ECOLOGIX could not record the collection approval event.", {
+        code: eventError.code,
+        message: eventError.message,
+        requestId,
+      });
+    }
 
     revalidatePath("/admin/collection-requests");
     revalidatePath("/admin/logistics");
@@ -205,7 +221,9 @@ export async function reviewCollectionRequest(
 
     return {
       status: "success",
-      message: `The request was approved for ${selectedDepot.name} and is ready for manager dispatch.`,
+      message: eventError
+        ? `The request was approved for ${selectedDepot.name}, but its status history could not be recorded. Refresh the request timeline or contact support.`
+        : `The request was approved for ${selectedDepot.name} and is ready for manager dispatch.`,
     };
   }
 
@@ -239,22 +257,33 @@ export async function reviewCollectionRequest(
   if (rejectionError) {
     return {
       status: "error",
-      message: "WastePay could not reject this collection request.",
+      message: "ECOLOGIX could not reject this collection request.",
     };
   }
-  await adminClient.from("collection_request_events").insert({
+  const { error: eventError } = await adminClient
+    .from("collection_request_events")
+    .insert({
     collection_request_id: requestId,
     previous_status: "PENDING_REVIEW",
     new_status: "REJECTED",
     actor_id: authorization.administratorId,
     reason: rejectionReason,
   });
+  if (eventError) {
+    console.error("ECOLOGIX could not record the collection rejection event.", {
+      code: eventError.code,
+      message: eventError.message,
+      requestId,
+    });
+  }
 
   revalidatePath("/admin/collection-requests");
   revalidatePath("/admin/overview");
 
   return {
     status: "success",
-    message: "The collection request was rejected successfully.",
+    message: eventError
+      ? "The collection request was rejected, but its status history could not be recorded. Refresh the request timeline or contact support."
+      : "The collection request was rejected successfully.",
   };
 }

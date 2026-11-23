@@ -1,4 +1,4 @@
-const CACHE_VERSION = "wastepay-public-v2";
+const CACHE_VERSION = "ecologix-public-v2";
 
 const PUBLIC_CACHE_URLS = [
   "/",
@@ -110,7 +110,7 @@ self.addEventListener("fetch", (event) => {
                     content="width=device-width, initial-scale=1"
                   />
                   <meta name="theme-color" content="#020617" />
-                  <title>WastePay Offline</title>
+                  <title>ECOLOGIX Offline</title>
                   <style>
                     * {
                       box-sizing: border-box;
@@ -187,12 +187,12 @@ self.addEventListener("fetch", (event) => {
 
                 <body>
                   <main>
-                    <div class="badge">WastePay offline</div>
+                    <div class="badge">ECOLOGIX offline</div>
 
                     <h1>Connection unavailable.</h1>
 
                     <p>
-                      WastePay cannot reach the network right now. Reconnect
+                      ECOLOGIX cannot reach the network right now. Reconnect
                       to the internet before submitting a collection,
                       partnership, staff, depot, payment, or transaction action.
                     </p>

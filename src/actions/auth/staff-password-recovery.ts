@@ -22,7 +22,7 @@ function getRecoveryRedirectUrl(): string | null {
     configuredSiteUrl ||
     (process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://wastepay.netlify.app");
+      : "https://ecologix.netlify.app");
 
   if (!siteUrl) {
     return null;
@@ -76,14 +76,14 @@ export async function requestStaffPasswordRecovery(
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return {
       status: "error",
-      message: "Enter a valid WastePay staff email address.",
+      message: "Enter a valid ECOLOGIX staff email address.",
     };
   }
 
   const redirectTo = getRecoveryRedirectUrl();
 
   if (!redirectTo) {
-    console.error("WastePay staff password recovery has no valid site URL.");
+    console.error("ECOLOGIX staff password recovery has no valid site URL.");
     return {
       status: "error",
       message:
@@ -97,21 +97,21 @@ export async function requestStaffPasswordRecovery(
   });
 
   if (error) {
-    console.error("WastePay could not send a staff password recovery email.", {
+    console.error("ECOLOGIX could not send a staff password recovery email.", {
       code: error.code,
       message: error.message,
     });
     return {
       status: "error",
       message:
-        "WastePay could not request a recovery email. Check the Supabase email and redirect settings, then try again.",
+        "ECOLOGIX could not request a recovery email. Check the Supabase email and redirect settings, then try again.",
     };
   }
 
   return {
     status: "success",
     message:
-      "If an active WastePay staff account uses that email, a recovery link has been sent. Check the inbox and spam folder.",
+      "If an active ECOLOGIX staff account uses that email, a recovery link has been sent. Check the inbox and spam folder.",
   };
 }
 
@@ -158,14 +158,14 @@ export async function updateRecoveredStaffPassword(
     .maybeSingle();
 
   if (profileError) {
-    console.error("WastePay could not verify a password recovery account.", {
+    console.error("ECOLOGIX could not verify a password recovery account.", {
       code: profileError.code,
       message: profileError.message,
     });
     return {
       status: "error",
       message:
-        `WastePay could not verify this staff account${profileError.code ? ` (error ${profileError.code})` : ""}. Contact the administrator.`,
+        `ECOLOGIX could not verify this staff account${profileError.code ? ` (error ${profileError.code})` : ""}. Contact the administrator.`,
     };
   }
 
@@ -178,7 +178,7 @@ export async function updateRecoveredStaffPassword(
 
     if (signOutError) {
       throw new Error(
-        "WastePay could not close an unverified password recovery session.",
+        "ECOLOGIX could not close an unverified password recovery session.",
         { cause: signOutError },
       );
     }
@@ -186,7 +186,7 @@ export async function updateRecoveredStaffPassword(
     return {
       status: "error",
       message:
-        "This recovery link is not valid for an active WastePay staff account.",
+        "This recovery link is not valid for an active ECOLOGIX staff account.",
     };
   }
 
@@ -195,14 +195,14 @@ export async function updateRecoveredStaffPassword(
   });
 
   if (passwordUpdateError) {
-    console.error("WastePay could not update a recovered staff password.", {
+    console.error("ECOLOGIX could not update a recovered staff password.", {
       code: passwordUpdateError.code,
       message: passwordUpdateError.message,
     });
     return {
       status: "error",
       message:
-        "WastePay could not update the password. Choose a different password and try again.",
+        "ECOLOGIX could not update the password. Choose a different password and try again.",
     };
   }
 
@@ -215,7 +215,7 @@ export async function updateRecoveredStaffPassword(
 
     if (profileUpdateError) {
       console.error(
-        "WastePay changed a recovered password but could not finish staff activation.",
+        "ECOLOGIX changed a recovered password but could not finish staff activation.",
         {
           code: profileUpdateError.code,
           message: profileUpdateError.message,
@@ -224,7 +224,7 @@ export async function updateRecoveredStaffPassword(
       return {
         status: "error",
         message:
-          `Your password changed, but WastePay could not finish activating the account${profileUpdateError.code ? ` (error ${profileUpdateError.code})` : ""}. Contact the administrator.`,
+          `Your password changed, but ECOLOGIX could not finish activating the account${profileUpdateError.code ? ` (error ${profileUpdateError.code})` : ""}. Contact the administrator.`,
       };
     }
   }
