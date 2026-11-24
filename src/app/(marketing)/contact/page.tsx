@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-import { CollectionRequestForm } from "@/components/marketing/collection-request-form";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
 import { PartnershipEnquiryForm } from "@/components/marketing/partnership-enquiry-form";
-import { createAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
-  title: "Contact ECOLOGIX | Collection and Partnerships",
+  title: "Contact ECOLOGIX | Partnerships",
   description:
-    "Request plastic collection from ECOLOGIX or contact our team about corporate, municipal, educational, recovery, funding, and research partnerships.",
+    "Contact ECOLOGIX about corporate, municipal, educational, recovery, funding, and research partnerships.",
   keywords: [
     "contact ECOLOGIX",
     "plastic collection Cameroon",
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact ECOLOGIX",
     description:
-      "Book plastic collection or discuss a measurable circular-plastic partnership with ECOLOGIX.",
+      "Discuss a measurable circular-plastic partnership with ECOLOGIX.",
     type: "website",
     locale: "en_CM",
     siteName: "ECOLOGIX",
@@ -28,15 +26,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact ECOLOGIX",
-    description:
-      "Request plastic collection or explore an ECOLOGIX recovery partnership.",
+    description: "Explore an ECOLOGIX recovery partnership.",
   },
-};
-
-type ContactPageProps = {
-  searchParams: Promise<{
-    type?: string;
-  }>;
 };
 
 const contactChannels = [
@@ -98,22 +89,7 @@ const partnershipOptions = [
   "Research and data collaboration",
 ];
 
-export default async function ContactPage({
-  searchParams,
-}: ContactPageProps) {
-  const resolvedSearchParams = await searchParams;
-  const adminClient = createAdminClient();
-  const { data: systemSettings } = await adminClient
-    .from("system_settings")
-    .select(
-      "minimum_pickup_weight_kg, maximum_schedule_days, public_collection_requests_enabled, maintenance_message",
-    )
-    .eq("id", true)
-    .maybeSingle();
-
-  const showPartnershipForm =
-    resolvedSearchParams.type === "partnership";
-
+export default async function ContactPage() {
   return (
     <main>
       <section className="relative overflow-hidden pb-16 pt-12 sm:pb-24 sm:pt-20">
@@ -174,35 +150,7 @@ export default async function ContactPage({
             </div>
 
             <div>
-              <section className="mb-6 grid gap-4 sm:grid-cols-2">
-                <a
-                  href="#home-collection"
-                  className="group rounded-3xl border border-emerald-400/15 bg-emerald-400/[0.055] p-6 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/30 hover:shadow-emerald-500/[0.08]"
-                >
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-400">
-                    Households and institutions
-                  </p>
-
-                  <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-white">
-                    Book plastic collection
-                  </h2>
-
-                  <p className="mt-3 text-sm font-light leading-7 text-slate-500">
-                    Request a pickup for a home, school, office, hotel, or
-                    organization.
-                  </p>
-
-                  <p className="mt-5 text-xs font-black uppercase tracking-[0.16em] text-emerald-300">
-                    Open collection form
-                    <span
-                      aria-hidden="true"
-                      className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                      →
-                    </span>
-                  </p>
-                </a>
-
+              <section className="mb-6">
                 <a
                   href="#partnership-enquiry"
                   className="group rounded-3xl border border-violet-400/15 bg-violet-400/[0.055] p-6 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:border-violet-400/30 hover:shadow-violet-500/[0.08]"
@@ -232,31 +180,9 @@ export default async function ContactPage({
                 </a>
               </section>
 
-              <section
-                id="home-collection"
-                className="scroll-mt-32"
-              >
-                {systemSettings?.public_collection_requests_enabled === false ? (
-                  <div className="rounded-3xl border border-amber-400/20 bg-amber-400/[0.08] p-6 text-sm leading-7 text-amber-100">
-                    Public collection requests are temporarily paused. Please
-                    check back soon.
-                  </div>
-                ) : (
-                  <CollectionRequestForm
-                    minimumPickupWeightKg={Number(
-                      systemSettings?.minimum_pickup_weight_kg ?? 15,
-                    )}
-                    maximumScheduleDays={Number(
-                      systemSettings?.maximum_schedule_days ?? 30,
-                    )}
-                    maintenanceMessage={systemSettings?.maintenance_message}
-                  />
-                )}
-              </section>
-
               <div className="mt-6 scroll-mt-32">
                 <PartnershipEnquiryForm
-                  defaultExpanded={showPartnershipForm}
+                  defaultExpanded
                 />
               </div>
             </div>

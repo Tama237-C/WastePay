@@ -48,7 +48,7 @@ const policySections = [
     number: "04",
     title: "Location information",
     paragraphs: [
-      "The public collection form may request permission to obtain the device's current geographic coordinates. The browser will not provide this location unless the user grants permission.",
+      "The ECOLOGIX app may request permission to obtain the device's current geographic coordinates when a user books a pickup. The browser will not provide this location unless the user grants permission.",
       "ECOLOGIX uses location information to identify a pickup point, support depot assignment, improve service-area decisions, and prepare future routing and geographic analysis.",
       "Users should provide location information only for a place where they are authorized to request collection. Exact pickup coordinates are operational information and are not intended for public display.",
     ],

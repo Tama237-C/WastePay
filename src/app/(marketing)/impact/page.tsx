@@ -322,7 +322,7 @@ export default async function ImpactPage() {
       value: formatWholeNumber(impact.collectionRequests),
       unit: "requests received",
       detail:
-        "Residential and institutional pickup requests recorded through the public platform.",
+        "Residential and institutional pickup requests recorded through the ECOLOGIX app.",
       accentClass:
         "border-sky-400/15 bg-sky-400/[0.055]",
       labelClass: "text-sky-400",
@@ -386,8 +386,8 @@ export default async function ImpactPage() {
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="wp-primary-button">
-                  Request collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 
@@ -827,8 +827,8 @@ export default async function ImpactPage() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
-                <Link href="/contact" className="wp-primary-button">
-                  Request collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 

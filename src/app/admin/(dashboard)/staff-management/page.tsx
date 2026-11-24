@@ -11,7 +11,6 @@ type StaffProfile = {
     | "agent"
     | "manager"
     | "driver"
-    | "processor"
     | "admin";
   active_location_zone: string | null;
   is_active: boolean;
@@ -29,7 +28,7 @@ const staffRoles = new Set([
   "agent",
   "manager",
   "driver",
-  "processor",
+  "collector",
   "admin",
 ]);
 
@@ -47,8 +46,8 @@ function formatRole(role: StaffProfile["role"]): string {
     case "driver":
       return "Pickup Driver";
 
-    case "processor":
-      return "Recycling Processor";
+    case "collector":
+      return "Plastic Collector";
 
     default:
       return role;

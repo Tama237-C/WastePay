@@ -70,7 +70,7 @@ export function CreateStaffAccount({ depots }: { depots: DepotOption[] }) {
       "ECOLOGIX staff access",
       `Email: ${state.createdEmail}`,
       `Temporary password: ${state.temporaryPassword}`,
-      "Login: http://localhost:3000/app/staff-login",
+      `Login: ${window.location.origin}/app/staff-login`,
       "The staff member must keep these credentials private.",
     ].join("\n");
 

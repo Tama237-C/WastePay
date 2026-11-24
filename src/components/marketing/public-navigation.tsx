@@ -136,17 +136,10 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
               Go to App
             </Link>
 
-            <Link
-              href="/app#pickup"
-              className="wp-primary-button min-h-11 px-5 py-3 text-[0.65rem]"
-            >
-              Book pickup
-              <span aria-hidden="true">→</span>
-            </Link>
           </div>
 
           <Link
-            href="/app"
+            href="/app/launch"
             className="flex min-h-11 items-center justify-center rounded-2xl border border-emerald-300/20 bg-emerald-400 px-4 text-[0.68rem] font-black uppercase tracking-[0.12em] text-slate-950 shadow-lg shadow-emerald-500/15 transition-all duration-300 hover:bg-emerald-300 md:hidden"
           >
             App
@@ -252,16 +245,8 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <Link
-                href="/app#pickup"
-                className="wp-primary-button"
-              >
-                Book pickup
-                <span aria-hidden="true">→</span>
-              </Link>
-
-              <Link
                 href="/app/launch"
-                className="wp-secondary-button"
+                className="wp-primary-button"
               >
                 Go to App
               </Link>

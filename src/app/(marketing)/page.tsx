@@ -53,7 +53,7 @@ const impactMetrics = [
     unit: "seconds",
     label: "Collection booking",
     detail:
-      "Residents can request plastic collection from a mobile browser in under one minute.",
+      "Residents can request plastic collection through the ECOLOGIX app.",
   },
   {
     value: "24/7",
@@ -69,7 +69,7 @@ const recoverySteps = [
     number: "01",
     title: "Request a collection",
     description:
-      "A household, school, office, or hotel submits its plastic collection request and secure pickup location.",
+      "A household, school, office, or hotel signs in to the ECOLOGIX app and submits its collection request and pickup location.",
     accent: "emerald",
   },
   {
@@ -100,9 +100,9 @@ const programs = [
     eyebrow: "For households",
     title: "Home plastic collection",
     description:
-      "Request a convenient pickup for sorted plastic waste from your home or residential community.",
-    href: "/app#pickup",
-    callToAction: "Book home collection",
+      "Open the ECOLOGIX app to request pickup for sorted plastic waste from your home or residential community.",
+    href: "/app/launch",
+    callToAction: "Open ECOLOGIX app",
     accentClass:
       "border-emerald-400/15 bg-emerald-400/[0.055] hover:border-emerald-400/30 hover:shadow-emerald-500/[0.08]",
     labelClass: "text-emerald-400",
@@ -210,17 +210,12 @@ export default async function HomePage() {
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/app#pickup" className="wp-primary-button">
-                  Book home collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Open ECOLOGIX app
                   <span aria-hidden="true">→</span>
                 </Link>
 
-                 <Link href="/app/launch" className="wp-secondary-button">
-                   Go to App
-                   <span aria-hidden="true">→</span>
-                 </Link>
-
-                 <Link href="/how-it-works" className="wp-ghost-button">
+                <Link href="/how-it-works" className="wp-secondary-button">
                   See how ECOLOGIX works
                 </Link>
               </div>
@@ -713,15 +708,15 @@ export default async function HomePage() {
                 </h2>
 
                 <p className="wp-body-large mt-7 max-w-3xl">
-                  Request an ECOLOGIX collection or join the infrastructure
+                  Open the ECOLOGIX app to request a collection, or join the infrastructure
                   helping Cameroon recover plastic transparently, locally, and
                   at scale.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
-                <Link href="/app#pickup" className="wp-primary-button">
-                  Request collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 

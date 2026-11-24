@@ -59,7 +59,7 @@ const faqCategories: FaqCategory[] = [
       {
         question: "Who can request an ECOLOGIX collection?",
         answer:
-          "Residents, residential communities, schools, offices, hotels, businesses, and other institutions can submit a collection request through the public ECOLOGIX form.",
+          "Residents and organizations can request a pickup through the ECOLOGIX app after signing in or creating an account.",
       },
       {
         question: "Is there a minimum quantity for home collection?",
@@ -67,9 +67,9 @@ const faqCategories: FaqCategory[] = [
           "ECOLOGIX currently plans residential pickup operations around a minimum estimated quantity of 15 kilograms. Operational approval may also depend on service coverage, route availability, and the assigned depot.",
       },
       {
-        question: "Do I need to create an account before requesting a pickup?",
+        question: "Where do I book a pickup?",
         answer:
-          "No. The current public collection form allows a requester to submit a pickup without creating an account.",
+          "Open the ECOLOGIX app, create an account or sign in, then use Book to request a pickup.",
       },
       {
         question: "Why does ECOLOGIX request my GPS location?",
@@ -287,9 +287,9 @@ const quickAnswers = [
     detail: "Verified at depot intake",
   },
   {
-    label: "Public booking account",
-    value: "Not required",
-    detail: "Submit through the public form",
+    label: "Booking access",
+    value: "ECOLOGIX app",
+    detail: "Sign in or create an account",
   },
   {
     label: "Current operating market",
@@ -333,8 +333,8 @@ export default function FaqPage() {
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="wp-primary-button">
-                  Request collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 

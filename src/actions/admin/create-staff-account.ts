@@ -179,7 +179,8 @@ export async function createStaffAccount(
   if (!isStaffRole(role)) {
     return {
       status: "error",
-      message: "Select Depot Manager, Depot Agent, or Pickup Driver.",
+      message:
+        "Select Depot Manager, Depot Agent, Pickup Driver, or Plastic Collector.",
       temporaryPassword: null,
       createdEmail: null,
     };

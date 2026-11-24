@@ -48,11 +48,11 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: "ltr",
     shortcuts: [
       {
-        name: "Book Plastic Collection",
+        name: "Book a Trash Pickup",
         short_name: "Book Pickup",
         description:
           "Request an ECOLOGIX plastic collection from your home or organization.",
-        url: "/app#pickup",
+        url: "/app/book",
       },
       {
         name: "Scan Plastic Packaging",

@@ -62,7 +62,7 @@ const infrastructureLayers = [
     label: "Public access",
     title: "Collection requests",
     detail:
-      "Residents, offices, hotels, schools, and institutions can request plastic collection through a mobile-friendly public interface.",
+      "Residents and organizations can request plastic collection in the ECOLOGIX app after signing in or creating an account.",
   },
   {
     label: "Field logistics",
@@ -474,8 +474,8 @@ export default function AboutPage() {
                   <span aria-hidden="true">→</span>
                 </Link>
 
-                <Link href="/contact" className="wp-secondary-button">
-                  Request collection
+                <Link href="/app/launch" className="wp-secondary-button">
+                  Go to App
                 </Link>
               </div>
             </div>
@@ -548,8 +548,8 @@ export default function AboutPage() {
                   <span aria-hidden="true">→</span>
                 </Link>
 
-                <Link href="/contact" className="wp-secondary-button">
-                  Book a collection
+                <Link href="/app/launch" className="wp-secondary-button">
+                  Go to App
                 </Link>
               </div>
             </div>

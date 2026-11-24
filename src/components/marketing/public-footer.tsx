@@ -3,8 +3,8 @@ import { EcologixMark } from "@/components/brand/ecologix-mark";
 
 const platformLinks = [
   {
-    label: "Home collection",
-    href: "/app#pickup",
+    label: "Home collection in the app",
+    href: "/app/launch",
   },
   {
     label: "Business collection",
@@ -85,17 +85,17 @@ export function PublicFooter() {
             </h2>
 
             <p className="mt-5 max-w-2xl text-base font-light leading-8 text-slate-400">
-              Schedule a pickup, join a recovery program, or partner with
+              Open the app, join a recovery program, or partner with
               ECOLOGIX to build Cameroon&apos;s circular plastic economy.
             </p>
           </div>
 
           <div className="relative mt-8 flex flex-col gap-3 sm:flex-row lg:mt-0 lg:shrink-0 lg:flex-col">
             <Link
-              href="/app#pickup"
+              href="/app/launch"
               className="wp-primary-button"
             >
-              Book a collection
+              Go to App
               <span aria-hidden="true">→</span>
             </Link>
 

@@ -35,7 +35,7 @@ const recoveryStages = [
     eyebrow: "Public access",
     title: "A collection request enters the network",
     description:
-      "A resident, school, office, hotel, or institution submits a mobile-friendly collection request with contact details, waste estimates, neighbourhood information, and a secure pickup location.",
+      "A resident, school, office, hotel, or institution signs in to the ECOLOGIX app and submits a collection request with contact details, waste estimates, neighbourhood information, and a pickup location.",
     systemRecords: [
       "Requester type",
       "Contact number",
@@ -333,8 +333,8 @@ export default function HowItWorksPage() {
               </p>
 
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="wp-primary-button">
-                  Request home collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 
@@ -680,8 +680,8 @@ export default function HowItWorksPage() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
-                <Link href="/contact" className="wp-primary-button">
-                  Book collection
+                <Link href="/app/launch" className="wp-primary-button">
+                  Go to App
                   <span aria-hidden="true">→</span>
                 </Link>
 
