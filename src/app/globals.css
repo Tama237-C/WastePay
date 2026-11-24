@@ -702,6 +702,23 @@ canvas {
   padding-bottom: 1rem;
 }
 
+.wp-app-install-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid rgba(82, 237, 180, 0.22);
+  border-radius: 1.2rem;
+  background: linear-gradient(110deg, rgba(13, 116, 91, 0.24), rgba(8, 76, 145, 0.2));
+}
+
+@media (max-width: 380px) {
+  .wp-app-install-banner { align-items: flex-start; gap: 0.65rem; padding: 0.8rem; }
+  .wp-app-install-banner button { padding: 0.7rem 0.8rem; }
+}
+
 .wp-consumer-app__hero,
 .wp-consumer-app__section {
   border: 1px solid rgba(255, 255, 255, 0.09);

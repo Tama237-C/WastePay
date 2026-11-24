@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ConsumerAppShell } from "@/components/app/consumer-app-shell";
+import { AppInstallBanner } from "@/components/app/app-install-banner";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getAppProfileSummary } from "@/lib/auth/app-profile-summary";
 
@@ -62,6 +63,8 @@ export default async function ConsumerAppPage() {
           <h1>{profile.email ? `Welcome back, ${profile.name}.` : "Welcome to ECOLOGIX."}</h1>
           <p>Choose what you want to do today. Each action opens its own screen.</p>
         </section>
+
+        <AppInstallBanner />
 
         {systemSettings?.public_collection_requests_enabled === false ? (
           <p role="status" className="rounded-2xl border border-amber-300/20 bg-amber-300/[0.08] px-4 py-3 text-sm leading-6 text-amber-100">
