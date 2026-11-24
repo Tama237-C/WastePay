@@ -10,7 +10,7 @@ export function AppSplashScreen() {
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
-      router.replace("/app");
+      router.replace("/app/account");
     }, 1900);
 
     return () => window.clearTimeout(timeout);
@@ -51,7 +51,7 @@ export function AppSplashScreen() {
 
       <noscript>
         <a
-          href="/app"
+          href="/app/account"
           className="absolute bottom-8 rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white"
         >
           Open ECOLOGIX

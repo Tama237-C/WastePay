@@ -64,7 +64,7 @@ export default async function CustomerAccountPage() {
     return (
       <AccountLoadError
         title="We could not load your sign-in."
-        message="The account service is not configured correctly. Refresh the page; if the problem continues, contact ECOLOGIX support."
+        message="The sign-in service is not configured for this site. In Netlify, add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY under Environment variables, then redeploy. Do not share their values publicly."
       />
     );
   }
