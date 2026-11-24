@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { ConsumerAppShell } from "@/components/app/consumer-app-shell";
 import { AppInstallBanner } from "@/components/app/app-install-banner";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getAppProfileSummary } from "@/lib/auth/app-profile-summary";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "ECOLOGIX Home",
@@ -45,6 +47,15 @@ const homeActions = [
 ];
 
 export default async function ConsumerAppPage() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/app/account");
+  }
+
   const adminClient = createAdminClient();
   const [{ data: systemSettings }, profile] = await Promise.all([
     adminClient

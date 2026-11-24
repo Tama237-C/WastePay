@@ -215,7 +215,7 @@ export default async function HomePage() {
                   <span aria-hidden="true">→</span>
                 </Link>
 
-                 <Link href="/app" className="wp-secondary-button">
+                 <Link href="/app/launch" className="wp-secondary-button">
                    Go to App
                    <span aria-hidden="true">→</span>
                  </Link>
