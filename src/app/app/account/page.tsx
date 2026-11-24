@@ -62,10 +62,7 @@ export default async function CustomerAccountPage() {
       message: error instanceof Error ? error.message : "Unknown configuration error",
     });
     return (
-      <AccountLoadError
-        title="We could not load your sign-in."
-        message="The sign-in service is not configured for this site. In Netlify, add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY under Environment variables, then redeploy. Do not share their values publicly."
-      />
+      <CustomerAuthForm initialNotice="The sign-in service could not start. Check that NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY are set in Netlify, then redeploy. Do not share their values publicly." />
     );
   }
 
@@ -78,10 +75,7 @@ export default async function CustomerAccountPage() {
       message: error instanceof Error ? error.message : "Unknown connection error",
     });
     return (
-      <AccountLoadError
-        title="We could not connect to your account."
-        message="ECOLOGIX could not reach the sign-in service. Check your internet connection and refresh the page."
-      />
+      <CustomerAuthForm initialNotice="We could not check for an existing sign-in. You can still try to log in; if it fails, check your connection and try again." />
     );
   }
 
@@ -96,14 +90,7 @@ export default async function CustomerAccountPage() {
       message: sessionError.message,
     });
     return (
-      <AccountLoadError
-        title="We could not load your sign-in."
-        message={
-          sessionError.code
-            ? `The account service returned error ${sessionError.code}. Refresh the page or sign in again.`
-            : "The account service could not verify your sign-in. Refresh the page or sign in again."
-        }
-      />
+      <CustomerAuthForm initialNotice={`We could not check your current sign-in${sessionError.code ? ` (error ${sessionError.code})` : ""}. You can try to log in again.`} />
     );
   }
 
@@ -117,10 +104,7 @@ export default async function CustomerAccountPage() {
         message: error instanceof Error ? error.message : "Unknown connection error",
       });
       return (
-        <AccountLoadError
-          title="We could not verify your sign-in."
-          message="ECOLOGIX could not reach the account service. Check your internet connection and refresh the page."
-        />
+        <CustomerAuthForm initialNotice="We could not verify your current sign-in. Please log in again." />
       );
     }
   }
@@ -133,14 +117,7 @@ export default async function CustomerAccountPage() {
       message: userError.message,
     });
     return (
-      <AccountLoadError
-        title="We could not verify your sign-in."
-        message={
-          userError.code
-            ? `The account service returned error ${userError.code}. Refresh the page or sign in again.`
-            : "The account service could not verify your sign-in. Refresh the page or sign in again."
-        }
-      />
+      <CustomerAuthForm initialNotice={`We could not verify your current sign-in${userError.code ? ` (error ${userError.code})` : ""}. Please log in again.`} />
     );
   }
 

@@ -254,7 +254,7 @@ function CustomerCredentials({
   );
 }
 
-export function CustomerAuthForm() {
+export function CustomerAuthForm({ initialNotice }: { initialNotice?: string }) {
   const [mode, setMode] = useState<AccountMode>("welcome");
 
   if (mode === "welcome") {
@@ -276,6 +276,11 @@ export function CustomerAuthForm() {
         </section>
 
         <section className="mx-auto grid w-full max-w-md gap-3 px-5 pb-10 pt-7">
+          {initialNotice ? (
+            <p role="status" className="rounded-xl bg-amber-950/45 px-3 py-2 text-xs leading-5 text-amber-100">
+              {initialNotice}
+            </p>
+          ) : null}
           <button
             type="button"
             onClick={() => setMode("sign-up")}
@@ -336,6 +341,11 @@ export function CustomerAuthForm() {
         <h1 className="mt-9 text-center text-2xl font-bold tracking-[-0.03em]">
           {isSignUp ? "Join the Circular Economy" : "Welcome Back"}
         </h1>
+        {initialNotice ? (
+          <p role="status" className="mt-4 rounded-xl bg-amber-950/45 px-3 py-2 text-xs leading-5 text-amber-100">
+            {initialNotice}
+          </p>
+        ) : null}
         {isSignUp ? (
           <p className="mt-2 text-center text-xs text-white/75">
             Create your ECOLOGIX account to keep your activity together.
