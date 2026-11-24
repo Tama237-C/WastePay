@@ -678,6 +678,15 @@ canvas {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.wp-app-header__inner { display:grid; grid-template-columns:2.5rem 1fr auto; align-items:center; gap:.75rem; width:100%; }
+.wp-app-header .wp-app-brand { justify-self:center; }
+.wp-app-drawer-backdrop { bottom:calc(4.6rem + env(safe-area-inset-bottom)); }
+.wp-bottom-nav--consumer { grid-template-columns:repeat(4,minmax(0,1fr)); gap:.15rem; }
+.wp-bottom-nav--consumer .wp-bottom-nav__item { min-width:0; white-space:nowrap; font-size:.65rem; }
+.wp-app-loading { display:grid; min-height:45vh; place-content:center; justify-items:center; gap:.85rem; color:#aeb9c8; text-align:center; }
+.wp-app-spinner { width:1.45rem; height:1.45rem; border:2px solid rgba(255,255,255,.2); border-top-color:#52edb4; border-radius:50%; animation:wp-app-spin .75s linear infinite; }
+@keyframes wp-app-spin { to { transform:rotate(360deg); } }
+
 .wp-consumer-app {
   display: grid;
   gap: 1.25rem;

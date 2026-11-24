@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EcologixMark } from "@/components/brand/ecologix-mark";
 
 const platformLinks = [
   {
@@ -57,7 +58,7 @@ const legalLinks = [
 },
   {
     label: "Go to App",
-    href: "/app",
+    href: "/app/launch",
   },
 ];
 
@@ -113,8 +114,8 @@ export function PublicFooter() {
               href="/"
               className="group inline-flex items-center gap-4"
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-200/20 bg-emerald-400 text-base font-black text-slate-950 shadow-xl shadow-emerald-500/20 transition-transform duration-300 group-hover:-translate-y-1">
-                WP
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-200/20 bg-white shadow-xl shadow-emerald-500/20 transition-transform duration-300 group-hover:-translate-y-1">
+                <EcologixMark className="h-11 w-11" />
               </span>
 
               <span>

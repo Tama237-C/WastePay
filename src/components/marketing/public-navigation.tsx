@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { EcologixMark } from "@/components/brand/ecologix-mark";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -87,7 +88,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
             className="group flex min-w-0 items-center gap-3"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-emerald-200/20 bg-emerald-400 text-sm font-black tracking-[-0.05em] text-slate-950 shadow-lg shadow-emerald-500/20 transition-transform duration-300 group-hover:-translate-y-1 sm:h-12 sm:w-12">
-              {logoUrl ? <Image src={logoUrl} alt="" width={48} height={48} className="h-full w-full object-cover" /> : "WP"}
+              {logoUrl ? <Image src={logoUrl} alt="" width={48} height={48} className="h-full w-full object-cover" /> : <EcologixMark className="h-9 w-9" />}
             </span>
 
             <span className="min-w-0">
@@ -129,7 +130,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
 
           <div className="hidden items-center gap-3 md:flex">
             <Link
-              href="/app"
+              href="/app/launch"
               className="wp-ghost-button min-h-11 px-4 py-3 text-[0.65rem]"
             >
               Go to App
@@ -259,7 +260,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
               </Link>
 
               <Link
-                href="/app"
+                href="/app/launch"
                 className="wp-secondary-button"
               >
                 Go to App

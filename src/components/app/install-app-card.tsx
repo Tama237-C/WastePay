@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePwaInstallPrompt } from "@/components/app/pwa-install-provider";
+import { EcologixMark } from "@/components/brand/ecologix-mark";
 
 function isIosDevice(): boolean {
   if (typeof window === "undefined") {
@@ -85,7 +86,9 @@ export function AppInstallCard() {
     <section className="wp-install-card rounded-[2rem] border border-emerald-400/15 bg-emerald-400/[0.05] p-6 shadow-2xl sm:p-8">
       <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-3xl">
-          <div className="wp-install-card__app-icon">W</div>
+          <div className="mb-5 grid h-14 w-14 place-items-center overflow-hidden rounded-2xl border border-sky-300/30 bg-[radial-gradient(circle_at_50%_42%,#0d79d2_0%,#075bb1_55%,#03498f_100%)] shadow-lg shadow-blue-950/30">
+            <EcologixMark className="h-12 w-12" />
+          </div>
           <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-400">
             ECOLOGIX app
           </p>

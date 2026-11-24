@@ -13,6 +13,8 @@ const allowedRequesterTypes = [
   "HOTEL",
 ] as const;
 
+const allowedWasteCategories = ["PLASTIC", "PAPER_CARDBOARD", "METAL", "GLASS", "ELECTRONICS", "MIXED_OTHER"] as const;
+
 type RequesterType = (typeof allowedRequesterTypes)[number];
 
 export type CreateCollectionRequestState = {
@@ -145,6 +147,7 @@ export async function createCollectionRequest(
   }
 
   const requesterTypeInput = normalizeText(formData.get("requesterType"));
+  const wasteCategoryInput = normalizeText(formData.get("wasteCategory"));
   const requesterName = normalizeText(formData.get("requesterName"));
   const phoneNumberInput = normalizeText(formData.get("phoneNumber"));
   const neighbourhood = normalizeText(formData.get("neighbourhood"));
@@ -197,6 +200,10 @@ export async function createCollectionRequest(
     };
   }
 
+  if (!allowedWasteCategories.includes(wasteCategoryInput as (typeof allowedWasteCategories)[number])) {
+    return { status: "error", message: "Select a waste type for this pickup request.", referenceNumber: null };
+  }
+
   if (requesterName.length < 3 || requesterName.length > 120) {
     return {
       status: "error",
@@ -242,7 +249,7 @@ export async function createCollectionRequest(
     return {
       status: "error",
       message:
-        `Home collection requires an estimated plastic weight of at least ${minimumPickupWeightKg} kilograms.`,
+        `Home collection requires an estimated waste weight of at least ${minimumPickupWeightKg} kilograms.`,
       referenceNumber: null,
     };
   }
@@ -405,7 +412,7 @@ export async function createCollectionRequest(
     collection_request_id: createdRequest.id,
     previous_status: null,
     new_status: "PENDING_REVIEW",
-    reason: "Collection request submitted.",
+    reason: `Collection request submitted. Waste type requested: ${wasteCategoryInput.replaceAll("_", " ").toLowerCase()}.`,
   });
 
   if (eventError) {

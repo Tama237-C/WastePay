@@ -1,4 +1,4 @@
-const CACHE_VERSION = "ecologix-public-v2";
+const CACHE_VERSION = "ecologix-public-v3";
 
 const PUBLIC_CACHE_URLS = [
   "/",
@@ -109,7 +109,7 @@ self.addEventListener("fetch", (event) => {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                   />
-                  <meta name="theme-color" content="#020617" />
+                  <meta name="theme-color" content="#047857" />
                   <title>ECOLOGIX Offline</title>
                   <style>
                     * {

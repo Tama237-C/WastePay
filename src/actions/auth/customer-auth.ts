@@ -35,14 +35,65 @@ export async function signInCustomer(
   _previousState: CustomerAuthState,
   formData: FormData,
 ): Promise<CustomerAuthState> {
-  const email = normalizeText(formData.get("email")).toLowerCase();
+  const identifier = normalizeText(formData.get("email"));
   const password = normalizeText(formData.get("password"));
 
-  if (!email || !password) {
-    return { status: "error", message: "Enter your email and password." };
+  if (!identifier || !password) {
+    return {
+      status: "error",
+      message: "Enter your phone number or email, and password.",
+    };
   }
 
   const supabase = await createClient();
+  let email = identifier.toLowerCase();
+
+  if (!identifier.includes("@")) {
+    const phoneNumber = normalizeCameroonPhoneNumber(identifier);
+    if (!phoneNumber) {
+      return {
+        status: "error",
+        message: "Enter a valid email address or Cameroon phone number.",
+      };
+    }
+
+    const adminClient = createAdminClient();
+    const { data: profile, error: profileLookupError } = await adminClient
+      .from("profiles")
+      .select("id")
+      .eq("phone_number", phoneNumber)
+      .maybeSingle();
+
+    if (profileLookupError) {
+      console.error("ECOLOGIX could not look up a customer sign-in number.", {
+        code: profileLookupError.code,
+        message: profileLookupError.message,
+      });
+      return {
+        status: "error",
+        message: "The phone number or password is incorrect.",
+      };
+    }
+
+    if (!profile) {
+      return {
+        status: "error",
+        message: "The phone number or password is incorrect.",
+      };
+    }
+
+    const { data: authUser, error: authUserError } =
+      await adminClient.auth.admin.getUserById(profile.id);
+    email = authUserError ? "" : authUser.user.email ?? "";
+  }
+
+  if (!email) {
+    return {
+      status: "error",
+      message: "The phone number or password is incorrect.",
+    };
+  }
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -110,6 +161,8 @@ export async function signUpCustomer(
   const phoneNumberInput = normalizeText(formData.get("phoneNumber"));
   const email = normalizeText(formData.get("email")).toLowerCase();
   const password = normalizeText(formData.get("password"));
+  const confirmPassword = normalizeText(formData.get("confirmPassword"));
+  const acceptedTerms = formData.get("acceptTerms") === "on";
   const phoneNumber = normalizeCameroonPhoneNumber(phoneNumberInput);
 
   if (!fullName || fullName.length > 120) {
@@ -137,6 +190,17 @@ export async function signUpCustomer(
     return {
       status: "error",
       message: "Your password must be between 8 and 128 characters.",
+    };
+  }
+
+  if (password !== confirmPassword) {
+    return { status: "error", message: "The passwords do not match." };
+  }
+
+  if (!acceptedTerms) {
+    return {
+      status: "error",
+      message: "Agree to the ECOLOGIX Terms and Privacy Policy to continue.",
     };
   }
 
@@ -231,6 +295,70 @@ export async function signUpCustomer(
     status: "success",
     message: "Account created. Check your email to confirm your account, then sign in.",
   };
+}
+
+function getCustomerOAuthRedirectUrl(): string | null {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const siteUrl =
+    configuredSiteUrl ||
+    (process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "");
+
+  try {
+    const parsedSiteUrl = new URL(siteUrl);
+    if (
+      (parsedSiteUrl.protocol !== "http:" &&
+        parsedSiteUrl.protocol !== "https:") ||
+      parsedSiteUrl.username ||
+      parsedSiteUrl.password
+    ) {
+      return null;
+    }
+
+    return new URL(
+      "/auth/callback?flow=customer_google",
+      parsedSiteUrl.origin,
+    ).toString();
+  } catch {
+    return null;
+  }
+}
+
+export async function signInCustomerWithGoogle(
+  _previousState: CustomerAuthState,
+  _formData: FormData,
+): Promise<CustomerAuthState> {
+  void _previousState;
+  void _formData;
+
+  const redirectTo = getCustomerOAuthRedirectUrl();
+  if (!redirectTo) {
+    return {
+      status: "error",
+      message: "Google sign-in is not configured for this ECOLOGIX site.",
+    };
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo },
+  });
+
+  if (error || !data.url) {
+    console.error("ECOLOGIX could not start Google customer sign-in.", {
+      code: error?.code,
+      message: error?.message,
+    });
+    return {
+      status: "error",
+      message:
+        "Google sign-in is unavailable. Try your phone number or email and password.",
+    };
+  }
+
+  redirect(data.url);
 }
 
 export async function logoutCustomer(): Promise<never> {

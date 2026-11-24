@@ -364,6 +364,19 @@ export function CollectionRequestForm({
 
             <div className="mt-5 grid gap-6 sm:grid-cols-2">
               <div>
+                <label htmlFor="wasteCategory" className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Waste type</label>
+                <select id="wasteCategory" name="wasteCategory" required defaultValue="PLASTIC" className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-950 px-5 py-4 text-base text-white outline-none transition hover:border-white/20 focus:border-sky-400/50">
+                  <option value="PLASTIC">Plastic</option>
+                  <option value="PAPER_CARDBOARD">Paper and cardboard</option>
+                  <option value="METAL">Metal</option>
+                  <option value="GLASS">Glass</option>
+                  <option value="ELECTRONICS">Electronics</option>
+                  <option value="MIXED_OTHER">Mixed or other waste</option>
+                </select>
+                <p className="mt-2 text-xs leading-5 text-slate-500">Choose the main type. Operations will confirm whether it can be collected in your area.</p>
+              </div>
+
+              <div>
                 <label
                   htmlFor="estimatedBagCount"
                   className="text-xs font-black uppercase tracking-[0.2em] text-slate-500"
@@ -405,7 +418,7 @@ export function CollectionRequestForm({
                 />
                 <p className="mt-3 text-sm leading-6 text-slate-500">
                   Home collection currently requires at least{" "}
-                  {minimumPickupWeightKg} KG of plastic.
+                  {minimumPickupWeightKg} KG of waste. Your request will be reviewed by our operations team.
                 </p>
               </div>
             </div>

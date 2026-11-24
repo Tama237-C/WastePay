@@ -4,7 +4,7 @@ ECOLOGIX is a Next.js and Supabase platform for plastic collection, depot buybac
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` and set the Supabase values. Set `NEXT_PUBLIC_SITE_URL` to the canonical site URL, then add that site's `/auth/callback` URL to Supabase Authentication redirect URLs. Include `http://localhost:3000/auth/callback` when testing password recovery locally. Local development uses `ECOLOGIX_INTEGRATION_MODE=mock`; mock mode never sends money or SMS messages. Provider credentials are only needed before switching to `live`.
+Copy `.env.example` to `.env.local` and set the Supabase values. Set `NEXT_PUBLIC_SITE_URL` to the canonical site URL, then add that site's `/auth/callback`, `/auth/callback?flow=customer`, and `/auth/callback?flow=customer_google` URLs to Supabase Authentication redirect URLs. Include the matching `http://localhost:3000` callback URLs when testing locally. Enable the Google provider in Supabase Authentication before using Google sign-in. Local development uses `ECOLOGIX_INTEGRATION_MODE=mock`; mock mode never sends money or SMS messages. Provider credentials are only needed before switching to `live`.
 
 Database changes are versioned in `supabase/migrations`. Apply the complete migration history to a clean Supabase project before use.
 

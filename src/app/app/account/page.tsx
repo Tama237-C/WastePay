@@ -276,18 +276,5 @@ export default async function CustomerAccountPage() {
     }
   }
 
-  return (
-    <ConsumerAppShell>
-      <main className="wp-consumer-app">
-        <section className="wp-consumer-app__hero">
-          <p className="wp-overline">ECOLOGIX account</p>
-          <h1>Sign in or create your account.</h1>
-          <p>
-            Save your pickup details and keep your ECOLOGIX activity together.
-          </p>
-        </section>
-        <CustomerAuthForm />
-      </main>
-    </ConsumerAppShell>
-  );
+  return <CustomerAuthForm />;
 }

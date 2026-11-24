@@ -7,11 +7,11 @@ export default function manifest(): MetadataRoute.Manifest {
     description:
       "Cameroon's digital infrastructure for plastic collection, circular recovery, material intelligence, and transparent value distribution.",
     start_url: "/app",
-    scope: "/",
+    scope: "/app",
     display: "standalone",
     orientation: "portrait-primary",
-    background_color: "#09090b",
-    theme_color: "#09090b",
+    background_color: "#075bb1",
+    theme_color: "#075bb1",
     icons: [
   {
     src: "/icon",
@@ -49,18 +49,16 @@ export default function manifest(): MetadataRoute.Manifest {
         url: "/app#pickup",
       },
       {
-        name: "View ECOLOGIX Impact",
-        short_name: "Impact",
-        description:
-          "Explore live aggregate recovery metrics from the ECOLOGIX network.",
-        url: "/impact",
+        name: "Scan Plastic Packaging",
+        short_name: "Scan",
+        description: "Identify packaging and contribute plastic scan data.",
+        url: "/app/scan",
       },
       {
-        name: "Discuss a Partnership",
-        short_name: "Partner",
-        description:
-          "Open the ECOLOGIX partnership enquiry journey.",
-        url: "/contact?type=partnership",
+        name: "Open ECOLOGIX account",
+        short_name: "Account",
+        description: "Sign in, create an account, or manage ECOLOGIX activity.",
+        url: "/app/account",
       },
       {
         name: "Staff Sign In",
