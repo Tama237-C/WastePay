@@ -367,5 +367,5 @@ export async function logoutCustomer(): Promise<never> {
   if (error) {
     throw new Error("ECOLOGIX could not sign out this account.", { cause: error });
   }
-  redirect("/app");
+  redirect("/app/account");
 }
