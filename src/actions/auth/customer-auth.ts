@@ -303,7 +303,7 @@ function getCustomerOAuthRedirectUrl(): string | null {
     configuredSiteUrl ||
     (process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "");
+      : "https://wastepay.netlify.app");
 
   try {
     const parsedSiteUrl = new URL(siteUrl);

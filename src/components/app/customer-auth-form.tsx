@@ -356,16 +356,14 @@ export function CustomerAuthForm({ initialNotice }: { initialNotice?: string }) 
           mode={mode}
           onChangeMode={setMode}
         />
-        {!isSignUp ? (
-          <div className="mt-4 grid gap-3">
-            <div className="flex items-center gap-3 text-[0.65rem] text-white/75">
-              <span className="h-px flex-1 bg-white/25" />
-              or sign in with
-              <span className="h-px flex-1 bg-white/25" />
-            </div>
-            <GoogleSignInButton />
+        <div className="mt-4 grid gap-3">
+          <div className="flex items-center gap-3 text-[0.65rem] text-white/75">
+            <span className="h-px flex-1 bg-white/25" />
+            {isSignUp ? "or create an account with" : "or sign in with"}
+            <span className="h-px flex-1 bg-white/25" />
           </div>
-        ) : null}
+          <GoogleSignInButton />
+        </div>
       </div>
     </main>
   );
