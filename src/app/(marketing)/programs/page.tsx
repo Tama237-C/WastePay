@@ -280,7 +280,7 @@ export default function ProgramsPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request a collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
@@ -485,7 +485,7 @@ export default function ProgramsPage() {
                       aria-hidden="true"
                       className="transition-transform duration-300 group-hover:translate-x-2"
                     >
-                      â†’
+                      →
                     </span>
                   </Link>
                 </div>
@@ -603,7 +603,7 @@ export default function ProgramsPage() {
 
               <Link href="/contact" className="wp-primary-button mt-9">
                 Discuss your recovery need
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
 
@@ -666,7 +666,7 @@ export default function ProgramsPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Get started
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

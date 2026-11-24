@@ -121,7 +121,7 @@ export function AppInstallCard() {
           {isInstalled ? "App installed" : "Install app"}
 
           {!isInstalled ? (
-            <span aria-hidden="true">â†’</span>
+            <span aria-hidden="true">→</span>
           ) : null}
         </button>
       </div>

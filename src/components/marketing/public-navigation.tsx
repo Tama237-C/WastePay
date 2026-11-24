@@ -141,7 +141,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
               className="wp-primary-button min-h-11 px-5 py-3 text-[0.65rem]"
             >
               Book pickup
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -243,7 +243,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
                       aria-hidden="true"
                       className="text-slate-600 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-emerald-300"
                     >
-                      â†’
+                      →
                     </span>
                   </Link>
                 );
@@ -256,7 +256,7 @@ export function PublicNavigation({ logoUrl }: { logoUrl?: string | null }) {
                 className="wp-primary-button"
               >
                 Book pickup
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
 
               <Link

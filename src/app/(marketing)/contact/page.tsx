@@ -198,7 +198,7 @@ export default async function ContactPage({
                       aria-hidden="true"
                       className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
                     >
-                      â†’
+                      →
                     </span>
                   </p>
                 </a>
@@ -226,7 +226,7 @@ export default async function ContactPage({
                       aria-hidden="true"
                       className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
                     >
-                      â†’
+                      →
                     </span>
                   </p>
                 </a>

@@ -200,7 +200,7 @@ export default function AboutPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/how-it-works" className="wp-primary-button">
                   See how it works
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
@@ -471,7 +471,7 @@ export default function AboutPage() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/impact" className="wp-primary-button">
                   Explore our impact
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/contact" className="wp-secondary-button">
@@ -545,7 +545,7 @@ export default function AboutPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/partners" className="wp-primary-button">
                   Partner with ECOLOGIX
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/contact" className="wp-secondary-button">

@@ -67,7 +67,7 @@ function SubmitButton({
             aria-hidden="true"
             className="ml-3 transition-transform duration-300 group-hover:translate-x-1"
           >
-            â†’
+            →
           </span>
         </>
       )}

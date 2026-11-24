@@ -212,12 +212,12 @@ export default async function HomePage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/app#pickup" className="wp-primary-button">
                   Book home collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                  <Link href="/app" className="wp-secondary-button">
                    Go to App
-                   <span aria-hidden="true">â†’</span>
+                   <span aria-hidden="true">→</span>
                  </Link>
 
                  <Link href="/how-it-works" className="wp-ghost-button">
@@ -449,7 +449,7 @@ export default async function HomePage() {
                 className="wp-secondary-button mt-8"
               >
                 Explore the full process
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
 
@@ -509,7 +509,7 @@ export default async function HomePage() {
 
             <Link href="/programs" className="wp-ghost-button">
               View all ECOLOGIX programs
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -544,7 +544,7 @@ export default async function HomePage() {
                       aria-hidden="true"
                       className="transition-transform duration-300 group-hover:translate-x-2"
                     >
-                      â†’
+                      →
                     </span>
                   </Link>
                 </div>
@@ -722,7 +722,7 @@ export default async function HomePage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/app#pickup" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

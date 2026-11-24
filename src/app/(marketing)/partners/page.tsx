@@ -100,7 +100,7 @@ export default function PartnersPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact?type=partnership" className="wp-primary-button">
                   Start a partnership discussion
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/impact" className="wp-secondary-button">
@@ -201,7 +201,7 @@ export default function PartnersPage() {
 
               <Link href="/contact?type=partnership" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>F
           </div>

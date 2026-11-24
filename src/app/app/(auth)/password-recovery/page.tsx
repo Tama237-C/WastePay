@@ -46,7 +46,7 @@ export default async function StaffPasswordRecoveryPage({
         <StaffPasswordRecoveryForm />
 
         <footer className="wp-auth-footnote">
-          <span>â—</span> Recovery links are private and can only be used once.
+          <span>●</span> Recovery links are private and can only be used once.
         </footer>
       </section>
     </main>

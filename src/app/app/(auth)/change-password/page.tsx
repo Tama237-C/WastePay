@@ -63,7 +63,7 @@ export default async function ChangePasswordPage() {
       <div className="wp-auth-brand"><span className="wp-app-brand__mark">W</span><span>ECOLOGIX</span><em>Account security</em></div>
       <div className="wp-auth-intro"><p className="wp-overline">One last step</p><h1>Make this account yours.</h1><p>Replace your temporary password before entering the ECOLOGIX operational network.</p></div>
       <ChangePasswordForm />
-      <p className="wp-auth-footnote"><span>â—</span> ECOLOGIX administrators cannot view your permanent password.</p>
+      <p className="wp-auth-footnote"><span>●</span> ECOLOGIX administrators cannot view your permanent password.</p>
     </section>
   </main>;
 }

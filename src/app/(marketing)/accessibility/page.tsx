@@ -140,7 +140,7 @@ export default function AccessibilityPage() {
                 className="wp-primary-button"
               >
                 Report an accessibility barrier
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </a>
 
               <Link href="/contact" className="wp-secondary-button">
@@ -342,7 +342,7 @@ export default function AccessibilityPage() {
                 className="wp-primary-button mt-9"
               >
                 Email accessibility team
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </a>
             </div>
 
@@ -398,7 +398,7 @@ export default function AccessibilityPage() {
 
               <Link href="/contact" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

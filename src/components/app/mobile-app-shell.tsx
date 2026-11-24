@@ -78,8 +78,8 @@ export function MobileAppShell({ children, role, name }: MobileAppShellProps) {
           <i />
         </button>
         {isNotificationsOpen ? <aside className="wp-notification-popover" aria-label="Notifications">
-          <div className="wp-notification-popover__header"><div><p>Activity</p><span>Latest account updates</span></div><button type="button" onClick={() => setIsNotificationsOpen(false)} aria-label="Close notifications">Ã—</button></div>
-          <div className="wp-notification-popover__item"><span>âœ“</span><div><strong>Workspace connected</strong><p>Your live ECOLOGIX workspace is ready.</p></div></div>
+          <div className="wp-notification-popover__header"><div><p>Activity</p><span>Latest account updates</span></div><button type="button" onClick={() => setIsNotificationsOpen(false)} aria-label="Close notifications">×</button></div>
+          <div className="wp-notification-popover__item"><span>✓</span><div><strong>Workspace connected</strong><p>Your live ECOLOGIX workspace is ready.</p></div></div>
           <div className="wp-notification-popover__empty">New payout, pickup, and intake updates will appear here.</div>
         </aside> : null}
       </header>

@@ -178,7 +178,7 @@ export default function PrivacyPage() {
             <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
 
               <Link href="/terms" className="wp-secondary-button">
@@ -323,7 +323,7 @@ export default function PrivacyPage() {
 
               <Link href="/contact" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

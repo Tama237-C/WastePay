@@ -39,7 +39,7 @@ export function PartnershipEnquiryForm({
         </div>
 
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl text-slate-300">
-          {isExpanded ? "âˆ’" : "+"}
+          {isExpanded ? "−" : "+"}
         </span>
       </button>
 
@@ -181,7 +181,7 @@ export function PartnershipEnquiryForm({
                   name="location"
                   type="text"
                   required
-                  placeholder="Douala, YaoundÃ©, Littoral..."
+                  placeholder="Douala, Yaoundé, Littoral..."
                   className="mt-3 min-h-14 w-full rounded-2xl border border-white/10 bg-slate-950/45 px-5 py-4 text-white outline-none transition-all placeholder:text-slate-700 focus:border-violet-400/40 focus:ring-4 focus:ring-violet-400/10"
                 />
               </div>
@@ -280,7 +280,7 @@ export function PartnershipEnquiryForm({
 
             <button type="submit" className="wp-primary-button w-full">
               Send partnership enquiry
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </button>
           </form>
         </div>

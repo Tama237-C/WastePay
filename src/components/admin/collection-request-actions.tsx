@@ -126,7 +126,7 @@ export function CollectionRequestActions({
                 aria-label="Close"
                 className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-2xl font-light text-slate-400 transition-all duration-300 hover:border-red-400/30 hover:bg-red-400/10 hover:text-red-200"
               >
-                Ã—
+                ×
               </button>
             </header>
 

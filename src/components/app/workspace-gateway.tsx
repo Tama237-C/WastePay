@@ -2,11 +2,11 @@ import Link from "next/link";
 import { AppInstallCard } from "@/components/app/install-app-card";
 
 const workspaces = [
-  { key: "collector", icon: "â™»", title: "Collector", description: "Track recycling value, payouts, and your Mobile Money wallet.", tone: "emerald" },
-  { key: "agent", icon: "âŒ", title: "Depot agent", description: "Scan materials, verify weights, and complete depot intake.", tone: "violet" },
-  { key: "driver", icon: "â†—", title: "Driver", description: "Manage collection routes and submit proof of pickup.", tone: "sky" },
-  { key: "manager", icon: "â—Ž", title: "Depot manager", description: "Dispatch pickups, review transactions, and prepare payouts.", tone: "amber" },
-  { key: "admin", icon: "â—‡", title: "Administrator", description: "Manage network operations, users, controls, and reporting.", tone: "slate" },
+  { key: "collector", icon: "♻", title: "Collector", description: "Track recycling value, payouts, and your Mobile Money wallet.", tone: "emerald" },
+  { key: "agent", icon: "", title: "Depot agent", description: "Scan materials, verify weights, and complete depot intake.", tone: "violet" },
+  { key: "driver", icon: "↗", title: "Driver", description: "Manage collection routes and submit proof of pickup.", tone: "sky" },
+  { key: "manager", icon: "◎", title: "Depot manager", description: "Dispatch pickups, review transactions, and prepare payouts.", tone: "amber" },
+  { key: "admin", icon: "◇", title: "Administrator", description: "Manage network operations, users, controls, and reporting.", tone: "slate" },
 ] as const;
 
 export function WorkspaceGateway() {
@@ -51,12 +51,12 @@ export function WorkspaceGateway() {
                 <strong>{workspace.title}</strong>
                 <small>{workspace.description}</small>
               </span>
-              <i>â†’</i>
+              <i>→</i>
             </Link>
           ))}
         </div>
         <footer className="wp-gateway__footnote">
-          <span>â—</span> Your role is verified when you sign in. You will only
+          <span>●</span> Your role is verified when you sign in. You will only
           access your assigned workspace.
         </footer>
       </section>

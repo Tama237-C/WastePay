@@ -96,7 +96,7 @@ export function PublicFooter() {
               className="wp-primary-button"
             >
               Book a collection
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
 
             <Link
@@ -214,7 +214,7 @@ export function PublicFooter() {
 
         <div className="flex flex-col gap-4 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Â© {currentYear} ECOLOGIX. Building Cameroon&apos;s circular
+            © {currentYear} ECOLOGIX. Building Cameroon&apos;s circular
             plastic economy.
           </p>
 

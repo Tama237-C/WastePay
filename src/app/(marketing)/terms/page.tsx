@@ -146,7 +146,7 @@ export default function TermsPage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
 
               <Link href="/privacy" className="wp-secondary-button">
@@ -215,7 +215,7 @@ export default function TermsPage() {
 
               <Link href="/contact" className="wp-primary-button">
                 Contact ECOLOGIX
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

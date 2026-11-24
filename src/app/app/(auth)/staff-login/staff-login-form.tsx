@@ -36,7 +36,7 @@ function SubmitButton() {
           aria-hidden="true"
           className="relative z-10 ml-3 transition-transform duration-300 ease-out group-hover:translate-x-1"
         >
-          â†’
+          →
         </span>
       )}
     </button>

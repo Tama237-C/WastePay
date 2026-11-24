@@ -49,7 +49,7 @@ export default async function FinancialControlPage() {
                 </div>
                 <div className="mt-5 grid gap-4 text-sm sm:grid-cols-4">
                   <div><p className="text-slate-600">Base rate</p><p className="mt-1 text-slate-200">{Number(rule.base_rate_cfa).toLocaleString("en-CM")} CFA/KG</p></div>
-                  <div><p className="text-slate-600">Multiplier</p><p className="mt-1 text-slate-200">{rule.regional_multiplier}Ã—</p></div>
+                  <div><p className="text-slate-600">Multiplier</p><p className="mt-1 text-slate-200">{rule.regional_multiplier}×</p></div>
                   <div><p className="text-slate-600">Campaign bonus</p><p className="mt-1 text-slate-200">{Number(rule.campaign_bonus_cfa).toLocaleString("en-CM")} CFA</p></div>
                   <div><p className="text-slate-600">Valid until</p><p className="mt-1 text-slate-200">{new Intl.DateTimeFormat("en-CM", { dateStyle: "medium" }).format(new Date(rule.expiration_date))}</p></div>
                 </div>

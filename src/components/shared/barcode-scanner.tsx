@@ -208,9 +208,6 @@ export function BarcodeScanner({
           disabled={starting || running}
           className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-violet-300/20 bg-violet-400/15 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-violet-100 transition hover:bg-violet-400/25 disabled:cursor-wait disabled:opacity-60"
         >
-          <span className="text-base" aria-hidden="true">
-            âŒ
-          </span>
           {starting
             ? "Starting camera"
             : running

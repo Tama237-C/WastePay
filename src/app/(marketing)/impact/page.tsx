@@ -388,7 +388,7 @@ export default async function ImpactPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">
@@ -753,7 +753,7 @@ export default async function ImpactPage() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/partners" className="wp-primary-button">
                   Sponsor recovery
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link
@@ -829,7 +829,7 @@ export default async function ImpactPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link href="/partners" className="wp-secondary-button">

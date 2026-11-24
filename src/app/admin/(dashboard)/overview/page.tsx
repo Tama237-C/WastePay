@@ -285,7 +285,7 @@ export default async function AdminOverviewPage() {
                       </span>
 
                       <span className="text-emerald-400 transition-transform duration-300 ease-out group-hover:translate-x-1">
-                        â†’
+                        →
                       </span>
                     </span>
 

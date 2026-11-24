@@ -335,7 +335,7 @@ export default function FaqPage() {
               <div className="wp-fade-up-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/contact" className="wp-primary-button">
                   Request collection
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link
@@ -528,7 +528,7 @@ export default function FaqPage() {
               <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
                 <Link href="/contact" className="wp-primary-button">
                   Contact ECOLOGIX
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
 
                 <Link
