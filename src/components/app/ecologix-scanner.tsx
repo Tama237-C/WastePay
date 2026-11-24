@@ -171,7 +171,7 @@ export function EcologixScanner({
         </p>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-3">
+      <section className="grid min-w-0 gap-3 md:grid-cols-3">
         <article className="rounded-[1.75rem] border border-emerald-400/15 bg-emerald-400/[0.06] p-5">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-300">
             Items scanned
