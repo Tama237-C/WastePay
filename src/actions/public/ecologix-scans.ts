@@ -11,6 +11,9 @@ export type EcologixScanState = {
   message: string;
 };
 
+const MAX_SCAN_PHOTO_BYTES = 5 * 1024 * 1024;
+const scanPhotoMimeTypes = new Set(["image/jpeg", "image/png", "image/webp"]);
+
 export type EcologixProductLookup = {
   barcodeNumber: string;
   found: boolean;
@@ -70,7 +73,7 @@ export async function lookupEcologixProduct(
       .maybeSingle(),
     adminClient
       .from("ecologix_scans")
-      .select("scanner_profile_id, audit_area_name")
+      .select("scanner_profile_id, audit_area_name, quantity")
       .eq("barcode_number", barcodeNumber)
       .order("scanned_at", { ascending: false })
       .limit(100),
@@ -86,7 +89,7 @@ export async function lookupEcologixProduct(
       productVolume: "",
       materialType: "PET_CLEAR",
       countryOfManufacture: "",
-      scanCount: scans?.length ?? 0,
+      scanCount: (scans ?? []).reduce((total, scan) => total + (scan.quantity ?? 1), 0),
       contributorNames: [],
       auditAreaNames: [
         ...new Set(
@@ -123,7 +126,7 @@ export async function lookupEcologixProduct(
     productVolume: product.product_volume ?? "",
     materialType: product.material_type,
     countryOfManufacture: product.country_of_manufacture ?? "",
-    scanCount: scans?.length ?? 0,
+    scanCount: (scans ?? []).reduce((total, scan) => total + (scan.quantity ?? 1), 0),
     contributorNames: [
       ...new Set(
         (profiles ?? [])
@@ -154,6 +157,12 @@ export async function recordEcologixScan(
   const countryOfManufacture = text(formData.get("countryOfManufacture"));
   const sellerName = text(formData.get("sellerName"));
   const auditAreaName = text(formData.get("auditAreaName"));
+  const quantityText = text(formData.get("quantity"));
+  const quantity = Number(quantityText);
+  const tagsInput = text(formData.get("tags"));
+  const tags = [...new Set(tagsInput.split(",").map((tag) => tag.trim()).filter(Boolean))];
+  const photoEntry = formData.get("scanPhoto");
+  const scanPhoto = photoEntry instanceof File && photoEntry.size > 0 ? photoEntry : null;
   const latitude = finiteCoordinate(formData.get("latitude"));
   const longitude = finiteCoordinate(formData.get("longitude"));
   const validMaterials = ["PET_CLEAR", "PET_COLORED", "HDPE", "PP"];
@@ -175,6 +184,27 @@ export async function recordEcologixScan(
       status: "error",
       message:
         "Add the product name, brand, manufacturer, and plastic material.",
+    };
+  }
+
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 200) {
+    return {
+      status: "error",
+      message: "Enter a quantity from 1 to 200.",
+    };
+  }
+
+  if (tagsInput.length > 500 || tags.length > 20 || tags.some((tag) => tag.length > 60)) {
+    return {
+      status: "error",
+      message: "Use up to 20 tags, with each tag 60 characters or fewer.",
+    };
+  }
+
+  if (scanPhoto && (!scanPhotoMimeTypes.has(scanPhoto.type) || scanPhoto.size > MAX_SCAN_PHOTO_BYTES)) {
+    return {
+      status: "error",
+      message: "Use a JPG, PNG, or WebP photo smaller than 5 MB.",
     };
   }
 
@@ -201,6 +231,35 @@ export async function recordEcologixScan(
   }
 
   const adminClient = createAdminClient();
+  let photoPath: string | null = null;
+
+  if (scanPhoto) {
+    const extension =
+      scanPhoto.type === "image/png"
+        ? "png"
+        : scanPhoto.type === "image/webp"
+          ? "webp"
+          : "jpg";
+    photoPath = `${scannerProfileId ?? "anonymous"}/${crypto.randomUUID()}.${extension}`;
+    const { error: uploadError } = await adminClient.storage
+      .from("ecologix-scan-photos")
+      .upload(photoPath, scanPhoto, {
+        contentType: scanPhoto.type,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("ECOLOGIX could not upload scan photo.", {
+        code: uploadError.name,
+        message: uploadError.message,
+      });
+      return {
+        status: "error",
+        message: "The photo could not be saved. Please try again or submit without it.",
+      };
+    }
+  }
+
   const { data: existingProduct } = await adminClient
     .from("barcodes")
     .select("barcode_number")
@@ -222,6 +281,9 @@ export async function recordEcologixScan(
       });
 
     if (barcodeInsertError) {
+      if (photoPath) {
+        await adminClient.storage.from("ecologix-scan-photos").remove([photoPath]);
+      }
       console.error("ECOLOGIX could not create the new barcode product.", {
         code: barcodeInsertError.code,
         message: barcodeInsertError.message,
@@ -246,6 +308,9 @@ export async function recordEcologixScan(
     country_of_manufacture: countryOfManufacture || null,
     seller_name: sellerName || null,
     scan_source: "COMMUNITY",
+    quantity,
+    tags,
+    photo_path: photoPath,
     latitude,
     longitude,
   };
@@ -259,6 +324,9 @@ export async function recordEcologixScan(
     .insert(scanInsert);
 
   if (scanInsertError) {
+    if (photoPath) {
+      await adminClient.storage.from("ecologix-scan-photos").remove([photoPath]);
+    }
     console.error("ECOLOGIX could not record the scan.", {
       code: scanInsertError.code,
       message: scanInsertError.message,

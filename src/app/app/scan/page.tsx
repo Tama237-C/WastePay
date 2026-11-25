@@ -29,7 +29,7 @@ export default async function EcologixScanPage() {
       .limit(250),
     adminClient
       .from("ecologix_scans")
-      .select("id")
+      .select("quantity")
       .limit(1000),
     adminClient
       .from("barcodes")
@@ -68,7 +68,7 @@ export default async function EcologixScanPage() {
   return (
     <ConsumerAppShell>
       <EcologixScanner
-        scanCount={allScansError ? 0 : (allScans?.length ?? 0)}
+        scanCount={allScansError ? 0 : (allScans ?? []).reduce((total, scan) => total + (scan.quantity ?? 1), 0)}
         brandCount={knownBrands}
         auditCount={auditsError ? 0 : (audits?.length ?? 0)}
         points={locatedScans}

@@ -4,6 +4,7 @@ import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { BarcodeScanner } from "@/components/shared/barcode-scanner";
+import { LivePhotoCapture } from "@/components/app/live-photo-capture";
 import {
   lookupEcologixProduct,
   recordEcologixScan,
@@ -246,8 +247,9 @@ export function EcologixScanner({
               {lookup.found ? (
                 <p className="mt-3 text-sm leading-7 text-slate-300">
                   <strong>{lookup.productName}</strong> by{" "}
-                  <strong>{lookup.brandName}</strong>. Manufacturer:{" "}
-                  {lookup.manufacturerName}. {lookup.scanCount} recorded scans.
+                  <strong>{lookup.brandName}</strong>
+                  {lookup.productVolume ? ` (${lookup.productVolume})` : ""}. Manufacturer:{" "}
+                  {lookup.manufacturerName}. {lookup.scanCount} items recorded.
                 </p>
               ) : (
                 <p className="mt-3 text-sm leading-7 text-amber-100">
@@ -280,6 +282,36 @@ export function EcologixScanner({
           <input type="hidden" name="barcodeNumber" value={barcodeNumber} />
           <input type="hidden" name="latitude" value={latitude} />
           <input type="hidden" name="longitude" value={longitude} />
+
+          <label className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            Number of items
+            <input
+              name="quantity"
+              type="number"
+              min="1"
+              max="200"
+              defaultValue="1"
+              required
+              inputMode="numeric"
+              className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-emerald-400/50"
+            />
+            <span className="mt-2 block text-xs font-normal normal-case tracking-normal text-slate-500">
+              Enter how many matching items this scan represents.
+            </span>
+          </label>
+          <label className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            Tags
+            <input
+              name="tags"
+              type="text"
+              maxLength={500}
+              placeholder="beach cleanup, PET bottle"
+              className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-emerald-400/50"
+            />
+            <span className="mt-2 block text-xs font-normal normal-case tracking-normal text-slate-500">
+              Optional; separate tags with commas.
+            </span>
+          </label>
 
           <label className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
             Product name
@@ -370,6 +402,22 @@ export function EcologixScanner({
               className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 text-white outline-none focus:border-emerald-400/50"
             />
           </label>
+
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="ecologixScanPhoto"
+              className="mb-3 block text-xs font-black uppercase tracking-[0.16em] text-slate-400"
+            >
+              Photo evidence (optional)
+            </label>
+            <LivePhotoCapture
+              id="ecologixScanPhoto"
+              name="scanPhoto"
+            />
+            <p className="mt-2 text-xs text-slate-500">
+              Take a live photo of the product so we can help identify it. Photos are optional.
+            </p>
+          </div>
 
           <div className="sm:col-span-2">
             <button
