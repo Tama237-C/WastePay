@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { EditablePageSections } from "@/components/marketing/editable-page-sections";
@@ -354,7 +355,7 @@ export default async function ImpactPage() {
 
   return (
     <main>
-      <section className="relative overflow-hidden pb-20 pt-12 sm:pb-28 sm:pt-20">
+      <section className="relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-32 lg:pt-36">
         <div
           aria-hidden="true"
           className="wp-emerald-glow -left-52 top-0 h-[36rem] w-[36rem]"
@@ -366,7 +367,7 @@ export default async function ImpactPage() {
         />
 
         <div className="wp-page-container">
-          <div className="grid gap-14 xl:grid-cols-[1.02fr_0.98fr] xl:items-center">
+          <div className="grid gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-12 xl:gap-16">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
                 ECOLOGIX impact
@@ -397,7 +398,7 @@ export default async function ImpactPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-2xl xl:mx-0">
+            <div className="relative mx-auto w-full max-w-2xl lg:mx-0">
               <div
                 aria-hidden="true"
                 className="absolute inset-10 rounded-full bg-emerald-400/10 blur-[110px]"
@@ -407,6 +408,14 @@ export default async function ImpactPage() {
                 <div className="pointer-events-none absolute inset-0 wp-grid-background opacity-55" />
 
                 <div className="relative">
+                  <Image
+                    src="/images/ecologix-community-impact.jpg"
+                    alt="Community members and ECOLOGIX workers collecting plastic from a coastal shoreline"
+                    width={1280}
+                    height={543}
+                    className="mb-6 h-48 w-full rounded-2xl object-cover sm:h-56"
+                  />
+
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-[0.62rem] font-black uppercase tracking-[0.23em] text-emerald-400">

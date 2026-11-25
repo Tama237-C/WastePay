@@ -180,10 +180,10 @@ export default async function HomePage() {
     : null;
   const heroImage = websiteContent?.homepage_hero_image_path
     ? createAdminClient().storage.from("website-images").getPublicUrl(websiteContent.homepage_hero_image_path).data.publicUrl
-    : null;
+    : "/images/ecologix-recovery-depot.jpg";
   return (
     <main>
-      <section className="relative overflow-hidden pb-20 pt-10 sm:pb-28 sm:pt-16 lg:min-h-[calc(100vh-7rem)] lg:pb-24 lg:pt-20">
+      <section className="relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-32 lg:min-h-[calc(100vh-7rem)] lg:pb-24 lg:pt-36">
         <div
           aria-hidden="true"
           className="wp-emerald-glow -left-56 top-0 h-[34rem] w-[34rem]"
@@ -195,7 +195,7 @@ export default async function HomePage() {
         />
 
         <div className="wp-page-container">
-          <div className="grid items-center gap-14 xl:grid-cols-[1.08fr_0.92fr] xl:gap-16">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 xl:gap-16">
             <div className="relative z-10 max-w-5xl">
               <div className="wp-eyebrow wp-fade-up">
                 Built for circular recovery
@@ -237,14 +237,14 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-2xl xl:mx-0">
+            <div className="relative mx-auto w-full max-w-2xl lg:mx-0">
               <div
                 aria-hidden="true"
                 className="absolute inset-10 rounded-full bg-emerald-400/10 blur-[100px]"
               />
 
               <div className="wp-glass-panel-strong relative overflow-hidden rounded-[2.5rem] p-5 sm:p-7">
-                {heroImage ? <Image src={heroImage} alt="" width={800} height={400} className="mb-5 h-56 w-full rounded-3xl object-cover" /> : null}
+                <Image src={heroImage} alt="Workers sorting and preparing recyclable plastic at a recovery depot" width={1280} height={543} className="mb-5 h-56 w-full rounded-3xl object-cover" />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
                 <div className="relative">
@@ -397,7 +397,15 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <Image
+            src="/images/ecologix-community-impact.jpg"
+            alt="Community members and ECOLOGIX workers collecting plastic from a coastal shoreline"
+            width={1280}
+            height={543}
+            className="mt-12 h-56 w-full rounded-[2rem] border border-white/10 object-cover sm:h-72"
+          />
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {impactMetrics.map((metric) => (
               <article
                 key={metric.label}
@@ -449,6 +457,14 @@ export default async function HomePage() {
             </div>
 
             <div className="space-y-5">
+              <Image
+                src="/images/ecologix-pickup-handoff.jpg"
+                alt="A community member hands sorted recyclable plastic to an ECOLOGIX recovery worker"
+                width={1280}
+                height={543}
+                className="h-52 w-full rounded-[2rem] border border-white/10 object-cover sm:h-64"
+              />
+
               {recoverySteps.map((step) => {
                 const accentClasses = {
                   emerald:

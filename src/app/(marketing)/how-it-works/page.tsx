@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "How ECOLOGIX Works | Plastic Recovery Journey",
@@ -300,7 +301,7 @@ const outcomeCards = [
 export default function HowItWorksPage() {
   return (
     <main>
-      <section className="relative overflow-hidden pb-20 pt-12 sm:pb-28 sm:pt-20">
+      <section className="relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-32 lg:pt-36">
         <div
           aria-hidden="true"
           className="wp-emerald-glow -left-52 top-0 h-[36rem] w-[36rem]"
@@ -312,7 +313,7 @@ export default function HowItWorksPage() {
         />
 
         <div className="wp-page-container">
-          <div className="grid gap-14 xl:grid-cols-[1.05fr_0.95fr] xl:items-center">
+          <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12 xl:gap-16">
             <div className="relative z-10 max-w-5xl">
               <p className="wp-eyebrow wp-fade-up">
                 How ECOLOGIX works
@@ -344,7 +345,7 @@ export default function HowItWorksPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-2xl xl:mx-0">
+            <div className="relative mx-auto w-full max-w-2xl lg:mx-0">
               <div
                 aria-hidden="true"
                 className="absolute inset-10 rounded-full bg-sky-400/10 blur-[110px]"
@@ -354,6 +355,14 @@ export default function HowItWorksPage() {
                 <div className="pointer-events-none absolute inset-0 wp-grid-background opacity-55" />
 
                 <div className="relative">
+                  <Image
+                    src="/images/ecologix-pickup-handoff.jpg"
+                    alt="A community member hands sorted recyclable plastic to an ECOLOGIX recovery worker"
+                    width={1280}
+                    height={543}
+                    className="mb-6 h-48 w-full rounded-2xl object-cover sm:h-56"
+                  />
+
                   <div className="flex items-center justify-between gap-5">
                     <div>
                       <p className="text-[0.62rem] font-black uppercase tracking-[0.23em] text-emerald-400">
